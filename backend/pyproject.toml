@@ -1,0 +1,47 @@
+[project]
+name = "formularze-ai"
+version = "0.1.0"
+description = "Analiza formularzy urzędowych (PDF, DOC, DOCX, ODS, XLSX, JPG, PNG) i generowanie konfiguracji eUsługi w formacie JSON."
+requires-python = ">=3.14"
+license = "MIT"
+# Wyłącznie licencje niecopyleftowe (MIT / BSD / Apache-2.0 / PSF / MIT-CMU).
+dependencies = [
+    "fastapi==0.165.0",            # MIT
+    "uvicorn[standard]==0.54.0",   # BSD-3-Clause
+    "python-multipart==0.0.34",    # Apache-2.0
+    "pydantic==2.14.4",            # MIT
+    "pydantic-settings==2.16.3",   # MIT
+    "PyJWT==2.15.1",               # MIT
+    "python-docx==1.2.0",          # MIT
+    "openpyxl==3.1.5",             # MIT
+    "pypdfium2==5.15.2",           # Apache-2.0 / BSD-3-Clause
+    "pillow==13.0.0",              # MIT-CMU
+    "pytesseract==0.3.13",         # Apache-2.0
+    "olefile==0.47",               # BSD-2-Clause
+    "defusedxml==0.7.1",           # PSF-2.0
+    "httpx==0.28.1",               # BSD-3-Clause
+]
+
+[project.optional-dependencies]
+dev = ["pytest==9.2.0", "ruff==0.17.6"]
+
+[build-system]
+requires = ["setuptools>=80"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["app*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py314"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "B", "UP", "I"]
+
+[tool.ruff.lint.per-file-ignores]
+"app/analysis/llm.py" = ["E501"]   # treść promptu
+"tests/*" = ["E501"]

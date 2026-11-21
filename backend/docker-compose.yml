@@ -1,0 +1,15 @@
+services:
+  formularze:
+    build: .
+    image: formularze-ai:0.1.0
+    env_file: .env
+    ports:
+      - "8000:8000"
+    read_only: true
+    tmpfs:
+      - /tmp
+      - /home/app
+    cap_drop: [ALL]
+    security_opt:
+      - no-new-privileges:true
+    restart: unless-stopped
