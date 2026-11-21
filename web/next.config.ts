@@ -1,9 +1,10 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
-  cacheComponents: true,
-  partialPrefetching: true,
+  // Cache Components wyłączone: strony czytające ciasteczka sesji (login, /panel)
+  // muszą renderować się dynamicznie. Da się to pogodzić przez Suspense,
+  // ale na tym etapie to niepotrzebna komplikacja.
+  cacheComponents: false,
   turbopack: {
     rules: {
       "*.css": {

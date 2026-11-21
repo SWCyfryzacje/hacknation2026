@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const pillars = [
   {
     label: "01",
@@ -31,9 +33,17 @@ export default function Home() {
           <span className="font-mono text-sm tracking-tight">
             MC<span className="text-accent">Polska</span>
           </span>
-          <span className="font-mono text-xs text-muted">
-            HackNation · proof of concept
-          </span>
+          <div className="flex items-center gap-5">
+            <span className="hidden font-mono text-xs text-muted sm:inline">
+              HackNation · proof of concept
+            </span>
+            <Link
+              href="/login"
+              className="rounded-full border border-border-subtle px-4 py-1.5 font-mono text-xs transition-opacity hover:opacity-70"
+            >
+              Zaloguj
+            </Link>
+          </div>
         </div>
       </header>
 
