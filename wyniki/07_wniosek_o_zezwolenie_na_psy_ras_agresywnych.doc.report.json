@@ -1,0 +1,60 @@
+{
+  "file": {
+    "name": "07_wniosek_o_zezwolenie_na_psy_ras_agresywnych.doc",
+    "mime": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    "sizeBytes": 13522
+  },
+  "extraction": {
+    "format": "docx",
+    "lines": 68,
+    "ocr": false,
+    "ocrEngine": null
+  },
+  "analysis": {
+    "analyzer": "llm",
+    "model": "mistral/mistral-large-4-0@eu",
+    "authority": "Urząd Miejski Wrocławia",
+    "applicant": {
+      "person": true,
+      "company": false
+    },
+    "llmUsage": {
+      "calls": 1,
+      "prompt_tokens": 4221,
+      "completion_tokens": 10673
+    }
+  },
+  "stats": {
+    "pages": 4,
+    "sections": 13,
+    "fields": 46,
+    "conditional": 18
+  },
+  "proposedDictionaries": [
+    {
+      "name": "Rasy psów uznawanych za agresywne",
+      "description": "Wykaz ras psów uznawanych za agresywne zgodnie z rozporządzeniem Ministra Spraw Wewnętrznych i Administracji",
+      "values": [
+        "Amerykański staffordshire terier",
+        "Ca de Bou",
+        "Chart polski",
+        "Dogo argentyński",
+        "Fila brasileiro",
+        "Mastif hiszpański",
+        "Mastino neapolitański",
+        "Owczarek kaukaski",
+        "Pies kanadyjski",
+        "Pies mallorki",
+        "Pit bull terier",
+        "Rottweiler",
+        "Tosa inu"
+      ],
+      "used_by": [
+        "Rasa psa"
+      ]
+    }
+  ],
+  "warnings": [],
+  "issues": [],
+  "durationMs": 114143
+}

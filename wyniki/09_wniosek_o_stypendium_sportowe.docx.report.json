@@ -1,0 +1,68 @@
+{
+  "file": {
+    "name": "09_wniosek_o_stypendium_sportowe.docx",
+    "mime": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    "sizeBytes": 39702
+  },
+  "extraction": {
+    "format": "docx",
+    "lines": 273,
+    "ocr": false,
+    "ocrEngine": null
+  },
+  "analysis": {
+    "analyzer": "llm",
+    "model": "mistral/mistral-large-4-0@eu",
+    "authority": "Prezydent Miasta Zgierza",
+    "applicant": {
+      "person": true,
+      "company": true
+    },
+    "llmUsage": {
+      "calls": 2,
+      "prompt_tokens": 18273,
+      "completion_tokens": 16409
+    }
+  },
+  "stats": {
+    "pages": 9,
+    "sections": 23,
+    "fields": 83,
+    "conditional": 35
+  },
+  "proposedDictionaries": [
+    {
+      "name": "Dyscypliny sportowe",
+      "description": "Lista dyscyplin sportowych uznawanych przy przyznawaniu stypendiów sportowych",
+      "values": [
+        "Gimnastyka artystyczna",
+        "Hokej",
+        "Karate",
+        "Kolarstwo",
+        "Koszykówka",
+        "Lekkoatletyka",
+        "Łucznictwo",
+        "Łyżwiarstwo",
+        "Narciarstwo klasyczne",
+        "Piłka nożna",
+        "Piłka ręczna",
+        "Piłka siatkowa",
+        "Piłka wodna",
+        "Sport motocyklowy",
+        "Sporty walki",
+        "Sporty wodne",
+        "Tenis stołowy",
+        "Tenis ziemny",
+        "Unihokej",
+        "Zapasy",
+        "Inna"
+      ],
+      "used_by": [
+        "Dyscyplina sportowa"
+      ]
+    }
+  ],
+  "warnings": [],
+  "issues": [],
+  "durationMs": 396907
+}

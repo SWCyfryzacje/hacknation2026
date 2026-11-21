@@ -1,0 +1,37 @@
+{
+  "file": {
+    "name": "03_wniosek_o_wydanie_zaswiadczenia.docx",
+    "mime": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    "sizeBytes": 20564
+  },
+  "extraction": {
+    "format": "docx",
+    "lines": 32,
+    "ocr": false,
+    "ocrEngine": null
+  },
+  "analysis": {
+    "analyzer": "llm",
+    "model": "mistral/mistral-large-4-0@eu",
+    "authority": "Urząd Miasta i Gminy Młynary",
+    "applicant": {
+      "person": true,
+      "company": true
+    },
+    "llmUsage": {
+      "calls": 1,
+      "prompt_tokens": 3027,
+      "completion_tokens": 6274
+    }
+  },
+  "stats": {
+    "pages": 4,
+    "sections": 18,
+    "fields": 56,
+    "conditional": 30
+  },
+  "proposedDictionaries": [],
+  "warnings": [],
+  "issues": [],
+  "durationMs": 68597
+}

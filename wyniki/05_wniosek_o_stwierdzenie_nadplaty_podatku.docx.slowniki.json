@@ -1,0 +1,23 @@
+{
+  "dictionaries": [
+    {
+      "name": "Rodzaje podatków",
+      "description": "Wykaz podatków, z tytułu których można wystąpić o stwierdzenie nadpłaty lub zaliczenie na poczet przyszłych zobowiązań",
+      "values": [
+        "Podatek dochodowy od osób fizycznych (PIT)",
+        "Podatek dochodowy od osób prawnych (CIT)",
+        "Podatek od towarów i usług (VAT)",
+        "Podatek od czynności cywilnoprawnych (PCC)",
+        "Podatek od nieruchomości",
+        "Podatek rolny",
+        "Podatek leśny",
+        "Opłata skarbowa",
+        "Inny podatek"
+      ],
+      "used_by": [
+        "Rodzaj podatku, z tytułu którego powstała nadpłata",
+        "Rodzaj przyszłego zobowiązania podatkowego"
+      ]
+    }
+  ]
+}

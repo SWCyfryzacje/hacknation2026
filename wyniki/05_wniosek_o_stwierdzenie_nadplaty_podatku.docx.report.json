@@ -1,0 +1,57 @@
+{
+  "file": {
+    "name": "05_wniosek_o_stwierdzenie_nadplaty_podatku.docx",
+    "mime": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    "sizeBytes": 21929
+  },
+  "extraction": {
+    "format": "docx",
+    "lines": 31,
+    "ocr": false,
+    "ocrEngine": null
+  },
+  "analysis": {
+    "analyzer": "llm",
+    "model": "mistral/mistral-large-4-0@eu",
+    "authority": "Urząd Gminy Ulan-Majorat",
+    "applicant": {
+      "person": true,
+      "company": true
+    },
+    "llmUsage": {
+      "calls": 1,
+      "prompt_tokens": 2852,
+      "completion_tokens": 7425
+    }
+  },
+  "stats": {
+    "pages": 4,
+    "sections": 18,
+    "fields": 62,
+    "conditional": 33
+  },
+  "proposedDictionaries": [
+    {
+      "name": "Rodzaje podatków",
+      "description": "Wykaz podatków, z tytułu których można wystąpić o stwierdzenie nadpłaty lub zaliczenie na poczet przyszłych zobowiązań",
+      "values": [
+        "Podatek dochodowy od osób fizycznych (PIT)",
+        "Podatek dochodowy od osób prawnych (CIT)",
+        "Podatek od towarów i usług (VAT)",
+        "Podatek od czynności cywilnoprawnych (PCC)",
+        "Podatek od nieruchomości",
+        "Podatek rolny",
+        "Podatek leśny",
+        "Opłata skarbowa",
+        "Inny podatek"
+      ],
+      "used_by": [
+        "Rodzaj podatku, z tytułu którego powstała nadpłata",
+        "Rodzaj przyszłego zobowiązania podatkowego"
+      ]
+    }
+  ],
+  "warnings": [],
+  "issues": [],
+  "durationMs": 96939
+}

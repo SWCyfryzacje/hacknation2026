@@ -37,7 +37,8 @@ działa w całości na jednej maszynie: analiza regułowa + lokalny OCR Tesserac
 | Moduł | Odpowiedzialność |
 | --- | --- |
 | `main.py`, `api.py` | aplikacja FastAPI, endpointy, dokumentacja OpenAPI (`/docs`), logowanie (`/api/v1/auth/token`) |
-| `static/index.html` | strona WWW dla urzędnika: jeden plik HTML/CSS/JS bez zależności i bez budowania, serwowany przez tę samą usługę; korzysta tylko z publicznego REST API |
+| `static/index.html` | strona WWW dla urzędnika: jeden plik HTML/CSS/JS bez budowania, serwowany przez tę samą usługę; korzysta tylko z publicznego REST API; wgrywanie pliku, podgląd eUsługi (kroki, pola, zależności, walidacja), JSON, raport, pobieranie słowników |
+| `static/vendor/` | lokalna kopia biblioteki JSONata 2.2.2 (MIT) — warunki `states` w podglądzie liczone tak samo jak w systemie docelowym, bez CDN |
 | `config.py` | konfiguracja wyłącznie ze zmiennych środowiskowych (pydantic-settings), walidowana przy starcie |
 | `security.py` | wystawianie i weryfikacja tokenów JWT (HS*/RS*/ES*, wymagany `exp`, opcjonalnie `aud`/`iss`), sprawdzanie loginu i hasła w stałym czasie |
 | `errors.py` | błędy domenowe → odpowiedzi `application/problem+json` z właściwym kodem HTTP |

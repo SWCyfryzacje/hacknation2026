@@ -70,3 +70,17 @@ def test_login_without_configuration(make_client, monkeypatch):
     assert client.get("/api/v1/auth/config").json()["loginConfigured"] is False
     r = client.post("/api/v1/auth/token", json={"username": "a", "password": "b"})
     assert r.status_code == 503
+
+
+def test_preview_assets_are_served_locally(make_client):
+    client = make_client()
+    page = client.get("/").text
+    assert 'src="/static/vendor/jsonata.min.js"' in page
+    assert 'id="tab-preview"' in page and 'id="open-json"' in page and 'id="download-dicts"' in page
+    lib = client.get("/static/vendor/jsonata.min.js")
+    assert lib.status_code == 200 and "javascript" in lib.headers["content-type"]
+    assert lib.text.startswith("/*! JSONata 2.2.2 | MIT License")
+
+
+def test_static_files_disabled_with_ui(make_client):
+    assert make_client(UI_ENABLED="false").get("/static/vendor/jsonata.min.js").status_code == 404

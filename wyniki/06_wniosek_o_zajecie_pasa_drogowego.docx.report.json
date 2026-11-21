@@ -1,0 +1,37 @@
+{
+  "file": {
+    "name": "06_wniosek_o_zajecie_pasa_drogowego.docx",
+    "mime": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    "sizeBytes": 9105
+  },
+  "extraction": {
+    "format": "docx",
+    "lines": 51,
+    "ocr": false,
+    "ocrEngine": null
+  },
+  "analysis": {
+    "analyzer": "llm",
+    "model": "mistral/mistral-large-4-0@eu",
+    "authority": "Urząd Miasta i Gminy Miasteczko",
+    "applicant": {
+      "person": true,
+      "company": true
+    },
+    "llmUsage": {
+      "calls": 1,
+      "prompt_tokens": 3790,
+      "completion_tokens": 10277
+    }
+  },
+  "stats": {
+    "pages": 4,
+    "sections": 21,
+    "fields": 82,
+    "conditional": 31
+  },
+  "proposedDictionaries": [],
+  "warnings": [],
+  "issues": [],
+  "durationMs": 186540
+}

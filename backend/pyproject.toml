@@ -33,7 +33,7 @@ build-backend = "setuptools.build_meta"
 include = ["app*"]
 
 [tool.setuptools.package-data]
-app = ["static/*.html"]  # strona WWW instalowana razem z pakietem (pip install .)
+app = ["static/*.html", "static/vendor/*"]  # strona WWW i JSONata instalowane razem z pakietem
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

@@ -75,12 +75,31 @@ pytest                                             # testy
 
 Token do testów: `python -m app.token_cli --sub urzednik --hours 8`.
 
+Przetwarzanie wsadowe całego katalogu (wyniki + raporty + słowniki, opcjonalny limit wywołań modelu):
+
+```bash
+python scripts/convert_dir.py formularze/ wyniki/ --max-llm-calls 15
+python scripts/compare.py wyniki/wniosek.docx.json referencja.json   # porównanie z eksportem referencyjnym
+```
+
 ## Interfejs WWW
 
-Pod adresem `/` usługa serwuje prostą stronę dla urzędnika (jeden plik HTML, bez zewnętrznych zasobów i bez
-osobnego procesu budowania): logowanie → wybór lub przeciągnięcie pliku → „Konwertuj do JSON” → podgląd JSON-a,
-podsumowanie analizy (strony, sekcje, pola, ostrzeżenia, propozycje słowników, zużycie tokenów) oraz przyciski
-„Pobierz JSON” i „Kopiuj JSON”. Strona korzysta wyłącznie z publicznego REST API opisanego niżej.
+Pod adresem `/` usługa serwuje prostą stronę dla urzędnika (jeden plik HTML + lokalna kopia biblioteki JSONata,
+bez zasobów zewnętrznych i bez procesu budowania):
+
+1. logowanie → wybór lub przeciągnięcie pliku → „Konwertuj do JSON”,
+2. **Podgląd formularza** — wizualizacja eUsługi powstałej z JSON-a: strony jako kroki (kolejność z `flow.links`),
+   sekcje i pola według typu, **działające zależności** (`states` liczone biblioteką JSONata dokładnie tak jak
+   w systemie docelowym — np. wybór „Innej osoby” odsłania dane innej osoby i pełnomocnictwo), walidacja pól
+   (wymagalność, PESEL, NIP, REGON — z sumami kontrolnymi, kod pocztowy, e-mail), dane inicjalne z rejestrów
+   pokazane przykładowymi wartościami, słowniki (Kraje, zaproponowane nowe słowniki; TERYT jako pole tekstowe),
+3. **JSON** — wygenerowana konfiguracja, przyciski „Pobierz JSON” i „Kopiuj JSON”,
+4. **Raport** — analizator i model, statystyki, ostrzeżenia, wynik kontroli reguł, zużycie tokenów oraz tabela
+   **zaproponowanych nowych słowników**, które można pobrać przyciskiem „Pobierz słowniki”
+   (plik `<nazwa>.slowniki.json` w formacie `{"dictionaries": [{name, description, values, used_by}]}`).
+
+„Otwórz plik JSON” pokazuje podgląd dowolnej gotowej konfiguracji (np. eksportu referencyjnego) bez konwersji
+i bez wywołań modelu. Strona korzysta wyłącznie z publicznego REST API opisanego niżej.
 
 Logowanie konfiguruje się zmiennymi `AUTH_USERNAME` i `AUTH_PASSWORD` (hasło podawane tylko przy uruchomieniu,
 jak inne sekrety). Po zalogowaniu usługa wystawia token JWT ważny `JWT_TTL_MINUTES` minut. Przy `AUTH_ENABLED=false`
@@ -203,5 +222,6 @@ Wszystkie parametry ustawia się zmiennymi środowiskowymi (lub w pliku `.env`);
 
 Wyłącznie licencje niecopyleftowe: FastAPI (MIT), Uvicorn (BSD-3), python-multipart (Apache-2.0), Pydantic (MIT),
 PyJWT (MIT), python-docx (MIT), openpyxl (MIT), pypdfium2/PDFium (Apache-2.0/BSD-3), Pillow (MIT-CMU),
-pytesseract (Apache-2.0), olefile (BSD-2), defusedxml (PSF-2.0), httpx (BSD-3). Programy zewnętrzne w obrazie:
+pytesseract (Apache-2.0), olefile (BSD-2), defusedxml (PSF-2.0), httpx (BSD-3). Strona WWW: JSONata 2.2.2
+(MIT, lokalna kopia w `app/static/vendor/` z plikiem licencji). Programy zewnętrzne w obrazie:
 Tesseract (Apache-2.0), LibreOffice (MPL-2.0, wywoływany jako osobny proces, bez linkowania).
