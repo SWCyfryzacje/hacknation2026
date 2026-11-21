@@ -84,3 +84,15 @@ def test_preview_assets_are_served_locally(make_client):
 
 def test_static_files_disabled_with_ui(make_client):
     assert make_client(UI_ENABLED="false").get("/static/vendor/jsonata.min.js").status_code == 404
+
+
+def test_health_reports_configured_models(make_client):
+    client = make_client(EDENAI_API_KEY="klucz-testowy", LLM_MODEL="google/gemma-4-31b-it", OCR_MODEL="ocr/ocr/google")
+    body = client.get("/health").json()
+    assert body["llm"] is True and body["llmModel"] == "google/gemma-4-31b-it" and body["ocrModel"] == "ocr/ocr/google"
+    assert "klucz" not in str(body)  # klucz nigdy nie trafia do odpowiedzi
+
+
+def test_health_without_llm(make_client):
+    body = make_client(EDENAI_API_KEY="klucz-testowy", LLM_ENABLED="false").get("/health").json()
+    assert body["llm"] is False and body["llmModel"] is None

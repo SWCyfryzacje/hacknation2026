@@ -45,6 +45,22 @@ docker run --rm -p 8000:8000 --env-file .env --read-only --tmpfs /tmp --tmpfs /h
 
 albo `docker compose up --build`.
 
+### Wybór modelu językowego (docker-compose.yml)
+
+Model i OCR ustawia się w sekcji `environment` pliku `docker-compose.yml` (ma pierwszeństwo przed `.env`, więc
+sekrety zostają w `.env`, a model zmienia się w jednym, widocznym miejscu):
+
+```yaml
+    environment:
+      LLM_MODEL: "mistral/mistral-large-4-0@eu"     # np. mistral/mistral-medium-3.5@eu, google/gemma-4-31b-it
+      LLM_FALLBACK_MODELS: '["mistral/mistral-medium-3.5@eu"]'
+      LLM_ENABLED: "true"                           # "false" = analiza regułowa, zero wywołań Eden AI
+      OCR_MODEL: "ocr/ocr/mistral"
+```
+
+Po zmianie: `docker compose up -d`. Aktywny model widać w `GET /health` (`llmModel`, `ocrModel`).
+Lista modeli: katalog Eden AI (https://app.edenai.run/models) lub `curl -s https://api.edenai.run/v3/models`.
+
 Bez LibreOffice (mniejszy obraz, bez obsługi `.doc`): `docker build --build-arg WITH_LIBREOFFICE=false …`.
 
 Strona WWW do wgrywania plików: http://localhost:8000, dokumentacja OpenAPI (Swagger UI): http://localhost:8000/docs.
@@ -167,7 +183,7 @@ curl -X POST http://localhost:8000/api/v1/auth/token -H "Content-Type: applicati
 
 - `GET /` — strona WWW (bez uwierzytelniania; samo przetwarzanie wymaga tokenu),
 - `GET /api/v1/auth/config` — czy wymagane jest logowanie (używane przez stronę WWW),
-- `GET /health` — stan usługi (bez uwierzytelniania),
+- `GET /health` — stan usługi i aktywne modele (`llmModel`, `ocrModel`; bez uwierzytelniania),
 - `GET /api/v1/formats` — obsługiwane formaty i limit rozmiaru.
 
 ## Konfiguracja
