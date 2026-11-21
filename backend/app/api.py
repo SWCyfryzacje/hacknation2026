@@ -54,7 +54,11 @@ def login(body: LoginRequest, settings: Annotated[Settings, Depends(get_settings
 
 @router.get("/health", tags=["system"], summary="Stan usługi")
 def health(settings: Annotated[Settings, Depends(get_settings)]) -> dict[str, Any]:
-    return {"status": "ok", "version": __version__, "llm": bool(settings.edenai_key and settings.llm_enabled)}
+    llm = bool(settings.edenai_key and settings.llm_enabled)
+    # Nazwy modeli (nie sekrety) — łatwo sprawdzić, czego używa uruchomiona instancja.
+    return {"status": "ok", "version": __version__, "llm": llm,
+            "llmModel": settings.llm_model if llm else None,
+            "ocrModel": settings.ocr_model if settings.edenai_key and settings.ocr_enabled else None}
 
 
 @router.get("/api/v1/formats", tags=["formularze"], summary="Obsługiwane formaty plików")
