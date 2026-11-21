@@ -1,18 +1,55 @@
-"""REST API."""
+"""REST API oraz prosta strona WWW do wgrywania plików."""
 
+from pathlib import Path
 from typing import Annotated, Any
 
-from fastapi import APIRouter, Depends, File, Query, Response, UploadFile
+from fastapi import APIRouter, Depends, File, HTTPException, Query, Response, UploadFile
 from fastapi.concurrency import run_in_threadpool
+from fastapi.responses import FileResponse
+from pydantic import BaseModel, Field
 
 from app import __version__
 from app.config import Settings, get_settings
 from app.files.formats import EXTENSION_TO_MIME
 from app.files.validation import validate_upload
-from app.security import require_auth
+from app.security import check_credentials, issue_token, require_auth
 from app.service import convert
 
 router = APIRouter()
+INDEX_HTML = Path(__file__).parent / "static" / "index.html"
+
+
+class LoginRequest(BaseModel):
+    username: str = Field(min_length=1, max_length=200)
+    password: str = Field(min_length=1, max_length=200)
+
+
+class TokenResponse(BaseModel):
+    access_token: str
+    token_type: str = "bearer"
+    expires_in: int
+
+
+@router.get("/", include_in_schema=False)
+def index(settings: Annotated[Settings, Depends(get_settings)]) -> FileResponse:
+    if not settings.ui_enabled:
+        raise HTTPException(status_code=404)
+    return FileResponse(INDEX_HTML, media_type="text/html; charset=utf-8",
+                        headers={"Cache-Control": "no-cache", "X-Content-Type-Options": "nosniff"})
+
+
+@router.get("/api/v1/auth/config", tags=["uwierzytelnianie"], summary="Czy strona WWW wymaga logowania")
+def auth_config(settings: Annotated[Settings, Depends(get_settings)]) -> dict[str, bool]:
+    return {"authEnabled": settings.auth_enabled, "loginConfigured": settings.login_configured}
+
+
+@router.post("/api/v1/auth/token", tags=["uwierzytelnianie"], summary="Logowanie — wydanie tokenu JWT",
+             responses={401: {"description": "Nieprawidłowy login lub hasło"},
+                        503: {"description": "Logowanie nie jest skonfigurowane"}})
+def login(body: LoginRequest, settings: Annotated[Settings, Depends(get_settings)]) -> TokenResponse:
+    check_credentials(body.username, body.password, settings)
+    return TokenResponse(access_token=issue_token(body.username, settings),
+                         expires_in=settings.jwt_ttl_minutes * 60)
 
 
 @router.get("/health", tags=["system"], summary="Stan usługi")

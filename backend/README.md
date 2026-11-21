@@ -38,7 +38,7 @@ ten sam JSON. To ułatwia porównywanie wyników i testy.
 
 ```bash
 cd backend
-cp .env.example .env          # uzupełnij JWT_SECRET (i opcjonalnie EDENAI_API_KEY)
+cp .env.example .env          # uzupełnij JWT_SECRET, AUTH_PASSWORD (i opcjonalnie EDENAI_API_KEY)
 docker build -t formularze-ai:0.1.0 .
 docker run --rm -p 8000:8000 --env-file .env --read-only --tmpfs /tmp --tmpfs /home/app formularze-ai:0.1.0
 ```
@@ -47,7 +47,7 @@ albo `docker compose up --build`.
 
 Bez LibreOffice (mniejszy obraz, bez obsługi `.doc`): `docker build --build-arg WITH_LIBREOFFICE=false …`.
 
-Dokumentacja OpenAPI (Swagger UI) jest dostępna pod adresem http://localhost:8000/docs.
+Strona WWW do wgrywania plików: http://localhost:8000, dokumentacja OpenAPI (Swagger UI): http://localhost:8000/docs.
 
 ### Obraz Docker
 
@@ -74,6 +74,17 @@ pytest                                             # testy
 ```
 
 Token do testów: `python -m app.token_cli --sub urzednik --hours 8`.
+
+## Interfejs WWW
+
+Pod adresem `/` usługa serwuje prostą stronę dla urzędnika (jeden plik HTML, bez zewnętrznych zasobów i bez
+osobnego procesu budowania): logowanie → wybór lub przeciągnięcie pliku → „Konwertuj do JSON” → podgląd JSON-a,
+podsumowanie analizy (strony, sekcje, pola, ostrzeżenia, propozycje słowników, zużycie tokenów) oraz przyciski
+„Pobierz JSON” i „Kopiuj JSON”. Strona korzysta wyłącznie z publicznego REST API opisanego niżej.
+
+Logowanie konfiguruje się zmiennymi `AUTH_USERNAME` i `AUTH_PASSWORD` (hasło podawane tylko przy uruchomieniu,
+jak inne sekrety). Po zalogowaniu usługa wystawia token JWT ważny `JWT_TTL_MINUTES` minut. Przy `AUTH_ENABLED=false`
+strona działa bez logowania; `UI_ENABLED=false` wyłącza stronę.
 
 ## REST API
 
@@ -124,8 +135,19 @@ ostrzeżenia i wynik kontroli reguł.
 - **Przechowywanie:** plik jest przetwarzany w pamięci; konwersja `.doc` używa katalogu tymczasowego usuwanego
   po żądaniu. Przy OCR przez Eden AI plik jest wgrywany do API organizatorów (retencja po stronie Eden AI).
 
+### `POST /api/v1/auth/token`
+
+Logowanie: body JSON `{"username": "…", "password": "…"}` → `{"access_token": "…", "token_type": "bearer",
+"expires_in": 28800}`. Błędne dane → 401, brak konfiguracji `AUTH_USERNAME`/`AUTH_PASSWORD` → 503.
+
+```bash
+curl -X POST http://localhost:8000/api/v1/auth/token -H "Content-Type: application/json"   -d '{"username": "urzednik", "password": "…"}'
+```
+
 ### Pozostałe endpointy
 
+- `GET /` — strona WWW (bez uwierzytelniania; samo przetwarzanie wymaga tokenu),
+- `GET /api/v1/auth/config` — czy wymagane jest logowanie (używane przez stronę WWW),
 - `GET /health` — stan usługi (bez uwierzytelniania),
 - `GET /api/v1/formats` — obsługiwane formaty i limit rozmiaru.
 
@@ -143,6 +165,9 @@ Wszystkie parametry ustawia się zmiennymi środowiskowymi (lub w pliku `.env`);
 | `JWT_PUBLIC_KEY` | – | klucz publiczny PEM dla RS*/ES* |
 | `JWT_ALGORITHMS` | `["HS256"]` | dozwolone algorytmy |
 | `JWT_AUDIENCE`, `JWT_ISSUER` | – | opcjonalna weryfikacja `aud` / `iss` |
+| `JWT_TTL_MINUTES` | `480` | ważność tokenów wystawianych przy logowaniu |
+| `UI_ENABLED` | `true` | strona WWW pod `/` |
+| `AUTH_USERNAME`, `AUTH_PASSWORD` | – | login i hasło urzędnika do strony WWW |
 | `EDENAI_API_KEY` | – | klucz Eden AI; brak = analiza regułowa + Tesseract |
 | `LLM_ENABLED` | `true` | analiza modelem językowym |
 | `LLM_MODEL` | `mistral/mistral-large-4-0@eu` | model (otwarte wagi, przetwarzanie w UE) |

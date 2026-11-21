@@ -1,6 +1,6 @@
 """Konfiguracja aplikacji — wyłącznie przez zmienne środowiskowe (lub plik .env).
 
-Sekrety (JWT_SECRET, LLM_API_KEY) podaje się dopiero przy uruchomieniu kontenera.
+Sekrety (JWT_SECRET, AUTH_PASSWORD, EDENAI_API_KEY) podaje się dopiero przy uruchomieniu kontenera.
 """
 
 from enum import StrEnum
@@ -46,6 +46,12 @@ class Settings(BaseSettings):
     jwt_audience: str | None = None
     jwt_issuer: str | None = None
     jwt_leeway_s: int = Field(30, ge=0)
+    jwt_ttl_minutes: int = Field(480, gt=0, description="Ważność tokenów wystawianych przy logowaniu.")
+
+    # --- Interfejs WWW i logowanie ----------------------------------------------
+    ui_enabled: bool = Field(True, description="Strona WWW pod adresem / do wgrywania plików.")
+    auth_username: str | None = Field(None, description="Login urzędnika do strony WWW.")
+    auth_password: SecretStr | None = Field(None, description="Hasło urzędnika (sekret — tylko w środowisku).")
 
     # --- Eden AI (API organizatorów: model językowy + OCR) ----------------------
     edenai_api_key: SecretStr | None = Field(None, description="Klucz Eden AI. Brak = analiza regułami + Tesseract.")
@@ -79,6 +85,10 @@ class Settings(BaseSettings):
     @property
     def max_uncompressed_bytes(self) -> int:
         return int(self.max_uncompressed_mb * 1024 * 1024)
+
+    @property
+    def login_configured(self) -> bool:
+        return bool(self.auth_username and self.auth_password and self.jwt_secret)
 
     @property
     def edenai_key(self) -> str | None:

@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Formularze AI — konwersja formularza do JSON</title>
+<style>
+  :root {
+    --bg: #f5f6f8; --surface: #fff; --text: #1b1f24; --muted: #5a6470; --border: #d6dbe1;
+    --primary: #0052a5; --primary-hover: #003f80; --error: #b3261e; --error-bg: #fdecea;
+    --ok: #1e6b35; --ok-bg: #e7f4ea; --warn: #7a4b00; --warn-bg: #fff4e0;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text); line-height: 1.5; }
+  header { background: var(--surface); border-bottom: 1px solid var(--border); }
+  .bar { max-width: 960px; margin: 0 auto; padding: 14px 20px; display: flex; align-items: center; gap: 12px; }
+  .bar h1 { font-size: 1.15rem; margin: 0; flex: 1; }
+  .bar small { color: var(--muted); font-weight: normal; }
+  main { max-width: 960px; margin: 0 auto; padding: 24px 20px 48px; }
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 24px;
+          margin-bottom: 20px; }
+  h2 { font-size: 1.1rem; margin: 0 0 12px; }
+  p.hint { color: var(--muted); margin: 0 0 16px; font-size: .95rem; }
+  label { display: block; font-weight: 600; margin: 12px 0 4px; }
+  input[type=text], input[type=password] { width: 100%; max-width: 360px; padding: 10px 12px; font: inherit;
+          border: 1px solid var(--border); border-radius: 6px; }
+  input:focus-visible, button:focus-visible, .drop:focus-visible { outline: 3px solid #7fb1e6; outline-offset: 2px; }
+  button { font: inherit; font-weight: 600; padding: 10px 18px; border-radius: 6px; border: 1px solid var(--primary);
+           background: var(--primary); color: #fff; cursor: pointer; }
+  button:hover:not(:disabled) { background: var(--primary-hover); }
+  button.secondary { background: var(--surface); color: var(--primary); }
+  button.secondary:hover:not(:disabled) { background: #eef4fb; }
+  button:disabled { opacity: .5; cursor: not-allowed; }
+  .row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-top: 16px; }
+  .drop { border: 2px dashed var(--border); border-radius: 10px; padding: 28px 16px; text-align: center;
+          cursor: pointer; background: #fafbfc; }
+  .drop.over { border-color: var(--primary); background: #eef4fb; }
+  .drop strong { color: var(--primary); }
+  .file-name { margin-top: 10px; font-weight: 600; word-break: break-all; }
+  .msg { border-radius: 6px; padding: 10px 14px; margin-top: 16px; }
+  .msg.error { background: var(--error-bg); color: var(--error); }
+  .msg.info { background: #eef4fb; color: var(--primary); }
+  .msg.warn { background: var(--warn-bg); color: var(--warn); }
+  .msg.ok { background: var(--ok-bg); color: var(--ok); }
+  dl.stats { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; margin: 0; }
+  dl.stats div { background: var(--bg); border-radius: 8px; padding: 10px 12px; }
+  dt { color: var(--muted); font-size: .85rem; }
+  dd { margin: 0; font-weight: 600; word-break: break-word; }
+  ul.list { margin: 8px 0 0; padding-left: 20px; }
+  pre { background: #0f1720; color: #e6edf3; border-radius: 8px; padding: 16px; overflow: auto; max-height: 560px;
+        font-size: .85rem; line-height: 1.45; margin: 16px 0 0; }
+  [hidden] { display: none !important; }
+  .spinner { display: inline-block; width: 1em; height: 1em; border: 2px solid currentColor; border-right-color: transparent;
+             border-radius: 50%; animation: spin .8s linear infinite; vertical-align: -2px; margin-right: 6px; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  @media (prefers-reduced-motion: reduce) { .spinner { animation: none; } }
+</style>
+</head>
+<body>
+<header>
+  <div class="bar">
+    <h1>Formularze AI <small>— konwersja formularza do konfiguracji eUsługi</small></h1>
+    <button id="logout" class="secondary" hidden>Wyloguj</button>
+  </div>
+</header>
+
+<main>
+  <!-- Logowanie -->
+  <section id="login-card" class="card" hidden>
+    <h2>Zaloguj się</h2>
+    <form id="login-form" novalidate>
+      <label for="username">Login</label>
+      <input id="username" name="username" type="text" autocomplete="username" required>
+      <label for="password">Hasło</label>
+      <input id="password" name="password" type="password" autocomplete="current-password" required>
+      <div class="row"><button type="submit" id="login-btn">Zaloguj</button></div>
+      <div id="login-msg" class="msg error" role="alert" hidden></div>
+    </form>
+  </section>
+
+  <!-- Wgrywanie pliku -->
+  <section id="upload-card" class="card" hidden>
+    <h2>Wgraj formularz</h2>
+    <p class="hint">Obsługiwane formaty: PDF, DOC, DOCX, ODS, XLSX, JPG, JPEG, PNG. Analiza trwa zwykle od kilkudziesięciu
+      sekund do kilku minut.</p>
+    <div id="drop" class="drop" tabindex="0" role="button" aria-describedby="drop-help">
+      <div><strong>Wybierz plik</strong> albo przeciągnij go tutaj</div>
+      <div id="drop-help" class="hint" style="margin:6px 0 0">Jeden plik na raz</div>
+      <div id="file-name" class="file-name" hidden></div>
+    </div>
+    <input id="file" type="file" accept=".pdf,.doc,.docx,.ods,.xlsx,.jpg,.jpeg,.png" hidden>
+    <div class="row">
+      <button id="convert" disabled>Konwertuj do JSON</button>
+      <span id="status" role="status" aria-live="polite"></span>
+    </div>
+    <div id="upload-msg" class="msg error" role="alert" hidden></div>
+  </section>
+
+  <!-- Wynik -->
+  <section id="result-card" class="card" hidden>
+    <h2 id="result-title">Wynik</h2>
+    <dl id="stats" class="stats"></dl>
+    <div id="notes"></div>
+    <div class="row">
+      <button id="download">Pobierz JSON</button>
+      <button id="copy" class="secondary">Kopiuj JSON</button>
+      <span id="copy-status" role="status" aria-live="polite"></span>
+    </div>
+    <pre id="json" tabindex="0" aria-label="Wygenerowany JSON"></pre>
+  </section>
+</main>
+
+<script>
+"use strict";
+const ALLOWED = [".pdf", ".doc", ".docx", ".ods", ".xlsx", ".jpg", ".jpeg", ".png"];
+const FORBIDDEN_CHARS = /[;:><\/\\|'*%$]/;
+const TOKEN_KEY = "formularze-token";
+const $ = (id) => document.getElementById(id);
+
+let authRequired = true;
+let selectedFile = null;
+let lastResult = null;
+
+const storage = {
+  get() { try { return sessionStorage.getItem(TOKEN_KEY); } catch { return null; } },
+  set(v) { try { sessionStorage.setItem(TOKEN_KEY, v); } catch { /* brak dostępu do storage */ } },
+  clear() { try { sessionStorage.removeItem(TOKEN_KEY); } catch { /* j.w. */ } },
+};
+
+function show(el, text, kind) {
+  el.textContent = text;
+  if (kind) el.className = "msg " + kind;
+  el.hidden = !text;
+}
+
+async function problemDetail(response) {
+  try {
+    const body = await response.json();
+    if (typeof body.detail === "string") return body.detail;
+    if (Array.isArray(body.detail)) return body.detail.map((d) => d.msg).join("; ");
+  } catch { /* odpowiedź nie jest JSON-em */ }
+  return `Błąd HTTP ${response.status}`;
+}
+
+function showScreen(loggedIn) {
+  $("login-card").hidden = loggedIn;
+  $("upload-card").hidden = !loggedIn;
+  $("logout").hidden = !(loggedIn && authRequired);
+  if (!loggedIn) { $("result-card").hidden = true; $("username").focus(); }
+}
+
+async function init() {
+  try {
+    const res = await fetch("/api/v1/auth/config");
+    const cfg = await res.json();
+    authRequired = cfg.authEnabled;
+    if (authRequired && !cfg.loginConfigured) {
+      show($("login-msg"), "Logowanie nie jest skonfigurowane na serwerze (AUTH_USERNAME, AUTH_PASSWORD).", "error");
+    }
+  } catch {
+    show($("login-msg"), "Nie można połączyć się z serwerem.", "error");
+  }
+  showScreen(!authRequired || Boolean(storage.get()));
+}
+
+$("login-form").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const username = $("username").value.trim();
+  const password = $("password").value;
+  if (!username || !password) { show($("login-msg"), "Podaj login i hasło.", "error"); return; }
+  $("login-btn").disabled = true;
+  try {
+    const res = await fetch("/api/v1/auth/token", {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username, password }),
+    });
+    if (!res.ok) { show($("login-msg"), await problemDetail(res), "error"); return; }
+    storage.set((await res.json()).access_token);
+    $("password").value = "";
+    show($("login-msg"), "");
+    showScreen(true);
+  } catch {
+    show($("login-msg"), "Nie można połączyć się z serwerem.", "error");
+  } finally {
+    $("login-btn").disabled = false;
+  }
+});
+
+$("logout").addEventListener("click", () => { storage.clear(); showScreen(false); });
+
+// Walidacja po stronie przeglądarki odpowiada regułom serwera; serwer i tak sprawdza wszystko ponownie (MIME).
+function validateFile(file) {
+  const name = file.name;
+  const ext = name.includes(".") ? name.slice(name.lastIndexOf(".")).toLowerCase() : "";
+  if (!ALLOWED.includes(ext)) return `Nieobsługiwany format „${ext || "brak rozszerzenia"}”. Dozwolone: ${ALLOWED.join(", ")}.`;
+  if (name.length > 250) return "Nazwa pliku nie może przekraczać 250 znaków.";
+  if (FORBIDDEN_CHARS.test(name)) return "Nazwa pliku zawiera niedozwolone znaki: ; : > < / \\ | ' * % $";
+  if (file.size === 0) return "Plik jest pusty.";
+  return null;
+}
+
+function selectFile(file) {
+  const error = file ? validateFile(file) : null;
+  show($("upload-msg"), error || "", "error");
+  selectedFile = file && !error ? file : null;
+  $("file-name").textContent = selectedFile ? `${selectedFile.name} (${(selectedFile.size / 1024).toFixed(0)} KB)` : "";
+  $("file-name").hidden = !selectedFile;
+  $("convert").disabled = !selectedFile;
+}
+
+const drop = $("drop");
+drop.addEventListener("click", () => $("file").click());
+drop.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); $("file").click(); } });
+drop.addEventListener("dragover", (e) => { e.preventDefault(); drop.classList.add("over"); });
+drop.addEventListener("dragleave", () => drop.classList.remove("over"));
+drop.addEventListener("drop", (e) => {
+  e.preventDefault(); drop.classList.remove("over");
+  if (e.dataTransfer.files.length > 1) { show($("upload-msg"), "Wgraj jeden plik na raz.", "error"); return; }
+  selectFile(e.dataTransfer.files[0] || null);
+});
+$("file").addEventListener("change", (e) => selectFile(e.target.files[0] || null));
+
+$("convert").addEventListener("click", async () => {
+  if (!selectedFile) return;
+  const status = $("status");
+  const started = Date.now();
+  const tick = () => { status.innerHTML = `<span class="spinner"></span>Analiza… ${Math.round((Date.now() - started) / 1000)} s`; };
+  tick();
+  const timer = setInterval(tick, 1000);
+  $("convert").disabled = true;
+  show($("upload-msg"), "");
+
+  const body = new FormData();
+  body.append("file", selectedFile);
+  const headers = {};
+  const token = storage.get();
+  if (authRequired && token) headers.Authorization = `Bearer ${token}`;
+  try {
+    const res = await fetch("/api/v1/forms/convert?report=true", { method: "POST", headers, body });
+    if (res.status === 401 && authRequired) {
+      storage.clear(); showScreen(false);
+      show($("login-msg"), "Sesja wygasła — zaloguj się ponownie.", "error");
+      return;
+    }
+    if (!res.ok) { show($("upload-msg"), await problemDetail(res), "error"); return; }
+    renderResult(await res.json(), selectedFile.name);
+  } catch {
+    show($("upload-msg"), "Nie można połączyć się z serwerem.", "error");
+  } finally {
+    clearInterval(timer);
+    status.textContent = "";
+    $("convert").disabled = !selectedFile;
+  }
+});
+
+function stat(label, value) {
+  const div = document.createElement("div");
+  const dt = document.createElement("dt"); dt.textContent = label;
+  const dd = document.createElement("dd"); dd.textContent = value;
+  div.append(dt, dd);
+  return div;
+}
+
+function note(kind, title, items) {
+  const box = document.createElement("div");
+  box.className = "msg " + kind;
+  const strong = document.createElement("strong"); strong.textContent = title;
+  box.append(strong);
+  if (items.length) {
+    const ul = document.createElement("ul"); ul.className = "list";
+    for (const item of items) { const li = document.createElement("li"); li.textContent = item; ul.append(li); }
+    box.append(ul);
+  }
+  return box;
+}
+
+function renderResult(data, sourceName) {
+  const { form, report } = data;
+  lastResult = { form, fileName: sourceName.replace(/\.[^.]+$/, "") + ".json" };
+  $("result-title").textContent = form.title || "Wynik";
+
+  const a = report.analysis, s = report.stats, usage = a.llmUsage;
+  const stats = $("stats");
+  stats.replaceChildren(
+    stat("Analiza", a.analyzer === "llm" ? `model językowy (${a.model})` : "reguły"),
+    stat("Urząd", a.authority || "—"),
+    stat("Strony", s.pages), stat("Sekcje", s.sections), stat("Pola", s.fields),
+    stat("Pola warunkowe", s.conditional),
+    stat("Czas", `${(report.durationMs / 1000).toFixed(1)} s`),
+  );
+  if (report.extraction.ocr) stats.append(stat("OCR", report.extraction.ocrEngine || "tak"));
+  if (usage && usage.calls) stats.append(stat("Tokeny modelu", `${usage.prompt_tokens} + ${usage.completion_tokens}`));
+
+  const notes = $("notes");
+  notes.replaceChildren();
+  if (report.issues.length) notes.append(note("error", "Problemy w konfiguracji:", report.issues));
+  if (report.warnings.length) notes.append(note("warn", "Ostrzeżenia:", report.warnings));
+  if (report.proposedDictionaries.length) {
+    notes.append(note("info", "Propozycje nowych słowników:", report.proposedDictionaries.map(
+      (d) => `${d.name}: ${d.values.slice(0, 6).join(", ")}${d.values.length > 6 ? "…" : ""}`)));
+  }
+  if (!report.issues.length && !report.warnings.length) {
+    notes.append(note("ok", "Konfiguracja przeszła kontrolę reguł bez uwag.", []));
+  }
+
+  $("json").textContent = JSON.stringify(form, null, 2);
+  $("copy-status").textContent = "";
+  $("result-card").hidden = false;
+  $("result-card").scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+$("download").addEventListener("click", () => {
+  if (!lastResult) return;
+  const blob = new Blob([JSON.stringify(lastResult.form, null, 2)], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+  const link = Object.assign(document.createElement("a"), { href: url, download: lastResult.fileName });
+  document.body.append(link); link.click(); link.remove();
+  URL.revokeObjectURL(url);
+});
+
+$("copy").addEventListener("click", async () => {
+  if (!lastResult) return;
+  try {
+    await navigator.clipboard.writeText(JSON.stringify(lastResult.form, null, 2));
+    $("copy-status").textContent = "Skopiowano.";
+  } catch {
+    $("copy-status").textContent = "Nie udało się skopiować — zaznacz tekst ręcznie.";
+  }
+});
+
+init();
+</script>
+</body>
+</html>

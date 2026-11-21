@@ -43,6 +43,11 @@ class ConversionUnavailable(AppError):
     code = "conversion_unavailable"
 
 
+class AuthNotConfigured(AppError):
+    status_code = 503
+    code = "auth_not_configured"
+
+
 class Unauthorized(AppError):
     status_code = 401
     code = "unauthorized"

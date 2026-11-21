@@ -9,7 +9,7 @@ JPG, JPEG, PNG) i zwraca konfigurację eUsługi w formacie JSON gotową do impor
 
 ```mermaid
 flowchart LR
-    U[Urzędnik / system] -- "POST /api/v1/forms/convert<br/>multipart + JWT" --> API
+    U[Urzędnik w przeglądarce<br/>lub inny system] -- "POST /api/v1/forms/convert<br/>multipart + JWT" --> API
 
     subgraph Kontener Docker
         API[FastAPI<br/>uwierzytelnianie JWT] --> V[Walidacja pliku<br/>nazwa · rozmiar · MIME z zawartości]
@@ -36,9 +36,10 @@ działa w całości na jednej maszynie: analiza regułowa + lokalny OCR Tesserac
 
 | Moduł | Odpowiedzialność |
 | --- | --- |
-| `main.py`, `api.py` | aplikacja FastAPI, endpointy, dokumentacja OpenAPI (`/docs`) |
+| `main.py`, `api.py` | aplikacja FastAPI, endpointy, dokumentacja OpenAPI (`/docs`), logowanie (`/api/v1/auth/token`) |
+| `static/index.html` | strona WWW dla urzędnika: jeden plik HTML/CSS/JS bez zależności i bez budowania, serwowany przez tę samą usługę; korzysta tylko z publicznego REST API |
 | `config.py` | konfiguracja wyłącznie ze zmiennych środowiskowych (pydantic-settings), walidowana przy starcie |
-| `security.py` | weryfikacja tokenów JWT (HS*/RS*/ES*, wymagany `exp`, opcjonalnie `aud`/`iss`) |
+| `security.py` | wystawianie i weryfikacja tokenów JWT (HS*/RS*/ES*, wymagany `exp`, opcjonalnie `aud`/`iss`), sprawdzanie loginu i hasła w stałym czasie |
 | `errors.py` | błędy domenowe → odpowiedzi `application/problem+json` z właściwym kodem HTTP |
 | `files/` | lista formatów, wykrywanie MIME z zawartości, walidacja nazwy/rozmiaru, ochrona przed zip bomb |
 | `extraction/` | jednolita reprezentacja tekstu (`Line`) z każdego formatu; OCR (łańcuch silników) |
@@ -85,6 +86,12 @@ Układ formularza wynika ze „Standardów i dobrych praktyk projektowania formu
 - **Siatka** — sekcje i pola w jednej kolumnie (`cols: 3`), `y` narasta, `questionOrder` jak w eksportach.
 - **Identyfikatory** — UUIDv5 z treści pliku: ten sam plik → ten sam JSON.
 - **Nazwy techniczne** — z etykiet (transliteracja, `snake_case`), unikalne w całym formularzu.
+
+## Interfejs WWW — dlaczego w tym samym kontenerze
+
+Strona jest statyczna (bez logiki po stronie serwera), więc osobny kontener serwowałby tylko jeden plik, a dokładał
+konfigurację, CORS i dodatkowy punkt awarii. Jedno polecenie `docker run` uruchamia całe rozwiązanie. Strona używa
+wyłącznie publicznego REST API, więc w razie potrzeby można ją przenieść na osobny serwer bez zmian w kodzie.
 
 ## Bezpieczeństwo i dane
 
