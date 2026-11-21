@@ -15,3 +15,15 @@ dist/
 .turbo/
 next-env.d.ts
 tsconfig.tsbuildinfo
+
+# Python / backend
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+
+# Materiały konkursowe (nie publikujemy) i eksporty referencyjne
+materials/
+*.zip
+*.JSO
+konfiguracja_form_*.json

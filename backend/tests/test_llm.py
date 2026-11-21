@@ -21,7 +21,7 @@ class FakeClient:
         self.answers = list(answers)
         self.calls: list[list[dict]] = []
 
-    def chat(self, model, messages, **kw):
+    def chat(self, model, messages, **kw):  # noqa: ARG002
         self.calls.append(messages)
         if not self.answers:
             raise AIError("brak odpowiedzi")
@@ -58,6 +58,7 @@ def test_llm_gets_second_chance_after_invalid_json():
     a = analyze_with_llm(DOC, client=client, model="m", max_chars=10_000, filename="f.docx")
     assert len(client.calls) == 2
     assert "niepoprawna" in client.calls[1][-1]["content"]
+    assert client.calls[1][-2]["role"] == "user"  # ucięta odpowiedź nie jest odsyłana
     assert a.pages[0].sections[0].fields[0].label == "Miejscowość"
 
 
@@ -96,3 +97,14 @@ def test_service_uses_llm_when_configured(monkeypatch):
     assert result.report["analysis"]["analyzer"] == "llm"
     assert result.form["title"] == "Wniosek o ustalenie numeru porządkowego nieruchomości"
     assert check_form(result.form) == []
+
+
+def test_client_accumulates_token_usage(monkeypatch):
+    from app.ai.edenai import EdenAIClient
+
+    client = EdenAIClient(api_key="k")
+    reply = {"choices": [{"message": {"content": "{}"}}], "usage": {"prompt_tokens": 100, "completion_tokens": 40}}
+    monkeypatch.setattr(EdenAIClient, "_post", lambda self, path, **kw: reply)
+    client.chat("m", [])
+    client.chat("m", [])
+    assert client.usage == {"calls": 2, "prompt_tokens": 200, "completion_tokens": 80}

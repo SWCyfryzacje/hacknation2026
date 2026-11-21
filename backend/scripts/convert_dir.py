@@ -39,8 +39,10 @@ def main(src: Path, dst: Path) -> int:
         (dst / f"{path.stem}{path.suffix.lower()}.report.json").write_text(
             json.dumps(result.report, ensure_ascii=False, indent=2), encoding="utf-8")
         r = result.report
+        usage = r["analysis"]["llmUsage"] or {}
+        tokens = f", {usage.get('prompt_tokens', 0)}+{usage.get('completion_tokens', 0)} tokenów" if usage else ""
         print(f"OK    {path.name}: {r['analysis']['analyzer']}, {r['stats']['fields']} pól, "
-              f"{len(r['warnings'])} ostrzeżeń, {len(r['issues'])} problemów, {r['durationMs']} ms")
+              f"{len(r['warnings'])} ostrzeżeń, {len(r['issues'])} problemów, {r['durationMs']} ms{tokens}")
     print(f"\nPrzetworzono {len(files) - failures}/{len(files)} plików → {dst}")
     return 1 if failures else 0
 

@@ -41,7 +41,9 @@ def convert(file: ValidatedFile, settings: Settings) -> ConversionResult:
     if client and settings.llm_enabled and document.lines:
         try:
             analysis = analyze_with_llm(document, client=client, model=settings.llm_model,
-                                        max_chars=settings.llm_max_input_chars, filename=file.filename)
+                                        max_chars=settings.llm_max_input_chars, filename=file.filename,
+                                        fallbacks=settings.llm_fallback_models,
+                                        max_tokens=settings.llm_max_output_tokens)
         except AIError as exc:
             warnings.append(f"Model językowy niedostępny — użyto analizy regułowej. ({exc})")
     if analysis is None:
@@ -58,7 +60,8 @@ def convert(file: ValidatedFile, settings: Settings) -> ConversionResult:
         "extraction": {"format": document.source_format, "lines": len(document.lines), "ocr": document.used_ocr,
                        "ocrEngine": ocr.used if ocr and document.used_ocr else None},
         "analysis": {"analyzer": analysis.analyzer, "model": settings.llm_model if analysis.analyzer == "llm" else None,
-                     "authority": analysis.authority, "applicant": asdict(analysis.applicant)},
+                     "authority": analysis.authority, "applicant": asdict(analysis.applicant),
+                     "llmUsage": dict(client.usage) if client else None},
         "stats": _stats(form),
         "proposedDictionaries": [asdict(d) for d in analysis.proposed_dictionaries],
         "warnings": warnings + analysis.warnings,

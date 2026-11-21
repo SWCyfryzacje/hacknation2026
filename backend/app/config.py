@@ -52,10 +52,14 @@ class Settings(BaseSettings):
     edenai_base_url: str = "https://api.edenai.run/v3"
     llm_enabled: bool = Field(True, description="Analiza modelem językowym (wymaga EDENAI_API_KEY).")
     llm_model: str = Field("mistral/mistral-large-4-0@eu", description="Model w formacie dostawca/model.")
+    llm_fallback_models: list[str] = Field(
+        default_factory=lambda: ["mistral/mistral-medium-3.5@eu"],
+        description="Modele zapasowe, których Eden AI użyje, gdy główny zawiedzie (parametr `fallbacks`).")
     llm_max_input_chars: int = Field(40_000, gt=1000, description="Limit tekstu dokumentu wysyłanego do modelu.")
+    llm_max_output_tokens: int = Field(32_000, gt=1000, description="Limit długości odpowiedzi modelu.")
     ocr_model: str = Field("ocr/ocr/mistral", description="Model OCR Eden AI (ocr/ocr/{dostawca}).")
     ocr_language: str = "pl"
-    ai_timeout_s: float = Field(180, gt=0)
+    ai_timeout_s: float = Field(300, gt=0, description="Duże formularze potrafią zająć modelowi kilka minut.")
 
     # --- Ekstrakcja -----------------------------------------------------------
     ocr_enabled: bool = True

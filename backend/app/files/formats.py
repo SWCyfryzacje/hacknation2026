@@ -24,6 +24,11 @@ EXTENSION_TO_MIME: dict[str, Mime] = {
     ".png": Mime.PNG,
 }
 
+# Wymaganie traktuje „DOC (.doc .docx)” jako jeden format: plik .doc z zawartością DOCX (częste w BIP,
+# także w materiałach wyzwania) jest poprawny — przetwarzamy go według faktycznej zawartości.
+_WORD = frozenset({Mime.DOC, Mime.DOCX})
+COMPATIBLE: dict[Mime, frozenset[Mime]] = {Mime.DOC: _WORD, Mime.DOCX: _WORD}
+
 # Nagłówki Content-Type wysyłane przez klientów, które uznajemy za równoważne.
 DECLARED_ALIASES: dict[Mime, frozenset[str]] = {
     Mime.JPEG: frozenset({"image/jpg", "image/pjpeg"}),

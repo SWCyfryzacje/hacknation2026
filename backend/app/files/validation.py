@@ -7,6 +7,7 @@ from pathlib import PurePath
 
 from app.errors import EmptyFile, FileTooLarge, InvalidFileName, UnsupportedFileType
 from app.files.formats import (
+    COMPATIBLE,
     DECLARED_ALIASES,
     EXTENSION_TO_MIME,
     GENERIC_DECLARED,
@@ -66,13 +67,14 @@ def validate_upload(
     detected = detect_mime(data)
     if detected is None:
         raise UnsupportedFileType("Zawartość pliku nie odpowiada żadnemu z obsługiwanych formatów.")
-    if detected != expected:
+    if detected not in COMPATIBLE.get(expected, {expected}):
         raise UnsupportedFileType(
             f"Zawartość pliku ({detected.value}) nie pasuje do rozszerzenia (oczekiwano {expected.value})."
         )
 
     declared = (declared_type or "").split(";")[0].strip().lower()
-    if declared not in GENERIC_DECLARED and declared != detected and declared not in DECLARED_ALIASES.get(detected, ()):
+    accepted = {m.value for m in COMPATIBLE.get(detected, {detected})} | DECLARED_ALIASES.get(detected, frozenset())
+    if declared not in GENERIC_DECLARED and declared not in accepted:
         raise UnsupportedFileType(
             f"Zadeklarowany typ '{declared}' nie zgadza się z zawartością pliku ({detected.value})."
         )

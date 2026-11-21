@@ -153,6 +153,9 @@ ZASADY PÓL:
 - show_if: zależność — pole/sekcja widoczne tylko po wybraniu opcji w innym polu, np. pole „Inne – podaj jakie” z
   show_if {{"field": "<etykieta pola wyboru>", "value": "Inne"}}. Pole sterujące musi występować wcześniej.
 
+ZWIĘZŁOŚĆ: pomijaj klucze o wartościach domyślnych — "options": [], "validators": [], "required": true,
+"dictionary" / "initial_data" / "description" / "show_if": null. Duże formularze muszą zmieścić się w odpowiedzi.
+
 Odpowiedz WYŁĄCZNIE obiektem JSON o strukturze:
 {{"title": str, "authority": str|null, "authority_is_organ": bool, "applicant_person": bool, "applicant_company": bool,
  "pages": [{{"title": str, "sections": [{{"title": str, "description": str|null, "show_if": null|{{"field": str, "value": str}},
@@ -171,18 +174,12 @@ nr ewidencyjny działki ……………w obrębie …………………………
 EXAMPLE_OUTPUT = {
     "title": "Wniosek o ustalenie numeru porządkowego nieruchomości", "authority": "Wójt Gminy Elbląg",
     "authority_is_organ": True, "applicant_person": True, "applicant_company": True,
-    "pages": [{"title": "Informacje o budynku", "sections": [{"title": "Lokalizacja budynku", "description": None,
-               "show_if": None, "fields": [
-        {"label": "Miejscowość", "kind": "TEXT_FIELD", "options": [], "required": True, "validators": [],
-         "dictionary": None, "initial_data": None, "description": None, "show_if": None},
-        {"label": "Ulica", "kind": "TEXT_FIELD", "options": [], "required": True, "validators": [],
-         "dictionary": None, "initial_data": None, "description": None, "show_if": None},
-        {"label": "Numer ewidencyjny działki", "kind": "TEXT_FIELD", "options": [], "required": True,
-         "validators": [], "dictionary": None, "initial_data": None, "description": None, "show_if": None},
-        {"label": "Obręb", "kind": "TEXT_FIELD", "options": [], "required": True, "validators": [],
-         "dictionary": None, "initial_data": None, "description": None, "show_if": None}]}]}],
-    "statements": [], "fee_info": [], "proposed_dictionaries": [],
-}
+    "pages": [{"title": "Informacje o budynku", "sections": [{"title": "Lokalizacja budynku", "fields": [
+        {"label": "Miejscowość", "kind": "TEXT_FIELD"},
+        {"label": "Ulica", "kind": "TEXT_FIELD"},
+        {"label": "Numer ewidencyjny działki", "kind": "TEXT_FIELD"},
+        {"label": "Obręb", "kind": "TEXT_FIELD"}]}]}],
+}  # zwięzły styl: klucze o wartościach domyślnych pominięte
 
 
 def _document_text(document: ExtractedDocument, limit: int) -> str:
@@ -195,7 +192,7 @@ def _document_text(document: ExtractedDocument, limit: int) -> str:
 
 
 def analyze_with_llm(document: ExtractedDocument, *, client: EdenAIClient, model: str, max_chars: int,
-                     filename: str) -> FormAnalysis:
+                     filename: str, fallbacks: list[str] | None = None, max_tokens: int = 32_000) -> FormAnalysis:
     messages = [
         {"role": "system", "content": SYSTEM_PROMPT},
         {"role": "user", "content": f"Przykładowy formularz (adresat w nagłówku: Wójt Gminy Elbląg):\n{EXAMPLE_INPUT}"},
@@ -203,14 +200,16 @@ def analyze_with_llm(document: ExtractedDocument, *, client: EdenAIClient, model
         {"role": "user", "content": f"Nazwa pliku: {filename}\n\nTekst formularza:\n"
                                     f"{_document_text(document, max_chars)}"},
     ]
-    raw = client.chat(model, messages)
+    raw = client.chat(model, messages, fallbacks=fallbacks, max_tokens=max_tokens)
     try:
         answer = _parse(raw)
     except (ValueError, ValidationError) as exc:
-        messages += [{"role": "assistant", "content": raw},
-                     {"role": "user", "content": f"Odpowiedź jest niepoprawna: {str(exc)[:1500]}\n"
-                                                 "Zwróć poprawiony, kompletny obiekt JSON."}]
-        raw = client.chat(model, messages)
+        # Ucięta odpowiedź (limit długości) to najczęstsza przyczyna — nie odsyłamy jej, prosimy o zwięźlejszą.
+        messages.append({"role": "user", "content": (
+            f"Poprzednia odpowiedź była niepoprawna: {str(exc)[:800]}\n"
+            "Zwróć kompletny, poprawny obiekt JSON dla tego samego formularza. Pisz zwięźle: pomijaj klucze "
+            "o wartościach domyślnych, skracaj opisy, nie powtarzaj danych z sekcji predefiniowanych.")})
+        raw = client.chat(model, messages, fallbacks=fallbacks, max_tokens=max_tokens)
         try:
             answer = _parse(raw)
         except (ValueError, ValidationError) as exc2:

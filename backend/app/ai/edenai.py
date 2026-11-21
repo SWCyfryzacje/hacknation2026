@@ -6,7 +6,7 @@ Używane endpointy:
   * POST /v3/universal-ai     — OCR (model w formacie ocr/ocr/{dostawca}).
 """
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import Any
 
 import httpx
@@ -21,6 +21,8 @@ class EdenAIClient:
     api_key: str
     base_url: str = "https://api.edenai.run/v3"
     timeout_s: float = 120.0
+    # Zużycie tokenów zsumowane ze wszystkich wywołań tego klienta (pole `usage` odpowiedzi chat/completions).
+    usage: dict[str, int] = field(default_factory=lambda: {"calls": 0, "prompt_tokens": 0, "completion_tokens": 0})
 
     def _client(self) -> httpx.Client:
         return httpx.Client(base_url=self.base_url, timeout=self.timeout_s,
@@ -40,12 +42,17 @@ class EdenAIClient:
             raise AIError(f"Eden AI ({path}): odpowiedź nie jest JSON-em.") from exc
 
     def chat(self, model: str, messages: list[dict[str, Any]], *, json_mode: bool = True,
-             temperature: float = 0.1, max_tokens: int = 16000) -> str:
+             temperature: float = 0.1, max_tokens: int = 16000, fallbacks: list[str] | None = None) -> str:
         body: dict[str, Any] = {"model": model, "messages": messages, "temperature": temperature,
                                 "max_tokens": max_tokens, "stream": False}
+        if fallbacks:
+            body["fallbacks"] = fallbacks
         if json_mode:
             body["response_format"] = {"type": "json_object"}
         data = self._post("/chat/completions", json=body)
+        self.usage["calls"] += 1
+        for key in ("prompt_tokens", "completion_tokens"):
+            self.usage[key] += int((data.get("usage") or {}).get(key) or 0)
         try:
             content = data["choices"][0]["message"]["content"]
         except (KeyError, IndexError, TypeError) as exc:

@@ -5,6 +5,7 @@ analizuje go i zwraca **konfigurację eUsługi w formacie JSON**. Format jest zg
 (`title` → `tabs` → sekcje → pola, warunki `states` w JSONacie, przepływ `flow.links`).
 
 Rozwiązanie wyzwania HackNation 2026 „Cyfryzacja formularzy” (Centralny Ośrodek Informatyki).
+Szczegółowy opis architektury: [ARCHITEKTURA.md](ARCHITEKTURA.md).
 
 ## Jak to działa
 
@@ -115,7 +116,9 @@ ostrzeżenia i wynik kontroli reguł.
 - **Typ MIME jest wykrywany z zawartości**, a nie z rozszerzenia czy nagłówka klienta: sygnatury PDF/PNG/JPEG,
   kontener OLE2 ze strumieniem `WordDocument` (DOC), struktura ZIP (`word/document.xml` = DOCX,
   `xl/workbook.xml` = XLSX, `mimetype` = ODS). Wykryty typ musi zgadzać się z rozszerzeniem, a zadeklarowany
-  `Content-Type` (jeśli inny niż `application/octet-stream`) z zawartością.
+  `Content-Type` (jeśli inny niż `application/octet-stream`) z zawartością. Zgodnie z wymaganiem „DOC (.doc .docx)”
+  oba rozszerzenia Worda tworzą jeden format: plik `.doc` z zawartością DOCX (spotykany w BIP i w materiałach
+  wyzwania) jest przyjmowany i przetwarzany według faktycznej zawartości.
 - **Nazwa pliku:** maks. 250 znaków, bez znaków `; : > < / \ | ' * % $` i znaków sterujących.
 - **Rozmiar:** konfigurowalny (`MAX_FILE_SIZE_MB`) oraz ochrona przed „zip bomb” dla DOCX/XLSX/ODS.
 - **Przechowywanie:** plik jest przetwarzany w pamięci; konwersja `.doc` używa katalogu tymczasowego usuwanego
@@ -144,11 +147,13 @@ Wszystkie parametry ustawia się zmiennymi środowiskowymi (lub w pliku `.env`);
 | `LLM_ENABLED` | `true` | analiza modelem językowym |
 | `LLM_MODEL` | `mistral/mistral-large-4-0@eu` | model (otwarte wagi, przetwarzanie w UE) |
 | `LLM_MAX_INPUT_CHARS` | `40000` | limit tekstu dokumentu wysyłanego do modelu |
+| `LLM_MAX_OUTPUT_TOKENS` | `32000` | limit długości odpowiedzi modelu (duże formularze) |
 | `OCR_ENABLED` | `true` | OCR skanów |
 | `OCR_MODEL` | `ocr/ocr/mistral` | model OCR Eden AI |
 | `OCR_LANGUAGE` | `pl` | język dokumentów dla OCR Eden AI |
 | `OCR_LANGUAGES` | `pol` | języki zapasowego Tesseracta |
-| `AI_TIMEOUT_S` | `180` | limit czasu wywołań Eden AI |
+| `LLM_FALLBACK_MODELS` | `["mistral/mistral-medium-3.5@eu"]` | modele zapasowe (parametr `fallbacks` Eden AI) |
+| `AI_TIMEOUT_S` | `300` | limit czasu wywołań Eden AI |
 | `LIBREOFFICE_BINARY` | `soffice` | konwersja `.doc` |
 | `FINISH_COMPONENT` | `TEXT_BLOCK` | komponent strony końcowej (`TEXT_BLOCK` jak w eksportach albo `INFO_SECTION`) |
 | `VALIDATION_MODE` | `filled` | `filled` = walidatory w `validation` (np. `["REQUIRED","PESEL"]`), `empty` = puste tablice jak w eksportach |

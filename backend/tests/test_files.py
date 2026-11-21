@@ -43,6 +43,16 @@ def test_extension_must_match_content():
         validate_upload("skan.pdf", make_image("PNG"), None, **LIMITS)
 
 
+def test_doc_and_docx_are_one_word_format():
+    """Pliki .doc z zawartością DOCX występują w materiałach wyzwania — przetwarzamy je wg zawartości."""
+    docx_bytes = make_docx(["test"])
+    assert validate_upload("wniosek.DOC", docx_bytes, "application/msword", **LIMITS).mime is Mime.DOCX
+    with pytest.raises(UnsupportedFileType):
+        validate_upload("wniosek.doc", make_image("PNG"), None, **LIMITS)
+    with pytest.raises(UnsupportedFileType):
+        validate_upload("arkusz.xlsx", docx_bytes, None, **LIMITS)
+
+
 def test_unsupported_extension():
     with pytest.raises(UnsupportedFileType, match="rozszerzenie"):
         validate_upload("plik.txt", b"abc", None, **LIMITS)
