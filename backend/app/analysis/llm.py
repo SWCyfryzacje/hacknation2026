@@ -26,7 +26,8 @@ from app.analysis.model import (
 from app.extraction.model import ExtractedDocument
 
 VALIDATORS = ("REQUIRED", "EMAIL", "PESEL", "NIP", "REGON", "ZIP_CODE", "EPUAP", "ADE", "SERIAL_NUMBER_ID_CARD")
-DICTIONARIES = ("Kraje", "Województwo", "Powiat", "Gmina", "Miejscowość", "Numery kierunkowe")
+# Tylko słowniki faktycznie występujące w eksportach referencyjnych — reszta trafia do propozycji nowych słowników.
+DICTIONARIES = ("Kraje", "TERYT_DOWODOWY", "TERYT_4G_DOWODOWY")
 INITIAL_DATA = {
     "PESEL": ["pesel", "name", "surname", "birthDate", "citizenship", "motherName", "birthPlace", "motherSurname",
               "sex", "fatherName", "secondName", "birthCountry", "foreignBirthUSC", "familyName", "fatherSurname",
@@ -232,6 +233,7 @@ def _parse(raw: str) -> _Answer:
 
 def _to_analysis(answer: _Answer) -> FormAnalysis:
     by_label: dict[str, FieldSpec] = {}
+    known_dicts = {*DICTIONARIES, *(d.name for d in answer.proposed_dictionaries)}
     pending: list[tuple[FieldSpec | SectionSpec, _Cond]] = []
     pages: list[PageSpec] = []
     for page in answer.pages:
@@ -240,12 +242,13 @@ def _to_analysis(answer: _Answer) -> FormAnalysis:
             fields = []
             for f in sec.fields:
                 kind = Kind(f.kind)
-                options = [] if f.dictionary else [o.strip() for o in f.options if o.strip()]
-                if kind in (Kind.RADIO, Kind.CHECKBOX, Kind.SELECT) and not options and not f.dictionary:
+                dictionary = f.dictionary if f.dictionary in known_dicts else None  # zmyślony słownik → zwykłe pole
+                options = [] if dictionary else [o.strip() for o in f.options if o.strip()]
+                if kind in (Kind.RADIO, Kind.CHECKBOX, Kind.SELECT) and not options and not dictionary:
                     kind = Kind.TEXT  # pole wyboru bez opcji nie przejdzie importu
                 spec = FieldSpec(label=f.label.strip()[:200], kind=kind, options=options, required=f.required,
-                                 validators=f.validators, dictionary=f.dictionary, description=f.description,
-                                 initial_data=f.initial_data, search=len(options) > 15 or bool(f.dictionary))
+                                 validators=f.validators, dictionary=dictionary, description=f.description,
+                                 initial_data=f.initial_data, search=len(options) > 15 or bool(dictionary))
                 by_label.setdefault(spec.label.lower(), spec)
                 if f.show_if:
                     pending.append((spec, f.show_if))
