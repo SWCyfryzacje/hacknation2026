@@ -44,6 +44,8 @@ services:
     networks:
       form-net:
         ipv4_address: 172.19.0.20
+    ports:
+      - "80:80"
 
 networks:
   form-net:
