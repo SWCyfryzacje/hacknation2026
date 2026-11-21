@@ -1,4 +1,4 @@
-const BASE_URL = 'http://127.0.0.1:8000';
+const BASE_URL = process.env.VITE_BASE_URL ?? 'http://172.19.0.10:8000';
 const TOKEN_KEY = 'formularze-token';
 
 export interface AuthConfig {
