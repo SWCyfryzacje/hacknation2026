@@ -3,8 +3,11 @@
 # Ustawienia z sekcji `environment` mają pierwszeństwo przed .env — tu wygodnie zmienia się model.
 services:
   formularze:
-    build: .
-    image: formularze-ai:0.1.0
+    build: ./backend/
+    image: formularze-ai
+    networks:
+      form-net:
+        ipv4_address: 172.19.0.10
     env_file: .env
     environment:
       # --- Model językowy Eden AI (format: dostawca/model) --------------------------------------
@@ -34,3 +37,18 @@ services:
     security_opt:
       - no-new-privileges:true
     restart: unless-stopped
+  
+  frontend:
+    build: ./web/
+    image: frontend
+    networks:
+      form-net:
+        ipv4_address: 172.19.0.20
+
+networks:
+  form-net:
+    name: form-net
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.19.0.0/24
