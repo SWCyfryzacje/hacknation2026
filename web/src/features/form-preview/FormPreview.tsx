@@ -195,7 +195,7 @@ export function FormPreview({
   const progress = pages.length ? ((pageIndex + 1) / pages.length) * 100 : 0;
 
   return (
-    <section className='rounded-2xl border border-slate-200 bg-slate-50 p-4 shadow-sm sm:p-8'>
+    <section>
       {pages.length === 0 ? (
         <p className='mt-8 rounded-lg bg-amber-50 p-4 text-amber-900'>
           Ta konfiguracja nie zawiera stron formularza.
@@ -235,7 +235,7 @@ export function FormPreview({
           </nav>
 
           {currentPage && (
-            <div className='mt-3 rounded-xl border border-slate-200  p-4 sm:p-6'>
+            <div className='mt-3 p-4 sm:p-6'>
               <p className='text-sm font-semibold text-blue-800'>
                 Krok {pageIndex + 1} z {pages.length}
                 {currentPage.type === 'FINISH' ? ' — strona końcowa' : ''}
