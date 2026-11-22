@@ -8,7 +8,7 @@ na serwerze przez SSH, w katalogu repozytorium.
 ```bash
 cd ~/hacknation2026                 # katalog z repozytorium
 git fetch origin
-git checkout task-backend           # albo main / mcp — gałąź, którą wdrażamy
+git checkout main                  # z serwerem MCP; bez MCP: task-completed
 git pull
 ```
 
@@ -64,9 +64,9 @@ git pull
 docker compose up -d --build              # przebudowuje i podmienia tylko zmienione usługi
 ```
 
-## Serwer MCP (branch `mcp`)
+## Serwer MCP
 
-Na gałęzi `mcp` ten sam `docker compose up -d --build` uruchamia dodatkowo serwer MCP na porcie `8100`
+Na gałęzi `main` ten sam `docker compose up -d --build` uruchamia dodatkowo serwer MCP na porcie `8100`
 (`http://77.45.76.243:8100/mcp`, token jak w REST API). W `docker-compose.yml` ustaw `MCP_SAFE_APP_URL` na adres
 strony (np. `http://77.45.76.243`) i otwórz port `8100` w zaporze. Sprawdzenie:
 
