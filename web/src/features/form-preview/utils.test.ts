@@ -8,6 +8,7 @@ import {
 import {
   createInitialAnswers,
   getAllFields,
+  isUserVisibleField,
   orderTabs,
 } from './utils';
 import { validateField } from './validators';
@@ -99,6 +100,25 @@ describe('createInitialAnswers', () => {
       name: 'Jan',
       choices: ['One', 'Two'],
     });
+  });
+});
+
+describe('isUserVisibleField', () => {
+  it('hides fields with TERYT in any name without altering form data', () => {
+    const fields = [
+      makeField({ techName: 'TERYT_address' }),
+      makeField({ title: 'Dane TERYT adresu' }),
+      makeField({ dictionaryName: 'TERYT_4G_DOWODOWY' }),
+    ];
+
+    expect(fields.every((field) => !isUserVisibleField(field))).toBe(true);
+    expect(fields[0].techName).toBe('TERYT_address');
+    expect(fields[1].title).toBe('Dane TERYT adresu');
+    expect(fields[2].dictionaryName).toBe('TERYT_4G_DOWODOWY');
+    expect(
+      validateField({ ...fields[0], validation: ['REQUIRED'] }, undefined),
+    ).toBeNull();
+    expect(isUserVisibleField(makeField({ title: 'Inne pole' }))).toBe(true);
   });
 });
 

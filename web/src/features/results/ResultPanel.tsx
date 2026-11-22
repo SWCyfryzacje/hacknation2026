@@ -1,25 +1,40 @@
-import { useState, type KeyboardEvent } from 'react';
+import type { KeyboardEvent } from 'react';
 import { ENABLE_JSON_DEBUG_VIEW } from '@/config/featureFlags';
-import type { FormResult } from '@/types/form';
 import { FormPreview } from '@/features/form-preview/FormPreview';
+import type { WorkspaceState } from '@/services/workspaceStorage';
 import { JsonDebugView } from './JsonDebugView';
 import { ReportView } from './ReportView';
 import { downloadJson } from './download';
-import { getResultTabs, type ResultTab } from './resultTabs';
+import { getResultTabs } from './resultTabs';
 
 interface ResultPanelProps {
   onBackToUpload: () => void;
-  result: FormResult;
+  workspace: WorkspaceState;
+  onWorkspaceChange: (
+    update: Partial<
+      Pick<
+        WorkspaceState,
+        'answers' | 'pageIndex' | 'showTechNames' | 'activeTab'
+      >
+    >,
+  ) => void;
 }
 
 function getBaseName(fileName: string): string {
   return fileName.replace(/\.[^.]+$/, '');
 }
 
-export function ResultPanel({ onBackToUpload, result }: ResultPanelProps) {
-  const [activeTab, setActiveTab] = useState<ResultTab>('preview');
+export function ResultPanel({
+  onBackToUpload,
+  workspace,
+  onWorkspaceChange,
+}: ResultPanelProps) {
+  const result = workspace.result;
   const hasReport = result.report !== null;
   const tabs = getResultTabs(hasReport, ENABLE_JSON_DEBUG_VIEW);
+  const activeTab = tabs.some((tab) => tab.id === workspace.activeTab)
+    ? workspace.activeTab
+    : 'preview';
 
   function handleTabKeyDown(event: KeyboardEvent<HTMLDivElement>) {
     if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
@@ -28,7 +43,7 @@ export function ResultPanel({ onBackToUpload, result }: ResultPanelProps) {
     const activeIndex = tabs.findIndex((tab) => tab.id === activeTab);
     const offset = event.key === 'ArrowRight' ? 1 : -1;
     const nextTab = tabs[(activeIndex + offset + tabs.length) % tabs.length];
-    setActiveTab(nextTab.id);
+    onWorkspaceChange({ activeTab: nextTab.id });
     document.getElementById(`result-tab-${nextTab.id}`)?.focus();
   }
 
@@ -75,7 +90,7 @@ export function ResultPanel({ onBackToUpload, result }: ResultPanelProps) {
             }`}
             id={`result-tab-${tab.id}`}
             key={tab.id}
-            onClick={() => setActiveTab(tab.id)}
+            onClick={() => onWorkspaceChange({ activeTab: tab.id })}
             role='tab'
             tabIndex={activeTab === tab.id ? 0 : -1}
             type='button'
@@ -93,7 +108,18 @@ export function ResultPanel({ onBackToUpload, result }: ResultPanelProps) {
         role='tabpanel'
         tabIndex={0}
       >
-        <FormPreview form={result.form} report={result.report} />
+        <FormPreview
+          answers={workspace.answers}
+          form={result.form}
+          onAnswersChange={(answers) => onWorkspaceChange({ answers })}
+          onPageIndexChange={(pageIndex) => onWorkspaceChange({ pageIndex })}
+          onShowTechNamesChange={(showTechNames) =>
+            onWorkspaceChange({ showTechNames })
+          }
+          pageIndex={workspace.pageIndex}
+          report={result.report}
+          showTechNames={workspace.showTechNames}
+        />
       </div>
 
       {hasReport && result.report && (

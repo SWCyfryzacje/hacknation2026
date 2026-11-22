@@ -106,6 +106,12 @@ export function getAllFields(form: FormConfiguration): FormField[] {
   return fields;
 }
 
+export function isUserVisibleField(field: FormField): boolean {
+  return ![field.techName, field.title, field.dictionaryName].some((name) =>
+    name?.toUpperCase().includes('TERYT'),
+  );
+}
+
 function getInitialAnswer(field: FormField): unknown {
   const defaultValue = field.defaultValue;
   if (defaultValue === undefined || defaultValue === null || defaultValue === '') {

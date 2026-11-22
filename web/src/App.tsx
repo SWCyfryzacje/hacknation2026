@@ -3,6 +3,8 @@ import { LoginPanel } from '@/features/auth/LoginPanel';
 import { UploadPanel } from '@/features/upload/UploadPanel';
 import { WorkflowSteps } from '@/components/WorkflowSteps';
 import { ResultPanel } from '@/features/results/ResultPanel';
+import { ENABLE_JSON_DEBUG_VIEW } from '@/config/featureFlags';
+import { createInitialAnswers, orderTabs } from '@/features/form-preview/utils';
 import {
   clearSessionToken,
   fetchAuthConfig,
@@ -11,7 +13,33 @@ import {
   setSessionToken,
   type AuthConfig,
 } from '@/services/api';
+import {
+  clearWorkspace,
+  readWorkspace,
+  saveWorkspace,
+  type WorkspaceState,
+} from '@/services/workspaceStorage';
 import type { FormResult } from '@/types/form';
+import { getResultTabs } from '@/features/results/resultTabs';
+
+function getInitialWorkspace(): WorkspaceState | null {
+  const workspace = readWorkspace();
+  if (!workspace) return null;
+
+  const pages = orderTabs(workspace.result.form);
+  const tabs = getResultTabs(
+    workspace.result.report !== null,
+    ENABLE_JSON_DEBUG_VIEW,
+  );
+
+  return {
+    ...workspace,
+    pageIndex: Math.min(workspace.pageIndex, Math.max(pages.length - 1, 0)),
+    activeTab: tabs.some((tab) => tab.id === workspace.activeTab)
+      ? workspace.activeTab
+      : 'preview',
+  };
+}
 
 function App() {
   const [authConfig, setAuthConfig] = useState<AuthConfig | null>(null);
@@ -19,8 +47,13 @@ function App() {
   const [isLoadingAuthConfig, setIsLoadingAuthConfig] = useState(true);
   const [token, setToken] = useState(getSessionToken);
   const [sessionMessage, setSessionMessage] = useState<string | null>(null);
-  const [activeStep, setActiveStep] = useState<'upload' | 'form'>('upload');
-  const [formResult, setFormResult] = useState<FormResult | null>(null);
+  const [workspace, setWorkspace] = useState<WorkspaceState | null>(
+    getInitialWorkspace,
+  );
+
+  useEffect(() => {
+    if (workspace) saveWorkspace(workspace);
+  }, [workspace]);
 
   useEffect(() => {
     let isMounted = true;
@@ -58,9 +91,9 @@ function App() {
 
   function handleLogout() {
     clearSessionToken();
+    clearWorkspace();
     setToken(null);
-    setFormResult(null);
-    setActiveStep('upload');
+    setWorkspace(null);
   }
 
   function handleSessionExpired() {
@@ -70,9 +103,18 @@ function App() {
   }
 
   function handleFormReady(result: FormResult) {
-    setFormResult(result);
-    setActiveStep('form');
+    setWorkspace({
+      result,
+      activeStep: 'form',
+      answers: createInitialAnswers(result.form),
+      pageIndex: 0,
+      showTechNames: false,
+      activeTab: 'preview',
+    });
   }
+
+  const activeStep = workspace?.activeStep ?? 'upload';
+  const formResult = workspace?.result ?? null;
 
   return (
     <main className='min-h-full bg-slate-50 px-4 py-8 text-slate-900 sm:px-6 sm:py-12'>
@@ -113,8 +155,17 @@ function App() {
               />
             ) : formResult ? (
               <ResultPanel
-                onBackToUpload={() => setActiveStep('upload')}
-                result={formResult}
+                onBackToUpload={() =>
+                  setWorkspace((previous) =>
+                    previous ? { ...previous, activeStep: 'upload' } : previous,
+                  )
+                }
+                onWorkspaceChange={(update) =>
+                  setWorkspace((previous) =>
+                    previous ? { ...previous, ...update } : previous,
+                  )
+                }
+                workspace={workspace!}
               />
             ) : (
               <p className='text-slate-600'>Formularz nie jest dostępny.</p>

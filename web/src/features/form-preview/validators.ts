@@ -1,4 +1,5 @@
 import type { FormField } from '@/types/form';
+import { isUserVisibleField } from './utils';
 
 const inputFieldTypes = new Set([
   'TEXT_FIELD',
@@ -85,6 +86,8 @@ export function isInputField(field: FormField): boolean {
 }
 
 export function validateField(field: FormField, value: unknown): string | null {
+  if (!isUserVisibleField(field)) return null;
+
   const rules = getFieldRules(field);
   const empty =
     value === undefined ||

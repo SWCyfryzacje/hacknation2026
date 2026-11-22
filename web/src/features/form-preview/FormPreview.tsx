@@ -2,17 +2,19 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import type { FormConfiguration, FormField, FormResult } from '@/types/form';
 import { FieldRenderer } from './FieldRenderer';
 import { SafeDescription } from './SafeDescription';
-import {
-  createInitialAnswers,
-  orderTabs,
-  sortByPosition,
-} from './utils';
+import { isUserVisibleField, orderTabs, sortByPosition } from './utils';
 import { isInputField, validateField } from './validators';
 import { evaluateVisibility } from './visibility';
 
 interface FormPreviewProps {
   form: FormConfiguration;
   report: FormResult['report'];
+  answers: Record<string, unknown>;
+  pageIndex: number;
+  showTechNames: boolean;
+  onAnswersChange: (answers: Record<string, unknown>) => void;
+  onPageIndexChange: (pageIndex: number) => void;
+  onShowTechNamesChange: (showTechNames: boolean) => void;
 }
 
 function isSection(field: FormField): boolean {
@@ -26,19 +28,20 @@ function isSection(field: FormField): boolean {
 export function FormPreview({
   form,
   report,
+  answers,
+  pageIndex,
+  showTechNames,
+  onAnswersChange,
+  onPageIndexChange,
+  onShowTechNamesChange,
 }: FormPreviewProps) {
   const pages = useMemo(() => orderTabs(form), [form]);
   const dictionaries = useMemo(
     () => report?.proposedDictionaries ?? [],
     [report],
   );
-  const [pageIndex, setPageIndex] = useState(0);
-  const [answers, setAnswers] = useState<Record<string, unknown>>(() =>
-    createInitialAnswers(form),
-  );
   const [visibleFields, setVisibleFields] = useState<Record<string, boolean>>({});
   const [errors, setErrors] = useState<Record<string, string>>({});
-  const [showTechNames, setShowTechNames] = useState(false);
   const fieldElements = useRef(new Map<string, HTMLDivElement>());
 
   useEffect(() => {
@@ -64,7 +67,10 @@ export function FormPreview({
   }
 
   function handleAnswerChange(field: FormField, value: unknown) {
-    setAnswers((previous) => ({ ...previous, [field.techName]: value }));
+    const nextAnswers = { ...answers };
+    if (value === undefined) delete nextAnswers[field.techName];
+    else nextAnswers[field.techName] = value;
+    onAnswersChange(nextAnswers);
     setErrors((previous) => {
       if (!(field.id in previous)) return previous;
       const next = { ...previous };
@@ -74,14 +80,18 @@ export function FormPreview({
   }
 
   function renderField(field: FormField): React.ReactNode {
+    if (!isUserVisibleField(field)) return null;
+
     if (isSection(field)) {
+      const headingId = `section-heading-${field.id}`;
       return (
-        <fieldset
+        <section
+          aria-labelledby={headingId}
           className='mt-5 space-y-5 rounded-xl border border-slate-200 bg-white p-4 sm:p-6'
           hidden={!isVisible(field)}
           key={field.id}
         >
-          <legend className='px-2 text-lg font-semibold text-slate-900'>
+          <h3 className='text-lg font-semibold text-slate-900' id={headingId}>
             {field.title || field.techName}
             {showTechNames && (
               <span className='ml-2 text-xs font-normal text-slate-400'>
@@ -93,14 +103,14 @@ export function FormPreview({
                 sekcja powtarzalna
               </span>
             )}
-          </legend>
+          </h3>
           <div className='text-sm leading-6 text-slate-600'>
             <SafeDescription markup={field.description} />
           </div>
           {sortByPosition(field.repeatingSectionGrid ?? []).map((item) =>
             renderField(item.field),
           )}
-        </fieldset>
+        </section>
       );
     }
 
@@ -130,7 +140,13 @@ export function FormPreview({
     const fields: FormField[] = [];
 
     function addVisibleFields(field: FormField, ancestorsVisible: boolean) {
-      if (!ancestorsVisible || !isVisible(field)) return;
+      if (
+        !ancestorsVisible ||
+        !isVisible(field) ||
+        !isUserVisibleField(field)
+      ) {
+        return;
+      }
       if (isInputField(field)) fields.push(field);
       for (const child of field.repeatingSectionGrid ?? []) {
         addVisibleFields(child.field, true);
@@ -172,7 +188,7 @@ export function FormPreview({
 
   function goToPage(index: number) {
     if (index < 0 || index >= pages.length) return;
-    setPageIndex(index);
+    onPageIndexChange(index);
   }
 
   const currentPage = pages[pageIndex];
@@ -190,7 +206,7 @@ export function FormPreview({
             <input
               checked={showTechNames}
               className='accent-blue-700'
-              onChange={(event) => setShowTechNames(event.target.checked)}
+              onChange={(event) => onShowTechNamesChange(event.target.checked)}
               type='checkbox'
             />
             Pokaż nazwy techniczne
