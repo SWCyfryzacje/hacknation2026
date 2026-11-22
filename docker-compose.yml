@@ -47,7 +47,7 @@ services:
       form-net:
         ipv4_address: 172.19.0.20
     ports:
-      - "80:80"
+      - "80:8080"  # nginx bez roota słucha na 8080 w kontenerze
 
 networks:
   form-net:
