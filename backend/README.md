@@ -144,7 +144,23 @@ przesłania dokumentu do zewnętrznego modelu — odmowa zatrzymuje dalsze przet
 Etykiety blankietu („Numer PESEL”, „Adres e-mail”) nie są danymi osobowymi i przechodzą bez przeszkód.
 
 Podłączenie asystenta: adres `http://<serwer>:8100/mcp`, nagłówek `Authorization: Bearer <token>`
-(token z `POST /api/v1/auth/token` lub `python -m app.token_cli`).
+(token z `POST /api/v1/auth/token` lub `python -m app.token_cli`). Przykład dla Claude Desktop
+(`claude_desktop_config.json`, przez most `mcp-remote` dla serwerów zdalnych):
+
+```json
+{
+  "mcpServers": {
+    "formularze-ai": {
+      "command": "npx",
+      "args": ["mcp-remote", "http://<serwer>:8100/mcp", "--header", "Authorization: Bearer <token>"]
+    }
+  }
+}
+```
+
+Demonstracja całej ścieżki bez asystenta (standardy → budowa formularza → kontrola → odmowa przy danych osobowych):
+`python scripts/mcp_demo.py --url http://<serwer>:8100/mcp --out wynik.json` — przykładowy wynik:
+`wyniki/testy/mcp/przyklad_z_mcp.json`.
 
 **Zgodność z wymaganiami wyzwania:** usługa **nie zależy** od MCP — REST API, strona WWW i analiza działają bez tego
 kontenera. MCP jest dodatkowym interfejsem, który usługa udostępnia (biblioteka `mcp`, licencja MIT).
