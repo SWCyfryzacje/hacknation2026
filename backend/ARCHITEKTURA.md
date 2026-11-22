@@ -52,6 +52,7 @@ działa w całości na jednej maszynie: analiza regułowa + lokalny OCR Tesserac
 | `generator/fields.py`, `jsonata.py` | węzły JSON w kolejności kluczy z eksportów, deterministyczne UUID, warunki |
 | `generator/checks.py` | kontrola reguł formularza (strony, sekcje, unikalność, odwołania w warunkach, dane inicjalne) |
 | `service.py` | potok przetwarzania i raport |
+| `mcp_server.py` | opcjonalny serwer MCP: narzędzia `pobierz_standardy`, `zbuduj_formularz`, `sprawdz_formularz`, strażnik danych osobowych, uwierzytelnianie JWT |
 
 ## Przepływ żądania
 
@@ -93,6 +94,22 @@ Układ formularza wynika ze „Standardów i dobrych praktyk projektowania formu
 Strona jest statyczna (bez logiki po stronie serwera), więc osobny kontener serwowałby tylko jeden plik, a dokładał
 konfigurację, CORS i dodatkowy punkt awarii. Jedno polecenie `docker run` uruchamia całe rozwiązanie. Strona używa
 wyłącznie publicznego REST API, więc w razie potrzeby można ją przenieść na osobny serwer bez zmian w kodzie.
+
+## Serwer MCP — analiza po stronie asystenta użytkownika
+
+```mermaid
+flowchart LR
+    A[Asystent AI użytkownika<br/>Claude / ChatGPT] -- "pobierz_standardy" --> M[Kontener mcp :8100]
+    A -- "analiza blankietu<br/>(model i koszt po stronie użytkownika)" --> A
+    A -- "zbuduj_formularz(opis)" --> M
+    M --> G{Strażnik danych<br/>osobowych}
+    G -- "dane osobowe" --> R[Odmowa + link do<br/>rządowej aplikacji]
+    G -- "blankiet" --> B[Generator + kontrola reguł<br/>wspólne z REST API]
+    B -- "JSON eUsługi" --> A
+```
+
+Ten sam generator i te same zasady co w REST API, więc konfiguracja jest zgodna ze standardem niezależnie od modelu
+asystenta. Urząd utrzymuje tylko generator (bez kosztów modelu). Kontener jest opcjonalny — usługa nie zależy od MCP.
 
 ## Bezpieczeństwo i dane
 
