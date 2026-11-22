@@ -17,6 +17,7 @@ interface FieldRendererProps {
   error?: string;
   field: FormField;
   onChange: (value: unknown) => void;
+  readOnlyOverride?: boolean;
   showTechName: boolean;
 }
 
@@ -34,10 +35,10 @@ function TechName({ name, show }: { name: string; show: boolean }) {
   );
 }
 
-function FieldMeta({ field }: { field: FormField }) {
+function FieldMeta({ readOnly }: { readOnly: boolean }) {
   return (
     <>
-      {field.readOnly && (
+      {readOnly && (
         <span className='ml-2 inline-flex rounded-full bg-slate-100 px-2 py-0.5 text-xs font-medium text-slate-600'>
           tylko do odczytu
         </span>
@@ -52,6 +53,7 @@ export function FieldRenderer({
   error,
   field,
   onChange,
+  readOnlyOverride = false,
   showTechName,
 }: FieldRendererProps) {
   const fieldId = `control-${field.id}`;
@@ -62,6 +64,8 @@ export function FieldRenderer({
     field.title ||
     (field.type === 'CONSENT_SECTION' ? 'Zgody i oświadczenia' : field.techName);
   const options = getFieldOptions(field, dictionaries);
+  const isReadOnly = Boolean(field.readOnly || readOnlyOverride);
+  const renderedField = isReadOnly ? { ...field, readOnly: true } : field;
   const hasErrorProps = error
     ? { 'aria-invalid': true as const, 'aria-describedby': errorId }
     : {};
@@ -86,7 +90,7 @@ export function FieldRenderer({
           className='min-h-28 w-full rounded-lg border border-slate-300 px-3 py-2 outline-none focus:border-blue-700 focus:ring-2 focus:ring-blue-100 disabled:bg-slate-100'
           id={fieldId}
           onChange={(event) => onChange(event.target.value)}
-          readOnly={field.readOnly}
+          readOnly={isReadOnly}
           value={displayValue(answer)}
           {...hasErrorProps}
         />
@@ -113,7 +117,7 @@ export function FieldRenderer({
           id={fieldId}
           onChange={(event) => onChange(event.target.value)}
           placeholder={placeholder}
-          readOnly={field.readOnly}
+          readOnly={isReadOnly}
           type={inputType}
           value={displayValue(answer)}
           {...hasErrorProps}
@@ -127,7 +131,7 @@ export function FieldRenderer({
         <ChoiceFieldControl
           answer={answer}
           errorId={error ? errorId : undefined}
-          field={field}
+          field={renderedField}
           fieldId={fieldId}
           labelText={labelText}
           onChange={onChange}
@@ -139,7 +143,7 @@ export function FieldRenderer({
       control = options ? (
         <select
           className='w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 outline-none focus:border-blue-700 focus:ring-2 focus:ring-blue-100 disabled:bg-slate-100'
-          disabled={field.readOnly}
+          disabled={isReadOnly}
           id={fieldId}
           onChange={(event) => onChange(event.target.value || undefined)}
           value={displayValue(answer)}
@@ -158,7 +162,7 @@ export function FieldRenderer({
           id={fieldId}
           onChange={(event) => onChange(event.target.value)}
           placeholder={getDictionaryHint(field)}
-          readOnly={field.readOnly}
+          readOnly={isReadOnly}
           value={displayValue(answer)}
           {...hasErrorProps}
         />
@@ -169,7 +173,7 @@ export function FieldRenderer({
         <div className='space-y-2'>
           <input
             className='block w-full text-sm file:mr-3 file:rounded-md file:border-0 file:bg-blue-50 file:px-3 file:py-2 file:font-semibold file:text-blue-800 hover:file:bg-blue-100 disabled:opacity-60'
-            disabled={field.readOnly}
+            disabled={isReadOnly}
             id={fieldId}
             onChange={(event) => onChange(event.target.files?.[0]?.name)}
             type='file'
@@ -186,7 +190,7 @@ export function FieldRenderer({
         <ConsentFieldControl
           answer={answer}
           errorId={error ? errorId : undefined}
-          field={field}
+          field={renderedField}
           fieldId={fieldId}
           labelText={labelText}
           onChange={onChange}
@@ -207,7 +211,7 @@ export function FieldRenderer({
       {labelText}
       {required && <span className='ml-1 text-red-700'>*</span>}
       <TechName name={field.techName} show={showTechName} />
-      <FieldMeta field={field} />
+      <FieldMeta readOnly={isReadOnly} />
     </>
   );
 
@@ -217,7 +221,7 @@ export function FieldRenderer({
         <fieldset
           aria-required={required}
           className='space-y-3'
-          disabled={field.readOnly}
+          disabled={isReadOnly}
         >
           <legend className='mb-2 font-semibold text-slate-800'>{label}</legend>
           {hasDescriptionText(field.description) && (

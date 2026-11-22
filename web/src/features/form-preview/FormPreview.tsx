@@ -79,7 +79,7 @@ export function FormPreview({
     });
   }
 
-  function renderField(field: FormField): React.ReactNode {
+  function renderField(field: FormField, readOnly = false): React.ReactNode {
     if (!isUserVisibleField(field)) return null;
 
     if (isSection(field)) {
@@ -108,7 +108,7 @@ export function FormPreview({
             <SafeDescription markup={field.description} />
           </div>
           {sortByPosition(field.repeatingSectionGrid ?? []).map((item) =>
-            renderField(item.field),
+            renderField(item.field, readOnly),
           )}
         </section>
       );
@@ -130,6 +130,7 @@ export function FormPreview({
           error={errors[field.id]}
           field={field}
           onChange={(value) => handleAnswerChange(field, value)}
+          readOnlyOverride={readOnly}
           showTechName={showTechNames}
         />
       </div>
@@ -258,11 +259,39 @@ export function FormPreview({
               </h3>
 
               <div className='mt-4'>
-                {sortByPosition(currentPage.questions ?? []).map((question, index) =>
-                  renderField(question.field) ?? (
-                    <span key={`empty-question-${index}`} />
-                  ),
-                )}
+                {currentPage.type === 'FINISH'
+                  ? pages
+                      .filter((page) => page.type !== 'FINISH')
+                      .map((page, pageNumber) => (
+                        <section
+                          aria-labelledby={`review-page-${page.id ?? pageNumber}`}
+                          className='mt-6 rounded-xl border border-slate-200 bg-slate-50 p-4 sm:p-6'
+                          key={page.id ?? `review-page-${pageNumber}`}
+                        >
+                          <h4
+                            className='text-lg font-semibold text-slate-900'
+                            id={`review-page-${page.id ?? pageNumber}`}
+                          >
+                            {page.title || `Strona ${pageNumber + 1}`}
+                          </h4>
+                          <div className='mt-3'>
+                            {sortByPosition(page.questions ?? []).map(
+                              (question, index) =>
+                                renderField(question.field, true) ?? (
+                                  <span
+                                    key={`review-empty-${pageNumber}-${index}`}
+                                  />
+                                ),
+                            )}
+                          </div>
+                        </section>
+                      ))
+                  : sortByPosition(currentPage.questions ?? []).map(
+                      (question, index) =>
+                        renderField(question.field) ?? (
+                          <span key={`empty-question-${index}`} />
+                        ),
+                    )}
               </div>
 
               <div className='mt-8 flex flex-wrap items-center justify-between gap-3'>
