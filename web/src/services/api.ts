@@ -1,4 +1,3 @@
-const BASE_URL = import.meta.env.VITE_BASE_URL ?? 'http://172.19.0.10:8000';
 const TOKEN_KEY = 'formularze-token';
 
 export interface AuthConfig {
@@ -73,7 +72,7 @@ export async function getApiErrorMessage(response: Response): Promise<string> {
 }
 
 export async function fetchAuthConfig(): Promise<AuthConfig> {
-  const response = await fetch(`${BASE_URL}/api/v1/auth/config`);
+  const response = await fetch('/api/v1/auth/config');
   if (!response.ok) {
     throw new ApiError(await getApiErrorMessage(response), response.status);
   }
@@ -105,7 +104,7 @@ export async function requestAuthToken(
   username: string,
   password: string,
 ): Promise<string> {
-  const response = await fetch(`${BASE_URL}/api/v1/auth/token`, {
+  const response = await fetch('/api/v1/auth/token', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ username, password }),
@@ -147,7 +146,7 @@ export async function convertDocument(
     headers.Authorization = `Bearer ${token}`;
   }
 
-  const response = await fetch(`${BASE_URL}/api/v1/forms/convert?report=true`, {
+  const response = await fetch('/api/v1/forms/convert?report=true', {
     method: 'POST',
     headers,
     body,

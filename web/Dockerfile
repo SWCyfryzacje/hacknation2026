@@ -4,9 +4,6 @@ ARG NGINX_VERSION=stable-alpine
 FROM node:${NODE_VERSION} AS build
 WORKDIR /app
 
-ARG VITE_BASE_URL
-ENV VITE_BASE_URL=${VITE_BASE_URL}
-
 COPY package*.json ./
 RUN npm install
 COPY . .

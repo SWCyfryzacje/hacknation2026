@@ -1,4 +1,4 @@
-# Uruchomienie: docker compose up --build   →   http://localhost:8000
+# Uruchomienie: docker compose up --build   →   http://localhost
 # Sekrety (JWT_SECRET, AUTH_PASSWORD, EDENAI_API_KEY) trzymaj w pliku .env (kopia .env.example).
 # Ustawienia z sekcji `environment` mają pierwszeństwo przed .env — tu wygodnie zmienia się model.
 services:
@@ -41,13 +41,13 @@ services:
   frontend:
     build: ./web/
     image: frontend
+    depends_on:
+      - formularze
     networks:
       form-net:
         ipv4_address: 172.19.0.20
     ports:
       - "80:80"
-    environment:
-      VITE_BASE_URL: http://172.19.0.10:8000
 
 networks:
   form-net:
