@@ -2,7 +2,12 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import type { FormConfiguration, FormField, FormResult } from '@/types/form';
 import { FieldRenderer } from './FieldRenderer';
 import { SafeDescription } from './SafeDescription';
-import { isUserVisibleField, orderTabs, sortByPosition } from './utils';
+import {
+  isUserVisibleField,
+  orderPageQuestions,
+  orderTabs,
+  sortByPosition,
+} from './utils';
 import { isInputField, validateField } from './validators';
 import { evaluateVisibility } from './visibility';
 
@@ -275,7 +280,7 @@ export function FormPreview({
                             {page.title || `Strona ${pageNumber + 1}`}
                           </h4>
                           <div className='mt-3'>
-                            {sortByPosition(page.questions ?? []).map(
+                            {orderPageQuestions(page.questions ?? []).map(
                               (question, index) =>
                                 renderField(question.field, true) ?? (
                                   <span
@@ -286,7 +291,7 @@ export function FormPreview({
                           </div>
                         </section>
                       ))
-                  : sortByPosition(currentPage.questions ?? []).map(
+                  : orderPageQuestions(currentPage.questions ?? []).map(
                       (question, index) =>
                         renderField(question.field) ?? (
                           <span key={`empty-question-${index}`} />

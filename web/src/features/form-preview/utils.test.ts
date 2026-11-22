@@ -9,6 +9,7 @@ import {
   createInitialAnswers,
   getAllFields,
   isUserVisibleField,
+  orderPageQuestions,
   orderTabs,
 } from './utils';
 import { validateField } from './validators';
@@ -217,6 +218,7 @@ describe('evaluateVisibility', () => {
 
   it('shows the other-person name and PESEL fields when that applicant is selected', async () => {
     const sampleForm = JSON.parse(sampleFormJson) as FormConfiguration;
+    const dataPage = sampleForm.tabs.find((tab) => tab.title === 'Dane');
     const fields = getAllFields(sampleForm);
     const otherPersonSection = fields.find(
       (field) => field.techName === 'dane_innej_osoby',
@@ -229,6 +231,15 @@ describe('evaluateVisibility', () => {
 
     expect(otherPersonSection).toBeDefined();
     expect(otherPersonFields).toHaveLength(3);
+    expect(dataPage).toBeDefined();
+
+    const orderedQuestions = orderPageQuestions(dataPage!.questions ?? []);
+    const applicantIndex = orderedQuestions.findIndex(
+      (question) => question.field.techName === 'podmiot_wniosku',
+    );
+    expect(orderedQuestions[applicantIndex + 1].field.techName).toBe(
+      'dane_innej_osoby',
+    );
 
     const visibleForOtherPerson = await evaluateVisibility(sampleForm, {
       wybierz_w_czyim_imieniu_wnioskujesz: 'Innej osoby',
