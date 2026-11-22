@@ -50,3 +50,4 @@ select = ["E", "F", "W", "B", "UP", "I"]
 "app/analysis/llm.py" = ["E501"]   # treść promptu
 "tests/*" = ["E501"]
 "scripts/make_test_forms.py" = ["E501"]   # dane formularzy testowych
+"scripts/evaluate.py" = ["E501"]   # treść raportu
