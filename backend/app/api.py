@@ -1,11 +1,9 @@
-"""REST API oraz prosta strona WWW do wgrywania plików."""
+"""REST API."""
 
-from pathlib import Path
 from typing import Annotated, Any
 
-from fastapi import APIRouter, Depends, File, HTTPException, Query, Response, UploadFile
+from fastapi import APIRouter, Depends, File, Query, Response, UploadFile
 from fastapi.concurrency import run_in_threadpool
-from fastapi.responses import FileResponse
 from pydantic import BaseModel, Field
 
 from app import __version__
@@ -16,7 +14,6 @@ from app.security import check_credentials, issue_token, require_auth
 from app.service import convert
 
 router = APIRouter()
-INDEX_HTML = Path(__file__).parent / "static" / "index.html"
 
 
 class LoginRequest(BaseModel):
@@ -30,15 +27,8 @@ class TokenResponse(BaseModel):
     expires_in: int
 
 
-@router.get("/", include_in_schema=False)
-def index(settings: Annotated[Settings, Depends(get_settings)]) -> FileResponse:
-    if not settings.ui_enabled:
-        raise HTTPException(status_code=404)
-    return FileResponse(INDEX_HTML, media_type="text/html; charset=utf-8",
-                        headers={"Cache-Control": "no-cache", "X-Content-Type-Options": "nosniff"})
 
-
-@router.get("/api/v1/auth/config", tags=["uwierzytelnianie"], summary="Czy strona WWW wymaga logowania")
+@router.get("/api/v1/auth/config", tags=["uwierzytelnianie"], summary="Czy frontend wymaga logowania")
 def auth_config(settings: Annotated[Settings, Depends(get_settings)]) -> dict[str, bool]:
     return {"authEnabled": settings.auth_enabled, "loginConfigured": settings.login_configured}
 

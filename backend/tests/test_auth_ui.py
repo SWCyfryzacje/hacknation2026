@@ -28,16 +28,8 @@ def make_client(monkeypatch):
     get_settings.cache_clear()
 
 
-def test_index_page_is_served(make_client):
-    r = make_client().get("/")
-    assert r.status_code == 200
-    assert r.headers["content-type"].startswith("text/html")
-    assert 'id="login-form"' in r.text and "/api/v1/forms/convert" in r.text
-    assert "http://" not in r.text and "https://" not in r.text  # brak zasobów zewnętrznych
 
 
-def test_index_page_can_be_disabled(make_client):
-    assert make_client(UI_ENABLED="false").get("/").status_code == 404
 
 
 def test_login_issues_token_that_works_for_convert(make_client, sample_docx):
@@ -72,18 +64,8 @@ def test_login_without_configuration(make_client, monkeypatch):
     assert r.status_code == 503
 
 
-def test_preview_assets_are_served_locally(make_client):
-    client = make_client()
-    page = client.get("/").text
-    assert 'src="/static/vendor/jsonata.min.js"' in page
-    assert 'id="tab-preview"' in page and 'id="open-json"' in page and 'id="download-dicts"' in page
-    lib = client.get("/static/vendor/jsonata.min.js")
-    assert lib.status_code == 200 and "javascript" in lib.headers["content-type"]
-    assert lib.text.startswith("/*! JSONata 2.2.2 | MIT License")
 
 
-def test_static_files_disabled_with_ui(make_client):
-    assert make_client(UI_ENABLED="false").get("/static/vendor/jsonata.min.js").status_code == 404
 
 
 def test_health_reports_configured_models(make_client):
@@ -96,3 +78,11 @@ def test_health_reports_configured_models(make_client):
 def test_health_without_llm(make_client):
     body = make_client(EDENAI_API_KEY="klucz-testowy", LLM_ENABLED="false").get("/health").json()
     assert body["llm"] is False and body["llmModel"] is None
+
+
+def test_backend_serves_no_web_page(make_client):
+    """Frontend jest osobnym kontenerem (nginx :80); backend na :8000 udostępnia tylko REST API i /docs."""
+    client = make_client()
+    assert client.get("/").status_code == 404
+    assert client.get("/static/vendor/jsonata.min.js").status_code == 404
+    assert client.get("/docs").status_code == 200

@@ -63,7 +63,7 @@ Lista modeli: katalog Eden AI (https://app.edenai.run/models) lub `curl -s https
 
 Bez LibreOffice (mniejszy obraz, bez obsługi `.doc`): `docker build --build-arg WITH_LIBREOFFICE=false …`.
 
-Strona WWW do wgrywania plików: http://localhost:8000, dokumentacja OpenAPI (Swagger UI): http://localhost:8000/docs.
+Dokumentacja OpenAPI (Swagger UI): http://localhost:8000/docs. Frontend dla urzędnika: kontener `frontend` (http://localhost).
 
 ### Obraz Docker
 
@@ -98,28 +98,14 @@ python scripts/convert_dir.py formularze/ wyniki/ --max-llm-calls 15
 python scripts/compare.py wyniki/wniosek.docx.json referencja.json   # porównanie z eksportem referencyjnym
 ```
 
-## Interfejs WWW
+## Frontend i logowanie
 
-Pod adresem `/` usługa serwuje prostą stronę dla urzędnika (jeden plik HTML + lokalna kopia biblioteki JSONata,
-bez zasobów zewnętrznych i bez procesu budowania):
-
-1. logowanie → wybór lub przeciągnięcie pliku → „Konwertuj do JSON”,
-2. **Podgląd formularza** — wizualizacja eUsługi powstałej z JSON-a: strony jako kroki (kolejność z `flow.links`),
-   sekcje i pola według typu, **działające zależności** (`states` liczone biblioteką JSONata dokładnie tak jak
-   w systemie docelowym — np. wybór „Innej osoby” odsłania dane innej osoby i pełnomocnictwo), walidacja pól
-   (wymagalność, PESEL, NIP, REGON — z sumami kontrolnymi, kod pocztowy, e-mail), dane inicjalne z rejestrów
-   pokazane przykładowymi wartościami, słowniki (Kraje, zaproponowane nowe słowniki; TERYT jako pole tekstowe),
-3. **JSON** — wygenerowana konfiguracja, przyciski „Pobierz JSON” i „Kopiuj JSON”,
-4. **Raport** — analizator i model, statystyki, ostrzeżenia, wynik kontroli reguł, zużycie tokenów oraz tabela
-   **zaproponowanych nowych słowników**, które można pobrać przyciskiem „Pobierz słowniki”
-   (plik `<nazwa>.slowniki.json` w formacie `{"dictionaries": [{name, description, values, used_by}]}`).
-
-„Otwórz plik JSON” pokazuje podgląd dowolnej gotowej konfiguracji (np. eksportu referencyjnego) bez konwersji
-i bez wywołań modelu. Strona korzysta wyłącznie z publicznego REST API opisanego niżej.
+Interfejs dla urzędnika to osobny kontener `frontend` (React + nginx, port 80, katalog `web/` w repozytorium),
+który korzysta wyłącznie z REST API opisanego niżej. Backend na porcie 8000 nie serwuje strony — udostępnia tylko
+REST API i dokumentację OpenAPI (`/docs`).
 
 Logowanie konfiguruje się zmiennymi `AUTH_USERNAME` i `AUTH_PASSWORD` (hasło podawane tylko przy uruchomieniu,
-jak inne sekrety). Po zalogowaniu usługa wystawia token JWT ważny `JWT_TTL_MINUTES` minut. Przy `AUTH_ENABLED=false`
-strona działa bez logowania; `UI_ENABLED=false` wyłącza stronę.
+jak inne sekrety). Po zalogowaniu (`POST /api/v1/auth/token`) usługa wystawia token JWT ważny `JWT_TTL_MINUTES` minut.
 
 ## REST API
 
@@ -201,7 +187,6 @@ Wszystkie parametry ustawia się zmiennymi środowiskowymi (lub w pliku `.env`);
 | `JWT_ALGORITHMS` | `["HS256"]` | dozwolone algorytmy |
 | `JWT_AUDIENCE`, `JWT_ISSUER` | – | opcjonalna weryfikacja `aud` / `iss` |
 | `JWT_TTL_MINUTES` | `480` | ważność tokenów wystawianych przy logowaniu |
-| `UI_ENABLED` | `true` | strona WWW pod `/` |
 | `AUTH_USERNAME`, `AUTH_PASSWORD` | – | login i hasło urzędnika do strony WWW |
 | `EDENAI_API_KEY` | – | klucz Eden AI; brak = analiza regułowa + Tesseract |
 | `LLM_ENABLED` | `true` | analiza modelem językowym |
@@ -238,6 +223,5 @@ Wszystkie parametry ustawia się zmiennymi środowiskowymi (lub w pliku `.env`);
 
 Wyłącznie licencje niecopyleftowe: FastAPI (MIT), Uvicorn (BSD-3), python-multipart (Apache-2.0), Pydantic (MIT),
 PyJWT (MIT), python-docx (MIT), openpyxl (MIT), pypdfium2/PDFium (Apache-2.0/BSD-3), Pillow (MIT-CMU),
-pytesseract (Apache-2.0), olefile (BSD-2), defusedxml (PSF-2.0), httpx (BSD-3). Strona WWW: JSONata 2.2.2
-(MIT, lokalna kopia w `app/static/vendor/` z plikiem licencji). Programy zewnętrzne w obrazie:
+pytesseract (Apache-2.0), olefile (BSD-2), defusedxml (PSF-2.0), httpx (BSD-3). Programy zewnętrzne w obrazie:
 Tesseract (Apache-2.0), LibreOffice (MPL-2.0, wywoływany jako osobny proces, bez linkowania).

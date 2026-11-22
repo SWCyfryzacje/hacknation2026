@@ -48,9 +48,8 @@ class Settings(BaseSettings):
     jwt_leeway_s: int = Field(30, ge=0)
     jwt_ttl_minutes: int = Field(480, gt=0, description="Ważność tokenów wystawianych przy logowaniu.")
 
-    # --- Interfejs WWW i logowanie ----------------------------------------------
-    ui_enabled: bool = Field(True, description="Strona WWW pod adresem / do wgrywania plików.")
-    auth_username: str | None = Field(None, description="Login urzędnika do strony WWW.")
+    # --- Logowanie użytkownika frontendu (wydawanie tokenów JWT) --------------------
+    auth_username: str | None = Field(None, description="Login urzędnika do frontendu.")
     auth_password: SecretStr | None = Field(None, description="Hasło urzędnika (sekret — tylko w środowisku).")
 
     # --- Eden AI (API organizatorów: model językowy + OCR) ----------------------

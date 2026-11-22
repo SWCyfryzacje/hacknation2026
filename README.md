@@ -103,7 +103,6 @@ do obrazu — podawany przy uruchomieniu kontenera), **wybór modelu** w sekcji 
 | `LIBREOFFICE_BINARY` | `soffice` | konwersja plików `.doc` |
 | `VALIDATION_MODE` | `filled` | `filled` = walidatory w polach (`["REQUIRED","PESEL"]`), `empty` = puste jak w eksportach |
 | `FINISH_COMPONENT` | `TEXT_BLOCK` | komponent strony końcowej (`TEXT_BLOCK` / `INFO_SECTION`) |
-| `UI_ENABLED` | `true` | wbudowana strona WWW backendu pod `:8000/` |
 | `CORS_ORIGINS` | `[]` | dozwolone adresy frontendu przy dostępie bezpośrednim |
 
 ## REST API

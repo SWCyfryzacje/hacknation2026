@@ -37,8 +37,6 @@ działa w całości na jednej maszynie: analiza regułowa + lokalny OCR Tesserac
 | Moduł | Odpowiedzialność |
 | --- | --- |
 | `main.py`, `api.py` | aplikacja FastAPI, endpointy, dokumentacja OpenAPI (`/docs`), logowanie (`/api/v1/auth/token`) |
-| `static/index.html` | strona WWW dla urzędnika: jeden plik HTML/CSS/JS bez budowania, serwowany przez tę samą usługę; korzysta tylko z publicznego REST API; wgrywanie pliku, podgląd eUsługi (kroki, pola, zależności, walidacja), JSON, raport, pobieranie słowników |
-| `static/vendor/` | lokalna kopia biblioteki JSONata 2.2.2 (MIT) — warunki `states` w podglądzie liczone tak samo jak w systemie docelowym, bez CDN |
 | `config.py` | konfiguracja wyłącznie ze zmiennych środowiskowych (pydantic-settings), walidowana przy starcie |
 | `security.py` | wystawianie i weryfikacja tokenów JWT (HS*/RS*/ES*, wymagany `exp`, opcjonalnie `aud`/`iss`), sprawdzanie loginu i hasła w stałym czasie |
 | `errors.py` | błędy domenowe → odpowiedzi `application/problem+json` z właściwym kodem HTTP |
@@ -88,11 +86,11 @@ Układ formularza wynika ze „Standardów i dobrych praktyk projektowania formu
 - **Identyfikatory** — UUIDv5 z treści pliku: ten sam plik → ten sam JSON.
 - **Nazwy techniczne** — z etykiet (transliteracja, `snake_case`), unikalne w całym formularzu.
 
-## Interfejs WWW — dlaczego w tym samym kontenerze
+## Frontend — osobny kontener
 
-Strona jest statyczna (bez logiki po stronie serwera), więc osobny kontener serwowałby tylko jeden plik, a dokładał
-konfigurację, CORS i dodatkowy punkt awarii. Jedno polecenie `docker run` uruchamia całe rozwiązanie. Strona używa
-wyłącznie publicznego REST API, więc w razie potrzeby można ją przenieść na osobny serwer bez zmian w kodzie.
+Interfejs dla urzędnika (React, nginx bez uprawnień roota, port 80) działa w osobnym kontenerze i komunikuje się
+z backendem wyłącznie przez publiczne REST API (`/api/` przekazywane przez nginx do `formularze:8000`). Backend nie
+serwuje strony — udostępnia tylko REST API i dokumentację OpenAPI.
 
 ## Bezpieczeństwo i dane
 
