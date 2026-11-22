@@ -116,7 +116,7 @@ export function FormPreview({
 
     return (
       <div
-        className='mt-5 rounded-xl bg-white p-4 sm:p-6'
+        className='rounded-xl bg-white p-4 sm:p-6'
         hidden={!isVisible(field)}
         key={field.id}
         ref={(element) => {
@@ -235,7 +235,7 @@ export function FormPreview({
           </nav>
 
           {currentPage && (
-            <div className='mt-3 p-4 sm:p-6'>
+            <div className='mt-3'>
               <p className='text-sm font-semibold text-blue-800'>
                 Krok {pageIndex + 1} z {pages.length}
                 {currentPage.type === 'FINISH' ? ' — strona końcowa' : ''}
