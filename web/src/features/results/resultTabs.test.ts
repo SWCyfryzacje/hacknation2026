@@ -4,11 +4,12 @@ import { isFormReport } from '@/types/report';
 import { getResultTabs } from './resultTabs';
 
 describe('result tab visibility', () => {
-  it('keeps report navigation and hides JSON when debug mode is disabled', () => {
-    expect(ENABLE_JSON_DEBUG_VIEW).toBe(false);
+  it('shows JSON navigation by default', () => {
+    expect(ENABLE_JSON_DEBUG_VIEW).toBe(true);
     expect(getResultTabs(true, ENABLE_JSON_DEBUG_VIEW).map((tab) => tab.id)).toEqual([
       'preview',
       'report',
+      'json',
     ]);
   });
 

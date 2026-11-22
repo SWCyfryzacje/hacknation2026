@@ -1,1 +1,1 @@
-export const ENABLE_JSON_DEBUG_VIEW = false;
+export const ENABLE_JSON_DEBUG_VIEW = true;
