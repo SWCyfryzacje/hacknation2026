@@ -79,6 +79,22 @@ services:
       - no-new-privileges:true
     restart: unless-stopped
 
+  # Tunel Cloudflare: publiczny adres https:// dla serwera MCP (wymagany przez konektory czatbotów w przeglądarce).
+  # Bez konta Cloudflare: „quick tunnel” — losowy adres https://<nazwa>.trycloudflare.com widoczny w logach
+  # (docker compose logs tunnel), zmienia się po każdym restarcie. Stały adres: patrz DEPLOY.md (TUNNEL_TOKEN).
+  tunnel:
+    image: cloudflare/cloudflared:2026.10.7
+    command: ["tunnel", "--no-autoupdate", "--url", "http://mcp:8100"]
+    depends_on:
+      - mcp
+    networks:
+      form-net:
+        ipv4_address: 172.19.0.40
+    cap_drop: [ALL]  # obraz cloudflared działa jako użytkownik nonroot
+    security_opt:
+      - no-new-privileges:true
+    restart: unless-stopped
+
 networks:
   form-net:
     name: form-net

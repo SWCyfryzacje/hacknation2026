@@ -56,3 +56,36 @@ def test_check_form_tool():
     form = zbuduj_formularz(copy.deepcopy(EXAMPLE_OUTPUT))["formularz"]
     assert sprawdz_formularz(form) == {"problemy": []}
     assert "blad" in sprawdz_formularz({"title": "x"})
+
+
+def test_mcp_accepts_token_in_query_for_browser_connectors():
+    import asyncio
+    import datetime as dt
+
+    import jwt
+
+    from app.mcp_server import BearerAuth
+    from tests.conftest import SECRET
+
+    async def downstream(scope, receive, send):
+        await send({"type": "http.response.start", "status": 200, "headers": []})
+        await send({"type": "http.response.body", "body": b"ok"})
+
+    def status_for(query: bytes, headers=()) -> int:
+        sent = []
+
+        async def send(message):
+            sent.append(message)
+
+        scope = {"type": "http", "headers": list(headers), "query_string": query}
+        asyncio.run(BearerAuth(downstream)(scope, None, send))
+        return sent[0]["status"]
+
+    from app.config import get_settings
+
+    get_settings.cache_clear()
+    token = jwt.encode({"sub": "c", "exp": dt.datetime.now(dt.UTC) + dt.timedelta(minutes=5)}, SECRET, "HS256")
+    assert status_for(b"") == 401
+    assert status_for(f"token={token}".encode()) == 200
+    assert status_for(b"", [(b"authorization", f"Bearer {token}".encode())]) == 200
+    assert status_for(b"token=zly") == 401

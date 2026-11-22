@@ -27,6 +27,7 @@ import hashlib
 import json
 import re
 from typing import Any
+from urllib.parse import parse_qs
 
 from pydantic import ValidationError
 
@@ -191,10 +192,14 @@ class BearerAuth:
             from app.security import decode_token
 
             header = dict(scope.get("headers") or []).get(b"authorization", b"").decode()
+            # Konektory czatbotów w przeglądarce (claude.ai, ChatGPT) nie dodają własnych nagłówków —
+            # dlatego token może być też w adresie: https://…/mcp?token=<JWT> (krótko ważny token!).
+            query = parse_qs(scope.get("query_string", b"").decode())
+            token = header[7:] if header.lower().startswith("bearer ") else (query.get("token") or [""])[0]
             try:
-                if not header.lower().startswith("bearer "):
-                    raise Unauthorized("Wymagany nagłówek Authorization: Bearer <token>.")
-                decode_token(header[7:], settings)
+                if not token:
+                    raise Unauthorized("Wymagany token: nagłówek Authorization: Bearer <token> albo ?token=<token>.")
+                decode_token(token, settings)
             except Unauthorized as exc:
                 body = json.dumps({"detail": exc.message}, ensure_ascii=False).encode()
                 await send({"type": "http.response.start", "status": 401,
