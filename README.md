@@ -73,7 +73,8 @@ Sam backend bez Compose: `docker build -t formularze-ai:0.1.0 ./backend`
    docker compose up -d --build
    ```
 3. Otwórz:
-   - **http://localhost** — strona WWW (logowanie → wgranie formularza → podgląd, JSON, raport),
+   - **http://localhost** — strona WWW (logowanie → wgranie formularza → podgląd, JSON, raport);
+     login: `urzednik`, hasło: `password`,
    - **http://localhost:8000/docs** — interaktywna dokumentacja REST API (Swagger),
    - **http://localhost:8000/health** — stan usługi i aktywny model.
 
