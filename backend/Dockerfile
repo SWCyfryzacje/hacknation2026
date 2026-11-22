@@ -32,7 +32,8 @@ ENV PATH=/opt/venv/bin:$PATH \
 WORKDIR /home/app
 # Proces aplikacji działa na dedykowanym użytkowniku bez uprawnień administratora.
 USER app
-EXPOSE 8000
+# 8000 — REST API i strona WWW; 8100 — opcjonalny serwer MCP (python -m app.mcp_server)
+EXPOSE 8000 8100
 HEALTHCHECK --interval=30s --timeout=5s --start-period=10s \
   CMD python -c "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health', timeout=3)" || exit 1
 # Sekrety (JWT_SECRET, EDENAI_API_KEY) wyłącznie ze zmiennych środowiskowych przy uruchomieniu kontenera.

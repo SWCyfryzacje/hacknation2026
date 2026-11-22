@@ -9,6 +9,7 @@ import {
   createInitialAnswers,
   getAllFields,
   isUserVisibleField,
+  orderPageQuestions,
   orderTabs,
 } from './utils';
 import { validateField } from './validators';
@@ -213,6 +214,45 @@ describe('evaluateVisibility', () => {
     await expect(evaluateVisibility(form, { country: 'Niemcy' })).resolves.toMatchObject({
       'abroad-city': false,
     });
+  });
+
+  it('shows the other-person name and PESEL fields when that applicant is selected', async () => {
+    const sampleForm = JSON.parse(sampleFormJson) as FormConfiguration;
+    const dataPage = sampleForm.tabs.find((tab) => tab.title === 'Dane');
+    const fields = getAllFields(sampleForm);
+    const otherPersonSection = fields.find(
+      (field) => field.techName === 'dane_innej_osoby',
+    );
+    const otherPersonFields = fields.filter((field) =>
+      ['imie_inna_osoba', 'nazwisko_inna_osoba', 'numer_pesel_inna_osoba'].includes(
+        field.techName,
+      ),
+    );
+
+    expect(otherPersonSection).toBeDefined();
+    expect(otherPersonFields).toHaveLength(3);
+    expect(dataPage).toBeDefined();
+
+    const orderedQuestions = orderPageQuestions(dataPage!.questions ?? []);
+    const applicantIndex = orderedQuestions.findIndex(
+      (question) => question.field.techName === 'podmiot_wniosku',
+    );
+    expect(orderedQuestions[applicantIndex + 1].field.techName).toBe(
+      'dane_innej_osoby',
+    );
+
+    const visibleForOtherPerson = await evaluateVisibility(sampleForm, {
+      wybierz_w_czyim_imieniu_wnioskujesz: 'Innej osoby',
+    });
+    const visibleForSelf = await evaluateVisibility(sampleForm, {
+      wybierz_w_czyim_imieniu_wnioskujesz: 'Swoim',
+    });
+
+    expect(visibleForOtherPerson[otherPersonSection!.id]).toBe(true);
+    expect(otherPersonFields.every((field) => visibleForOtherPerson[field.id])).toBe(
+      true,
+    );
+    expect(visibleForSelf[otherPersonSection!.id]).toBe(false);
   });
 });
 

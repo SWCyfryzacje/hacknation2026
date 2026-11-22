@@ -1,6 +1,7 @@
 import type {
   FormConfiguration,
   FormField,
+  FormQuestion,
   FormTab,
 } from '@/types/form';
 import type { ProposedDictionary } from '@/types/report';
@@ -59,6 +60,26 @@ export function sortByPosition<T extends { x?: number; y?: number }>(
   return [...items].sort(
     (left, right) => (left.y ?? 0) - (right.y ?? 0) || (left.x ?? 0) - (right.x ?? 0),
   );
+}
+
+export function orderPageQuestions(questions: FormQuestion[]): FormQuestion[] {
+  const orderedQuestions = sortByPosition(questions);
+  const applicantIndex = orderedQuestions.findIndex(
+    (question) => question.field.techName === 'podmiot_wniosku',
+  );
+  const otherPersonIndex = orderedQuestions.findIndex(
+    (question) => question.field.techName === 'dane_innej_osoby',
+  );
+
+  if (applicantIndex < 0 || otherPersonIndex < 0) return orderedQuestions;
+
+  const [otherPersonSection] = orderedQuestions.splice(otherPersonIndex, 1);
+  const updatedApplicantIndex = orderedQuestions.findIndex(
+    (question) => question.field.techName === 'podmiot_wniosku',
+  );
+  orderedQuestions.splice(updatedApplicantIndex + 1, 0, otherPersonSection);
+
+  return orderedQuestions;
 }
 
 export function orderTabs(form: FormConfiguration): FormTab[] {
