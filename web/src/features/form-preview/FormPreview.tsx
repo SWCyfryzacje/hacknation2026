@@ -235,7 +235,7 @@ export function FormPreview({
           </nav>
 
           {currentPage && (
-            <div className='mt-3 rounded-xl border border-slate-200 bg-slate-100 p-4 sm:p-6'>
+            <div className='mt-3 rounded-xl border border-slate-200  p-4 sm:p-6'>
               <p className='text-sm font-semibold text-blue-800'>
                 Krok {pageIndex + 1} z {pages.length}
                 {currentPage.type === 'FINISH' ? ' — strona końcowa' : ''}
