@@ -1,4 +1,4 @@
-import type { KeyboardEvent } from 'react';
+// import type { KeyboardEvent } from 'react';
 import { ENABLE_JSON_DEBUG_VIEW } from '@/config/featureFlags';
 import { FormPreview } from '@/features/form-preview/FormPreview';
 import type { WorkspaceState } from '@/services/workspaceStorage';
@@ -36,16 +36,16 @@ export function ResultPanel({
     ? workspace.activeTab
     : 'preview';
 
-  function handleTabKeyDown(event: KeyboardEvent<HTMLDivElement>) {
-    if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
-
-    event.preventDefault();
-    const activeIndex = tabs.findIndex((tab) => tab.id === activeTab);
-    const offset = event.key === 'ArrowRight' ? 1 : -1;
-    const nextTab = tabs[(activeIndex + offset + tabs.length) % tabs.length];
-    onWorkspaceChange({ activeTab: nextTab.id });
-    document.getElementById(`result-tab-${nextTab.id}`)?.focus();
-  }
+  // function handleTabKeyDown(event: KeyboardEvent<HTMLDivElement>) {
+  //   if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
+  //
+  //   event.preventDefault();
+  //   const activeIndex = tabs.findIndex((tab) => tab.id === activeTab);
+  //   const offset = event.key === 'ArrowRight' ? 1 : -1;
+  //   const nextTab = tabs[(activeIndex + offset + tabs.length) % tabs.length];
+  //   onWorkspaceChange({ activeTab: nextTab.id });
+  //   document.getElementById(`result-tab-${nextTab.id}`)?.focus();
+  // }
 
   function downloadDictionaries() {
     if (!result.report?.proposedDictionaries?.length) return;
@@ -73,32 +73,32 @@ export function ResultPanel({
         </button>
       </header>
 
-      <div
-        aria-label='Widok wyniku'
-        className='flex flex-wrap gap-2 border-b border-slate-200'
-        onKeyDown={handleTabKeyDown}
-        role='tablist'
-      >
-        {tabs.map((tab) => (
-          <button
-            aria-controls={`result-panel-${tab.id}`}
-            aria-selected={activeTab === tab.id}
-            className={`-mb-px border-b-2 px-3 py-3 text-sm font-semibold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700 ${
-              activeTab === tab.id
-                ? 'border-blue-700 text-blue-800'
-                : 'border-transparent text-slate-600 hover:text-slate-900'
-            }`}
-            id={`result-tab-${tab.id}`}
-            key={tab.id}
-            onClick={() => onWorkspaceChange({ activeTab: tab.id })}
-            role='tab'
-            tabIndex={activeTab === tab.id ? 0 : -1}
-            type='button'
-          >
-            {tab.label}
-          </button>
-        ))}
-      </div>
+      {/*<div*/}
+      {/*  aria-label='Widok wyniku'*/}
+      {/*  className='flex flex-wrap gap-2 border-b border-slate-200'*/}
+      {/*  onKeyDown={handleTabKeyDown}*/}
+      {/*  role='tablist'*/}
+      {/*>*/}
+      {/*  {tabs.map((tab) => (*/}
+      {/*    <button*/}
+      {/*      aria-controls={`result-panel-${tab.id}`}*/}
+      {/*      aria-selected={activeTab === tab.id}*/}
+      {/*      className={`-mb-px border-b-2 px-3 py-3 text-sm font-semibold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700 ${*/}
+      {/*        activeTab === tab.id*/}
+      {/*          ? 'border-blue-700 text-blue-800'*/}
+      {/*          : 'border-transparent text-slate-600 hover:text-slate-900'*/}
+      {/*      }`}*/}
+      {/*      id={`result-tab-${tab.id}`}*/}
+      {/*      key={tab.id}*/}
+      {/*      onClick={() => onWorkspaceChange({ activeTab: tab.id })}*/}
+      {/*      role='tab'*/}
+      {/*      tabIndex={activeTab === tab.id ? 0 : -1}*/}
+      {/*      type='button'*/}
+      {/*    >*/}
+      {/*      {tab.label}*/}
+      {/*    </button>*/}
+      {/*  ))}*/}
+      {/*</div>*/}
 
       <div
         aria-labelledby='result-tab-preview'
