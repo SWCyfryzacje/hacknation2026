@@ -87,7 +87,7 @@ export function FormPreview({
       return (
         <section
           aria-labelledby={headingId}
-          className='mt-5 rounded-xl bg-white p-4 sm:p-6'
+          className='mt-5 rounded-xl border border-slate-200 bg-white p-4 sm:p-6'
           hidden={!isVisible(field)}
           key={field.id}
         >
@@ -116,7 +116,7 @@ export function FormPreview({
 
     return (
       <div
-        className='mt-5 rounded-xl border border-slate-200 bg-white p-4 sm:p-6'
+        className='mt-5 rounded-xl bg-white p-4 sm:p-6'
         hidden={!isVisible(field)}
         key={field.id}
         ref={(element) => {
