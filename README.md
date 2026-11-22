@@ -17,6 +17,10 @@ i zależnościami między polami (warunki JSONata). Urzędnik korzysta z niej pr
 Szczegóły techniczne: [backend/README.md](backend/README.md) (pełny opis usługi) i
 [backend/ARCHITEKTURA.md](backend/ARCHITEKTURA.md) (architektura).
 
+> **Gałęzie:** `main` zawiera ukończone zadanie **wraz z rozszerzeniem — serwerem MCP** (kontener `mcp`, port 8100).
+> Ukończone zadanie **bez MCP** (dokładnie zakres wyzwania: backend + frontend) znajduje się na gałęzi
+> **`task-completed`**.
+
 ## Spis treści
 
 1. [Wymagania](#wymagania)
@@ -28,7 +32,7 @@ Szczegóły techniczne: [backend/README.md](backend/README.md) (pełny opis usł
 7. [Testy i dowód działania](#testy-i-dowód-działania)
 8. [Struktura repozytorium](#struktura-repozytorium)
 9. [Licencje](#licencje)
-10. [Rozszerzenie: serwer MCP (branch `mcp`)](#rozszerzenie-serwer-mcp-branch-mcp)
+10. [Rozszerzenie: serwer MCP](#rozszerzenie-serwer-mcp)
 
 ## Wymagania
 
@@ -188,18 +192,17 @@ BSD / Apache-2.0), pypdfium2 (Apache-2.0 / BSD-3), Pillow (MIT-CMU), pytesseract
 defusedxml (PSF-2.0); programy w obrazie: Tesseract (Apache-2.0), LibreOffice (MPL-2.0, osobny proces). Szczegóły:
 [backend/README.md](backend/README.md#licencje-zależności).
 
-## Rozszerzenie: serwer MCP (branch `mcp`)
+## Rozszerzenie: serwer MCP
 
-Drużyna na własną rękę rozbudowała ten projekt o **serwer MCP** (Model Context Protocol) **hostowany na Dockerze**,
-który jest na branchu **`mcp`**. Serwer pozwala zewnętrznemu asystentowi AI (np. Claude, ChatGPT) przeanalizować
+Drużyna na własną rękę rozbudowała ten projekt o **serwer MCP** (Model Context Protocol) **hostowany na Dockerze**
+— jest częścią gałęzi **`main`** i startuje razem z resztą usług. Wersja bez MCP: gałąź **`task-completed`**. Serwer pozwala zewnętrznemu asystentowi AI (np. Claude, ChatGPT) przeanalizować
 formularz własnym modelem — koszt modelu ponosi użytkownik asystenta, nie urząd — a nasz generator buduje z tej
 analizy konfigurację JSON zgodną ze standardami. Wejścia z danymi osobowymi (PESEL, NIP, rachunek, dowód, e-mail,
 telefon) są odrzucane z odesłaniem do rządowej aplikacji. Podstawowa usługa nie zależy od MCP.
 
-Uruchomienie serwera MCP:
+Uruchomienie (na `main` serwer MCP startuje razem z backendem i frontendem):
 
 ```bash
-git checkout mcp
 cp backend/.env.example backend/.env       # JWT_SECRET, AUTH_USERNAME, AUTH_PASSWORD
 docker compose up -d --build               # backend :8000, frontend :80, serwer MCP :8100
 ```
@@ -208,4 +211,4 @@ docker compose up -d --build               # backend :8000, frontend :80, serwer
   (token z `POST /api/v1/auth/token`).
 - Adres rządowej aplikacji, do której MCP odsyła przy danych osobowych: `MCP_SAFE_APP_URL` w `docker-compose.yml`.
 - Demonstracja całej ścieżki: `cd backend && python scripts/mcp_demo.py --url http://localhost:8100/mcp`.
-- Narzędzia: `pobierz_standardy`, `zbuduj_formularz`, `sprawdz_formularz` — opis w `backend/README.md` na branchu `mcp`.
+- Narzędzia: `pobierz_standardy`, `zbuduj_formularz`, `sprawdz_formularz` — opis w [backend/README.md](backend/README.md).

@@ -148,8 +148,8 @@ Demonstracja całej ścieżki bez asystenta (standardy → budowa formularza →
 `python scripts/mcp_demo.py --url http://<serwer>:8100/mcp --out wynik.json` — przykładowy wynik:
 `wyniki/testy/mcp/przyklad_z_mcp.json`.
 
-**Zgodność z wymaganiami wyzwania:** usługa **nie zależy** od MCP — REST API, strona WWW i analiza działają bez tego
-kontenera. MCP jest dodatkowym interfejsem, który usługa udostępnia (biblioteka `mcp`, licencja MIT).
+**Zgodność z wymaganiami wyzwania:** usługa **nie zależy** od MCP — REST API, frontend i analiza działają bez tego
+kontenera (wersja bez MCP: gałąź `task-completed`). MCP jest dodatkowym interfejsem, który usługa udostępnia (biblioteka `mcp`, licencja MIT).
 
 ## REST API
 
