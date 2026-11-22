@@ -87,7 +87,7 @@ export function FormPreview({
       return (
         <section
           aria-labelledby={headingId}
-          className='mt-5 space-y-5 rounded-xl border border-slate-200 bg-white p-4 sm:p-6'
+          className='mt-5 rounded-xl border border-slate-200 bg-white p-4 sm:p-6'
           hidden={!isVisible(field)}
           key={field.id}
         >
@@ -116,7 +116,7 @@ export function FormPreview({
 
     return (
       <div
-        className='mt-5 rounded-xl border border-slate-200 bg-white p-4 sm:p-6'
+        className='mt-5 rounded-xl bg-white p-4 sm:p-6'
         hidden={!isVisible(field)}
         key={field.id}
         ref={(element) => {
@@ -221,7 +221,7 @@ export function FormPreview({
                     className={`rounded-lg px-3 py-2 text-sm font-semibold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700 ${
                       index === pageIndex
                         ? 'bg-blue-700 text-white'
-                        : 'bg-white text-slate-700 hover:bg-blue-50'
+                        : 'bg-slate-50 text-slate-700 hover:bg-blue-50'
                     }`}
                     onClick={() => goToPage(index)}
                     type='button'
