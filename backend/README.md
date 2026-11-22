@@ -121,6 +121,34 @@ Logowanie konfiguruje się zmiennymi `AUTH_USERNAME` i `AUTH_PASSWORD` (hasło p
 jak inne sekrety). Po zalogowaniu usługa wystawia token JWT ważny `JWT_TTL_MINUTES` minut. Przy `AUTH_ENABLED=false`
 strona działa bez logowania; `UI_ENABLED=false` wyłącza stronę.
 
+## Serwer MCP dla asystentów AI (opcjonalny)
+
+Dodatkowy interfejs [Model Context Protocol](https://modelcontextprotocol.io): kontener `mcp` (ten sam obraz,
+`python -m app.mcp_server`, port **8100**, ścieżka `/mcp`, transport streamable HTTP, token JWT jak w REST API).
+
+**Idea:** analizę formularza wykonuje zewnętrzny asystent AI użytkownika (Claude, ChatGPT, Copilot…) — **koszt
+modelu ponosi użytkownik, nie urząd** — a nasz deterministyczny generator buduje z tej analizy konfigurację eUsługi
+zgodną ze standardami (te same sekcje predefiniowane, kolejność kluczy, warunki JSONata i kontrola reguł co w REST API).
+Odbiorcą są osoby projektujące formularze (urzędnicy cyfryzujący wnioski).
+
+| Narzędzie | Działanie |
+| --- | --- |
+| `pobierz_standardy` | zasady projektowania (ten sam prompt co nasz model), schemat opisu formularza, przykład, typy pól, walidatory, słowniki, dane inicjalne |
+| `zbuduj_formularz(opis)` | opis z analizy asystenta → kompletny JSON eUsługi + wynik kontroli reguł + zaproponowane słowniki |
+| `sprawdz_formularz(formularz)` | kontrola dowolnej konfiguracji regułami formularzy eUsług |
+
+**Ochrona danych:** każde wejście jest sprawdzane pod kątem danych osobowych (PESEL, NIP — z sumami kontrolnymi,
+rachunek bankowy, seria i numer dowodu, e-mail, telefon). Po wykryciu narzędzie **odmawia** i wskazuje rządową
+aplikację (`MCP_SAFE_APP_URL`), która przetwarza dokument na infrastrukturze urzędu. Ograniczenie: serwer nie cofnie
+przesłania dokumentu do zewnętrznego modelu — odmowa zatrzymuje dalsze przetwarzanie i wskazuje bezpieczną ścieżkę.
+Etykiety blankietu („Numer PESEL”, „Adres e-mail”) nie są danymi osobowymi i przechodzą bez przeszkód.
+
+Podłączenie asystenta: adres `http://<serwer>:8100/mcp`, nagłówek `Authorization: Bearer <token>`
+(token z `POST /api/v1/auth/token` lub `python -m app.token_cli`).
+
+**Zgodność z wymaganiami wyzwania:** usługa **nie zależy** od MCP — REST API, strona WWW i analiza działają bez tego
+kontenera. MCP jest dodatkowym interfejsem, który usługa udostępnia (biblioteka `mcp`, licencja MIT).
+
 ## REST API
 
 ### `POST /api/v1/forms/convert`
@@ -218,6 +246,8 @@ Wszystkie parametry ustawia się zmiennymi środowiskowymi (lub w pliku `.env`);
 | `FINISH_COMPONENT` | `TEXT_BLOCK` | komponent strony końcowej (`TEXT_BLOCK` jak w eksportach albo `INFO_SECTION`) |
 | `VALIDATION_MODE` | `filled` | `filled` = walidatory w `validation` (np. `["REQUIRED","PESEL"]`), `empty` = puste tablice jak w eksportach |
 | `CORS_ORIGINS` | `[]` | adresy frontendu |
+| `MCP_PORT` | `8100` | port serwera MCP |
+| `MCP_SAFE_APP_URL` | `http://localhost` | rządowa aplikacja, do której MCP odsyła przy danych osobowych |
 
 ## Decyzje projektowe
 
@@ -237,7 +267,7 @@ Wszystkie parametry ustawia się zmiennymi środowiskowymi (lub w pliku `.env`);
 ## Licencje zależności
 
 Wyłącznie licencje niecopyleftowe: FastAPI (MIT), Uvicorn (BSD-3), python-multipart (Apache-2.0), Pydantic (MIT),
-PyJWT (MIT), python-docx (MIT), openpyxl (MIT), pypdfium2/PDFium (Apache-2.0/BSD-3), Pillow (MIT-CMU),
+PyJWT (MIT), mcp (MIT), python-docx (MIT), openpyxl (MIT), pypdfium2/PDFium (Apache-2.0/BSD-3), Pillow (MIT-CMU),
 pytesseract (Apache-2.0), olefile (BSD-2), defusedxml (PSF-2.0), httpx (BSD-3). Strona WWW: JSONata 2.2.2
 (MIT, lokalna kopia w `app/static/vendor/` z plikiem licencji). Programy zewnętrzne w obrazie:
 Tesseract (Apache-2.0), LibreOffice (MPL-2.0, wywoływany jako osobny proces, bez linkowania).
