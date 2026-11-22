@@ -143,12 +143,21 @@ export function UploadPanel({
         }}
         onDrop={handleDrop}
       >
-        <span aria-hidden='true' className='text-3xl text-blue-700'>
-          ↑
-        </span>
-        <span className='mt-3 font-semibold'>
-          Kliknij, aby wybrać plik lub przeciągnij go tutaj
-        </span>
+        {!selectedFile && (
+          <>
+            <span aria-hidden='true' className='text-3xl text-blue-700'>
+              ↑
+            </span>
+            <span className='mt-3 font-semibold'>
+              Kliknij, aby wybrać plik lub przeciągnij go tutaj
+            </span>
+          </>
+        )}
+        {selectedFile && (
+          <span className='break-all text-lg font-semibold text-slate-900'>
+            {selectedFile.name}
+          </span>
+        )}
         <span className='mt-1 text-sm text-slate-500'>Jeden plik na raz</span>
         <input
           accept={allowedDocumentExtensions.join(',')}
@@ -162,13 +171,6 @@ export function UploadPanel({
           type='file'
         />
       </label>
-
-      {selectedFile && (
-        <p className='mt-4 text-sm text-slate-700'>
-          Wybrany plik: <span className='font-semibold'>{selectedFile.name}</span>{' '}
-          ({(selectedFile.size / 1024).toFixed(0)} KB)
-        </p>
-      )}
 
       {error && (
         <p aria-live='polite' className='mt-4 text-sm text-red-700' role='alert'>
