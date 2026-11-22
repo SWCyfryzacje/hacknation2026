@@ -1,0 +1,37 @@
+{
+  "file": {
+    "name": "B2_kochanowice_azbest_skan.jpg",
+    "mime": "image/jpeg",
+    "sizeBytes": 126847
+  },
+  "extraction": {
+    "format": "jpeg",
+    "lines": 32,
+    "ocr": true,
+    "ocrEngine": "edenai"
+  },
+  "analysis": {
+    "analyzer": "llm",
+    "model": "databricks/databricks-gpt-oss-120b@eu",
+    "authority": "Wójt Gminy Kochanowice",
+    "applicant": {
+      "person": true,
+      "company": false
+    },
+    "llmUsage": {
+      "calls": 1,
+      "prompt_tokens": 2963,
+      "completion_tokens": 1936
+    }
+  },
+  "stats": {
+    "pages": 6,
+    "sections": 15,
+    "fields": 47,
+    "conditional": 20
+  },
+  "proposedDictionaries": [],
+  "warnings": [],
+  "issues": [],
+  "durationMs": 11583
+}

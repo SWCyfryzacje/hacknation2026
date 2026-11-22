@@ -1,0 +1,33 @@
+{
+  "dictionaries": [
+    {
+      "name": "Dyscypliny sportowe",
+      "description": "Lista dyscyplin sportowych, z których można wybrać w formularzu wniosku sportowego.",
+      "values": [
+        "gimnastyka artystyczna",
+        "hokej",
+        "karate",
+        "kolarstwo",
+        "koszykówka",
+        "lekkoatletyka",
+        "łucznictwo",
+        "łyżwiarstwo",
+        "narciarstwo klasyczne",
+        "piłka nożna",
+        "piłka ręczna",
+        "piłka siatkowa",
+        "piłka wodna",
+        "sport motocyklowy",
+        "sporty walki",
+        "sporty wodne",
+        "tenis stołowy",
+        "tenis ziemny",
+        "unihokej",
+        "zapasy"
+      ],
+      "used_by": [
+        "Dyscyplina sportowa"
+      ]
+    }
+  ]
+}

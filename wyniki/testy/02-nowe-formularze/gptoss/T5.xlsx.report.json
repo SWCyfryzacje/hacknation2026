@@ -1,0 +1,37 @@
+{
+  "file": {
+    "name": "T5.xlsx",
+    "mime": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "sizeBytes": 5452
+  },
+  "extraction": {
+    "format": "xlsx",
+    "lines": 23,
+    "ocr": false,
+    "ocrEngine": null
+  },
+  "analysis": {
+    "analyzer": "llm",
+    "model": "databricks/databricks-gpt-oss-120b@eu",
+    "authority": "Urząd Gminy Obrowo",
+    "applicant": {
+      "person": true,
+      "company": false
+    },
+    "llmUsage": {
+      "calls": 1,
+      "prompt_tokens": 2679,
+      "completion_tokens": 1974
+    }
+  },
+  "stats": {
+    "pages": 4,
+    "sections": 17,
+    "fields": 41,
+    "conditional": 18
+  },
+  "proposedDictionaries": [],
+  "warnings": [],
+  "issues": [],
+  "durationMs": 8999
+}

@@ -1,0 +1,42 @@
+{
+  "id": "T5",
+  "title": "Wniosek o wydanie zaświadczenia o zameldowaniu",
+  "authority": "Urząd Gminy Obrowo",
+  "applicant": {
+    "person": true,
+    "company": false
+  },
+  "fields": [
+    {
+      "label": "Rodzaj pobytu",
+      "kind": "RADIO",
+      "options": [
+        "Stały",
+        "Czasowy"
+      ]
+    },
+    {
+      "label": "Data zameldowania od",
+      "kind": "DATEPICKER",
+      "options": []
+    },
+    {
+      "label": "Cel wydania zaświadczenia",
+      "kind": "TEXT_FIELD",
+      "options": []
+    },
+    {
+      "label": "Liczba egzemplarzy",
+      "kind": "NUMBER",
+      "options": []
+    },
+    {
+      "label": "Potwierdzenie zapłaty opłaty skarbowej",
+      "kind": "FILE_UPLOADER",
+      "options": []
+    }
+  ],
+  "dependencies": [],
+  "statements": 0,
+  "fee": true
+}

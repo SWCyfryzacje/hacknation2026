@@ -1,0 +1,53 @@
+{
+  "file": {
+    "name": "form8.doc",
+    "mime": "application/msword",
+    "sizeBytes": 791552
+  },
+  "extraction": {
+    "format": "doc",
+    "lines": 633,
+    "ocr": false,
+    "ocrEngine": null
+  },
+  "analysis": {
+    "analyzer": "llm",
+    "model": "mistral/mistral-large-4-0@eu",
+    "authority": "Prezydent Miasta Gdyni",
+    "applicant": {
+      "person": true,
+      "company": true
+    },
+    "llmUsage": {
+      "calls": 1,
+      "prompt_tokens": 8948,
+      "completion_tokens": 16218
+    }
+  },
+  "stats": {
+    "pages": 7,
+    "sections": 26,
+    "fields": 87,
+    "conditional": 35
+  },
+  "proposedDictionaries": [
+    {
+      "name": "Rodzaje podmiotów składających deklarację o odpadach",
+      "description": "Rodzaj podmiotu zobowiązanego do złożenia deklaracji o wysokości opłaty za gospodarowanie odpadami komunalnymi",
+      "values": [
+        "Właściciel/współwłaściciel",
+        "Współwłaściciel (wspólność majątkowa)",
+        "Najemca/dzierżawca",
+        "Wspólnota mieszkaniowa",
+        "Spółdzielnia mieszkaniowa",
+        "Inny podmiot władający nieruchomością"
+      ],
+      "used_by": [
+        "Składający deklarację"
+      ]
+    }
+  ],
+  "warnings": [],
+  "issues": [],
+  "durationMs": 244597
+}

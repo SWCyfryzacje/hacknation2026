@@ -1,0 +1,71 @@
+{
+  "file": {
+    "name": "form9.ods",
+    "mime": "application/vnd.oasis.opendocument.spreadsheet",
+    "sizeBytes": 26347
+  },
+  "extraction": {
+    "format": "ods",
+    "lines": 249,
+    "ocr": false,
+    "ocrEngine": null
+  },
+  "analysis": {
+    "analyzer": "llm",
+    "model": "databricks/databricks-gpt-oss-120b@eu",
+    "authority": "Prezydent Miasta Zgierza",
+    "applicant": {
+      "person": true,
+      "company": true
+    },
+    "llmUsage": {
+      "calls": 1,
+      "prompt_tokens": 6733,
+      "completion_tokens": 6712
+    }
+  },
+  "stats": {
+    "pages": 6,
+    "sections": 37,
+    "fields": 137,
+    "conditional": 39
+  },
+  "proposedDictionaries": [
+    {
+      "name": "Dyscypliny sportowe",
+      "description": "Lista dyscyplin sportowych, w których może brać udział wnioskodawca.",
+      "values": [
+        "Zespołowa",
+        "Indywidualna – inna",
+        "Indywidualna – lekkoatletyka",
+        "gimnastyka artystyczna",
+        "hokej",
+        "karate",
+        "kolarstwo",
+        "koszykówka",
+        "lekkoatletyka",
+        "łucznictwo",
+        "łyżwiarstwo",
+        "narciarstwo klasyczne",
+        "piłka nożna",
+        "piłka ręczna",
+        "piłka siatkowa",
+        "piłka wodna",
+        "sport motocyklowy",
+        "sporty walki",
+        "sporty wodne",
+        "tenis stołowy",
+        "tenis ziemny",
+        "unihokej",
+        "zapasy",
+        "Inna"
+      ],
+      "used_by": [
+        "Dyscyplina sportowa"
+      ]
+    }
+  ],
+  "warnings": [],
+  "issues": [],
+  "durationMs": 29215
+}

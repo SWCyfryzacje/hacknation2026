@@ -1,0 +1,37 @@
+{
+  "file": {
+    "name": "T5.ods",
+    "mime": "application/vnd.oasis.opendocument.spreadsheet",
+    "sizeBytes": 1207
+  },
+  "extraction": {
+    "format": "ods",
+    "lines": 23,
+    "ocr": false,
+    "ocrEngine": null
+  },
+  "analysis": {
+    "analyzer": "llm",
+    "model": "databricks/databricks-gpt-oss-120b@eu",
+    "authority": "Urząd Gminy Obrowo",
+    "applicant": {
+      "person": true,
+      "company": false
+    },
+    "llmUsage": {
+      "calls": 1,
+      "prompt_tokens": 2677,
+      "completion_tokens": 1326
+    }
+  },
+  "stats": {
+    "pages": 4,
+    "sections": 13,
+    "fields": 41,
+    "conditional": 18
+  },
+  "proposedDictionaries": [],
+  "warnings": [],
+  "issues": [],
+  "durationMs": 6451
+}

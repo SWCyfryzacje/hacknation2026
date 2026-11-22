@@ -48,3 +48,4 @@ select = ["E", "F", "W", "B", "UP", "I"]
 [tool.ruff.lint.per-file-ignores]
 "app/analysis/llm.py" = ["E501"]   # treść promptu
 "tests/*" = ["E501"]
+"scripts/make_test_forms.py" = ["E501"]   # dane formularzy testowych

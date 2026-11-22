@@ -1,0 +1,48 @@
+{
+  "id": "T8",
+  "title": "Wniosek o zwrot podatku akcyzowego zawartego w cenie oleju napędowego",
+  "authority": "Wójt Gminy Łysomice",
+  "applicant": {
+    "person": true,
+    "company": false
+  },
+  "fields": [
+    {
+      "label": "Powierzchnia użytków rolnych (ha)",
+      "kind": "NUMBER",
+      "options": []
+    },
+    {
+      "label": "Liczba dużych jednostek przeliczeniowych bydła",
+      "kind": "NUMBER",
+      "options": []
+    },
+    {
+      "label": "Sposób wypłaty zwrotu",
+      "kind": "RADIO",
+      "options": [
+        "Przelew na rachunek bankowy",
+        "Gotówka w kasie urzędu"
+      ]
+    },
+    {
+      "label": "Numer rachunku bankowego",
+      "kind": "TEXT_FIELD",
+      "options": []
+    },
+    {
+      "label": "Faktury VAT stanowiące dowód zakupu oleju napędowego",
+      "kind": "FILE_UPLOADER",
+      "options": []
+    }
+  ],
+  "dependencies": [
+    {
+      "field": "Sposób wypłaty zwrotu",
+      "value": "Przelew na rachunek bankowy",
+      "shows": "Numer rachunku bankowego"
+    }
+  ],
+  "statements": 1,
+  "fee": false
+}

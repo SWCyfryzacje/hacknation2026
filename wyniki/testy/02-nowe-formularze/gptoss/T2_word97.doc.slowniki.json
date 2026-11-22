@@ -1,0 +1,18 @@
+{
+  "dictionaries": [
+    {
+      "name": "Gatunki drzew i krzewów",
+      "description": "Gatunki drzew i krzewów dopuszczonych do usunięcia w ramach zezwolenia",
+      "values": [
+        "Dąb",
+        "Sosna",
+        "Brzoza",
+        "Klon",
+        "Czereśnia"
+      ],
+      "used_by": [
+        "Gatunek drzewa lub krzewu"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "id": "T4",
+  "title": "Deklaracja na podatek od nieruchomości",
+  "authority": "Prezydent Miasta Włocławek",
+  "applicant": {
+    "person": true,
+    "company": false
+  },
+  "fields": [
+    {
+      "label": "Rodzaj deklaracji",
+      "kind": "RADIO",
+      "options": [
+        "Deklaracja roczna",
+        "Korekta deklaracji"
+      ]
+    },
+    {
+      "label": "Przyczyna korekty",
+      "kind": "TEXTAREA",
+      "options": []
+    },
+    {
+      "label": "Powierzchnia gruntów (m2)",
+      "kind": "NUMBER",
+      "options": []
+    },
+    {
+      "label": "Powierzchnia użytkowa budynków mieszkalnych (m2)",
+      "kind": "NUMBER",
+      "options": []
+    },
+    {
+      "label": "Powierzchnia budynków związanych z działalnością gospodarczą (m2)",
+      "kind": "NUMBER",
+      "options": []
+    },
+    {
+      "label": "Wartość budowli (zł)",
+      "kind": "NUMBER",
+      "options": []
+    }
+  ],
+  "dependencies": [
+    {
+      "field": "Rodzaj deklaracji",
+      "value": "Korekta deklaracji",
+      "shows": "Przyczyna korekty"
+    }
+  ],
+  "statements": 1,
+  "fee": false
+}

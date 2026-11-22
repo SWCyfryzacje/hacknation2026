@@ -1,0 +1,53 @@
+{
+  "file": {
+    "name": "T2.ods",
+    "mime": "application/vnd.oasis.opendocument.spreadsheet",
+    "sizeBytes": 1466
+  },
+  "extraction": {
+    "format": "ods",
+    "lines": 32,
+    "ocr": false,
+    "ocrEngine": null
+  },
+  "analysis": {
+    "analyzer": "llm",
+    "model": "databricks/databricks-gpt-oss-120b@eu",
+    "authority": "Wójt Gminy Lubicz",
+    "applicant": {
+      "person": true,
+      "company": true
+    },
+    "llmUsage": {
+      "calls": 1,
+      "prompt_tokens": 2854,
+      "completion_tokens": 1572
+    }
+  },
+  "stats": {
+    "pages": 4,
+    "sections": 17,
+    "fields": 61,
+    "conditional": 30
+  },
+  "proposedDictionaries": [
+    {
+      "name": "Gatunki drzew i krzewów",
+      "description": "Lista gatunków drzew i krzewów dopuszczonych do zgłoszenia w formularzu.",
+      "values": [
+        "Dąb",
+        "Sosna",
+        "Brzoza",
+        "Klon",
+        "Świerk",
+        "Inny gatunek"
+      ],
+      "used_by": [
+        "Gatunek drzewa lub krzewu"
+      ]
+    }
+  ],
+  "warnings": [],
+  "issues": [],
+  "durationMs": 7426
+}

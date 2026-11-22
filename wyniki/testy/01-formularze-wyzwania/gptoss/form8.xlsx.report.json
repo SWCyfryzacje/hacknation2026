@@ -1,0 +1,79 @@
+{
+  "file": {
+    "name": "form8.xlsx",
+    "mime": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "sizeBytes": 77046
+  },
+  "extraction": {
+    "format": "xlsx",
+    "lines": 179,
+    "ocr": false,
+    "ocrEngine": null
+  },
+  "analysis": {
+    "analyzer": "llm",
+    "model": "databricks/databricks-gpt-oss-120b@eu",
+    "authority": "Prezydent Miasta Gdyni",
+    "applicant": {
+      "person": true,
+      "company": true
+    },
+    "llmUsage": {
+      "calls": 1,
+      "prompt_tokens": 17682,
+      "completion_tokens": 8429
+    }
+  },
+  "stats": {
+    "pages": 10,
+    "sections": 34,
+    "fields": 95,
+    "conditional": 34
+  },
+  "proposedDictionaries": [
+    {
+      "name": "Typy podmiotu deklaracji",
+      "description": "Rodzaj podmiotu składającego deklarację o opłacie za gospodarowanie odpadami",
+      "values": [
+        "Właściciel / współwłaściciel",
+        "Współwłaściciel (wspólność majątkowa)",
+        "Najemca / dzierżawca",
+        "Wspólnota mieszkaniowa",
+        "Spółdzielnia mieszkaniowa",
+        "Inny podmiot posiadający nieruchomość w zarządzie lub użytkowaniu"
+      ],
+      "used_by": [
+        "Typ podmiotu"
+      ]
+    },
+    {
+      "name": "Typy deklaracji",
+      "description": "Okoliczności złożenia deklaracji",
+      "values": [
+        "Pierwsza deklaracja",
+        "Nowa deklaracja (zmiana danych)",
+        "Korekta",
+        "Ustanie obowiązku opłaty"
+      ],
+      "used_by": [
+        "Typ deklaracji"
+      ]
+    },
+    {
+      "name": "Rodzaje nieruchomości",
+      "description": "Rodzaj zabudowy nieruchomości w kontekście opłaty za odpady",
+      "values": [
+        "Nieruchomość zabudowana budynkiem mieszkalnym jednorodzinnym",
+        "Nieruchomość zabudowana budynkiem mieszkalnym wielolokalowym"
+      ],
+      "used_by": [
+        "Rodzaj nieruchomości"
+      ]
+    }
+  ],
+  "warnings": [
+    "Pominięto zależność od nieznanego pola „Adres nieruchomości – inny adres”."
+  ],
+  "issues": [],
+  "durationMs": 35202
+}

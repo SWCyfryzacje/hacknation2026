@@ -1,0 +1,51 @@
+{
+  "file": {
+    "name": "form8.pdf",
+    "mime": "application/pdf",
+    "sizeBytes": 687466
+  },
+  "extraction": {
+    "format": "pdf",
+    "lines": 314,
+    "ocr": false,
+    "ocrEngine": null
+  },
+  "analysis": {
+    "analyzer": "llm",
+    "model": "google/gemma-4-31b-it",
+    "authority": "Prezydent Miasta Gdyni",
+    "applicant": {
+      "person": true,
+      "company": true
+    },
+    "llmUsage": {
+      "calls": 1,
+      "prompt_tokens": 7855,
+      "completion_tokens": 5348
+    }
+  },
+  "stats": {
+    "pages": 8,
+    "sections": 23,
+    "fields": 83,
+    "conditional": 39
+  },
+  "proposedDictionaries": [
+    {
+      "name": "Powody złożenia deklaracji o odpadach",
+      "description": "Powody składania deklaracji o wysokości opłaty za gospodarowanie odpadami komunalnymi",
+      "values": [
+        "Pierwsza deklaracja",
+        "Nowa deklaracja ze względu na zmianę danych",
+        "Ustanie obowiązku uiszczania opłaty",
+        "Korekta złożonej, obowiązującej deklaracji"
+      ],
+      "used_by": [
+        "Powód złożenia deklaracji"
+      ]
+    }
+  ],
+  "warnings": [],
+  "issues": [],
+  "durationMs": 150461
+}

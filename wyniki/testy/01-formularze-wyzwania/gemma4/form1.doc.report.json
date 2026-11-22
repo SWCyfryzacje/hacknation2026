@@ -1,0 +1,37 @@
+{
+  "file": {
+    "name": "form1.doc",
+    "mime": "application/msword",
+    "sizeBytes": 44032
+  },
+  "extraction": {
+    "format": "doc",
+    "lines": 35,
+    "ocr": false,
+    "ocrEngine": null
+  },
+  "analysis": {
+    "analyzer": "llm",
+    "model": "google/gemma-4-31b-it",
+    "authority": "Wójt Gminy Elbląg",
+    "applicant": {
+      "person": true,
+      "company": true
+    },
+    "llmUsage": {
+      "calls": 1,
+      "prompt_tokens": 3345,
+      "completion_tokens": 1338
+    }
+  },
+  "stats": {
+    "pages": 4,
+    "sections": 16,
+    "fields": 55,
+    "conditional": 29
+  },
+  "proposedDictionaries": [],
+  "warnings": [],
+  "issues": [],
+  "durationMs": 65761
+}

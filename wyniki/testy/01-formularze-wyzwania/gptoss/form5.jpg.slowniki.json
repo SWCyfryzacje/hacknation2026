@@ -1,0 +1,19 @@
+{
+  "dictionaries": [
+    {
+      "name": "RodzajePodatku",
+      "description": "Rodzaje podatków, których może dotyczyć wniosek o stwierdzenie nadpłaty",
+      "values": [
+        "Podatek dochodowy od osób fizycznych",
+        "Podatek dochodowy od osób prawnych",
+        "Podatek od towarów i usług (VAT)",
+        "Podatek od nieruchomości",
+        "Podatek akcyzowy",
+        "Inny podatek"
+      ],
+      "used_by": [
+        "Rodzaj podatku"
+      ]
+    }
+  ]
+}

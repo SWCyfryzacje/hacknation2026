@@ -1,0 +1,27 @@
+{
+  "dictionaries": [
+    {
+      "name": "Rodzaje wyrobów zawierających azbest",
+      "description": "Rodzaje wyrobów zawierających azbest wymienione w formularzu.",
+      "values": [
+        "Płyty azbestowo‑cementowe płaskie stosowane w budownictwie",
+        "Płyty faliste azbestowo‑cementowe stosowane w budownictwie",
+        "Rury i złącza azbestowo‑cementowe",
+        "Rury i złącza azbestowo‑cementowe pozostawione w ziemi",
+        "Izolacje natryskowe środkami zawierającymi w swoim składzie azbest",
+        "Wyroby cierne azbestowo‑kauczukowe",
+        "Przędza specjalna, w tym włókna azbestowe obrobione",
+        "Szczeliwa azbestowe",
+        "Taśmy tkane i plecione, sznury i sznurki",
+        "Wyroby azbestowo‑kauczukowe, z wyjątkiem wyrobów ciernych",
+        "Papier, tektura",
+        "Drogi zabezpieczone (drogi utwardzone odpadami zawierającymi azbest przed trwałym zabezpieczeniem przed emisją włókien azbestu)",
+        "Drogi utwardzone odpadami zawierającymi azbest przed wejściem w życie ustawy o zakazie stosowania wyrobów zawierających azbest, ale niezabezpieczone trwale przed emisją włókien azbestu",
+        "Inne"
+      ],
+      "used_by": [
+        "Nazwa, rodzaj wyrobu"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "file": {
+    "name": "form9.doc",
+    "mime": "application/msword",
+    "sizeBytes": 82432
+  },
+  "extraction": {
+    "format": "doc",
+    "lines": 273,
+    "ocr": false,
+    "ocrEngine": null
+  },
+  "analysis": {
+    "analyzer": "llm",
+    "model": "mistral/mistral-large-4-0@eu",
+    "authority": "Prezydent Miasta Zgierza",
+    "applicant": {
+      "person": true,
+      "company": true
+    },
+    "llmUsage": {
+      "calls": 1,
+      "prompt_tokens": 9232,
+      "completion_tokens": 17299
+    }
+  },
+  "stats": {
+    "pages": 7,
+    "sections": 33,
+    "fields": 100,
+    "conditional": 51
+  },
+  "proposedDictionaries": [
+    {
+      "name": "Rodzaje świadczeń sportowych Rady Miasta Zgierza",
+      "description": "Rodzaje wniosków o świadczenia sportowe przyznawane przez Radę Miasta Zgierza",
+      "values": [
+        "Stypendium sportowe",
+        "Nagroda sportowa",
+        "Wyróżnienie sportowe"
+      ],
+      "used_by": [
+        "Rodzaj świadczenia"
+      ]
+    },
+    {
+      "name": "Dyscypliny sportowe",
+      "description": "Lista dyscyplin sportowych uznawanych w ramach świadczeń sportowych Rady Miasta Zgierza",
+      "values": [
+        "Gimnastyka artystyczna",
+        "Hokej",
+        "Karate",
+        "Kolarstwo",
+        "Koszykówka",
+        "Lekkoatletyka",
+        "Łucznictwo",
+        "Łyżwiarstwo",
+        "Narciarstwo klasyczne",
+        "Piłka nożna",
+        "Piłka ręczna",
+        "Piłka siatkowa",
+        "Piłka wodna",
+        "Sport motocyklowy",
+        "Sporty walki",
+        "Sporty wodne",
+        "Tenis stołowy",
+        "Tenis ziemny",
+        "Unihokej",
+        "Zapasy"
+      ],
+      "used_by": [
+        "Dyscyplina sportowa"
+      ]
+    }
+  ],
+  "warnings": [],
+  "issues": [],
+  "durationMs": 176916
+}

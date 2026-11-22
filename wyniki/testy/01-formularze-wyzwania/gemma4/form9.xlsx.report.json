@@ -1,0 +1,40 @@
+{
+  "file": {
+    "name": "form9.xlsx",
+    "mime": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "sizeBytes": 34628
+  },
+  "extraction": {
+    "format": "xlsx",
+    "lines": 249,
+    "ocr": false,
+    "ocrEngine": null
+  },
+  "analysis": {
+    "analyzer": "rules",
+    "model": null,
+    "authority": "Prezydent Miasta Zgierza",
+    "applicant": {
+      "person": true,
+      "company": false
+    },
+    "llmUsage": {
+      "calls": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0
+    }
+  },
+  "stats": {
+    "pages": 4,
+    "sections": 12,
+    "fields": 38,
+    "conditional": 18
+  },
+  "proposedDictionaries": [],
+  "warnings": [
+    "Model językowy niedostępny — użyto analizy regułowej. (Eden AI (/chat/completions): HTTP 504: {\"error\":{\"message\":\"No response from the provider within the 400-second limit on non-streaming requests. Long generations must be streamed: set \\\"stream\\\": true.\",\"type\":\"server_error\",\"param\":null,\"code\":\"timeout\"}})",
+    "Nie znaleziono tytułu formularza — użyto nazwy pliku."
+  ],
+  "issues": [],
+  "durationMs": 391466
+}

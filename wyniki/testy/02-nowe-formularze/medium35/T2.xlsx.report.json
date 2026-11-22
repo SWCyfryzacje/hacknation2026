@@ -1,0 +1,37 @@
+{
+  "file": {
+    "name": "T2.xlsx",
+    "mime": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "sizeBytes": 5789
+  },
+  "extraction": {
+    "format": "xlsx",
+    "lines": 32,
+    "ocr": false,
+    "ocrEngine": null
+  },
+  "analysis": {
+    "analyzer": "llm",
+    "model": "mistral/mistral-medium-3.5@eu",
+    "authority": "Wójt Gminy Lubicz",
+    "applicant": {
+      "person": true,
+      "company": true
+    },
+    "llmUsage": {
+      "calls": 1,
+      "prompt_tokens": 2947,
+      "completion_tokens": 508
+    }
+  },
+  "stats": {
+    "pages": 4,
+    "sections": 20,
+    "fields": 61,
+    "conditional": 30
+  },
+  "proposedDictionaries": [],
+  "warnings": [],
+  "issues": [],
+  "durationMs": 3299
+}

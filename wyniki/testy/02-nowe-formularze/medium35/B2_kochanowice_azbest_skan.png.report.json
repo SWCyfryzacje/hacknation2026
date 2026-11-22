@@ -1,0 +1,41 @@
+{
+  "file": {
+    "name": "B2_kochanowice_azbest_skan.png",
+    "mime": "image/png",
+    "sizeBytes": 1194259
+  },
+  "extraction": {
+    "format": "png",
+    "lines": 33,
+    "ocr": true,
+    "ocrEngine": "edenai"
+  },
+  "analysis": {
+    "analyzer": "rules",
+    "model": null,
+    "authority": null,
+    "applicant": {
+      "person": true,
+      "company": false
+    },
+    "llmUsage": {
+      "calls": 2,
+      "prompt_tokens": 6213,
+      "completion_tokens": 1239
+    }
+  },
+  "stats": {
+    "pages": 4,
+    "sections": 14,
+    "fields": 38,
+    "conditional": 18
+  },
+  "proposedDictionaries": [],
+  "warnings": [
+    "Model językowy niedostępny — użyto analizy regułowej. (Model zwrócił niepoprawny JSON: 2 validation errors for _Answer\nfee_info\n  Input should be a valid array [type=list_type, input_value=None, input_type=NoneType]\n    For further information visit https://errors.pydantic.dev/2.14/v/list_type\nproposed_dictionaries\n  Input should be a valid array [type=list_type, input_value=None, inp)",
+    "Nie znaleziono tytułu formularza — użyto nazwy pliku.",
+    "Nie rozpoznano urzędu — uzupełnij nazwę urzędu w konfiguracji."
+  ],
+  "issues": [],
+  "durationMs": 10003
+}

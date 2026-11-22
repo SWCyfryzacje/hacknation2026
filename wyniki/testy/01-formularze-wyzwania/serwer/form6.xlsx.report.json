@@ -1,0 +1,37 @@
+{
+  "file": {
+    "name": "form6.xlsx",
+    "mime": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "sizeBytes": 12162
+  },
+  "extraction": {
+    "format": "xlsx",
+    "lines": 52,
+    "ocr": false,
+    "ocrEngine": null
+  },
+  "analysis": {
+    "analyzer": "llm",
+    "model": "mistral/mistral-large-4-0@eu",
+    "authority": "Urząd Miasta i Gminy Miasteczko",
+    "applicant": {
+      "person": true,
+      "company": true
+    },
+    "llmUsage": {
+      "calls": 1,
+      "prompt_tokens": 5101,
+      "completion_tokens": 12138
+    }
+  },
+  "stats": {
+    "pages": 4,
+    "sections": 25,
+    "fields": 93,
+    "conditional": 29
+  },
+  "proposedDictionaries": [],
+  "warnings": [],
+  "issues": [],
+  "durationMs": 120761
+}

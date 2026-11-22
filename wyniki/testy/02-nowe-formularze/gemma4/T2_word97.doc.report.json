@@ -1,0 +1,37 @@
+{
+  "file": {
+    "name": "T2_word97.doc",
+    "mime": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    "sizeBytes": 35978
+  },
+  "extraction": {
+    "format": "docx",
+    "lines": 31,
+    "ocr": false,
+    "ocrEngine": null
+  },
+  "analysis": {
+    "analyzer": "llm",
+    "model": "google/gemma-4-31b-it",
+    "authority": "Wójt Gminy Lubicz",
+    "applicant": {
+      "person": true,
+      "company": true
+    },
+    "llmUsage": {
+      "calls": 1,
+      "prompt_tokens": 2708,
+      "completion_tokens": 1486
+    }
+  },
+  "stats": {
+    "pages": 4,
+    "sections": 18,
+    "fields": 61,
+    "conditional": 30
+  },
+  "proposedDictionaries": [],
+  "warnings": [],
+  "issues": [],
+  "durationMs": 42489
+}

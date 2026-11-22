@@ -1,0 +1,37 @@
+{
+  "file": {
+    "name": "form5.jpg",
+    "mime": "image/jpeg",
+    "sizeBytes": 188528
+  },
+  "extraction": {
+    "format": "jpeg",
+    "lines": 31,
+    "ocr": true,
+    "ocrEngine": "edenai"
+  },
+  "analysis": {
+    "analyzer": "llm",
+    "model": "google/gemma-4-31b-it",
+    "authority": "Urząd Gminy Ulan-Majorat",
+    "applicant": {
+      "person": true,
+      "company": true
+    },
+    "llmUsage": {
+      "calls": 1,
+      "prompt_tokens": 2670,
+      "completion_tokens": 2106
+    }
+  },
+  "stats": {
+    "pages": 5,
+    "sections": 18,
+    "fields": 59,
+    "conditional": 31
+  },
+  "proposedDictionaries": [],
+  "warnings": [],
+  "issues": [],
+  "durationMs": 61363
+}

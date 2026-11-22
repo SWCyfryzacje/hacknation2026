@@ -1,0 +1,50 @@
+{
+  "file": {
+    "name": "form7.pdf",
+    "mime": "application/pdf",
+    "sizeBytes": 127981
+  },
+  "extraction": {
+    "format": "pdf",
+    "lines": 99,
+    "ocr": false,
+    "ocrEngine": null
+  },
+  "analysis": {
+    "analyzer": "llm",
+    "model": "databricks/databricks-gpt-oss-120b@eu",
+    "authority": "Urząd Miejski Wrocławia, Wydział Środowiska",
+    "applicant": {
+      "person": true,
+      "company": false
+    },
+    "llmUsage": {
+      "calls": 1,
+      "prompt_tokens": 4079,
+      "completion_tokens": 2853
+    }
+  },
+  "stats": {
+    "pages": 4,
+    "sections": 14,
+    "fields": 52,
+    "conditional": 18
+  },
+  "proposedDictionaries": [
+    {
+      "name": "AggressiveDogBreeds",
+      "description": "Rasy psów uznawane za agresywne w kontekście zezwolenia na hodowanie lub utrzymywanie",
+      "values": [
+        "Chart",
+        "Mastiff",
+        "Pit Bull"
+      ],
+      "used_by": [
+        "Rasa psa"
+      ]
+    }
+  ],
+  "warnings": [],
+  "issues": [],
+  "durationMs": 60330
+}

@@ -1,0 +1,15 @@
+{
+  "dictionaries": [
+    {
+      "name": "Rodzaje deklaracji podatkowych",
+      "description": "Rodzaje deklaracji składanych w ramach podatku od nieruchomości",
+      "values": [
+        "Deklaracja roczna",
+        "Korekta deklaracji"
+      ],
+      "used_by": [
+        "Rodzaj deklaracji"
+      ]
+    }
+  ]
+}

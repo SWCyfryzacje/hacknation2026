@@ -1,0 +1,16 @@
+{
+  "dictionaries": [
+    {
+      "name": "AggressiveDogBreeds",
+      "description": "Rasy psów uznawane za agresywne w kontekście zezwolenia na hodowanie lub utrzymywanie",
+      "values": [
+        "Chart",
+        "Mastiff",
+        "Pit Bull"
+      ],
+      "used_by": [
+        "Rasa psa"
+      ]
+    }
+  ]
+}

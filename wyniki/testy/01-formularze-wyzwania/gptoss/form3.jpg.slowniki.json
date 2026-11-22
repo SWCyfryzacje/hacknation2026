@@ -1,0 +1,18 @@
+{
+  "dictionaries": [
+    {
+      "name": "ZakresZaświadczenia",
+      "description": "Zakresy, o które można wystąpić w zaświadczeniu o użytkach rolnych",
+      "values": [
+        "Ilość posiadanych użytków rolnych w hektarach fizycznych i przyliczeniowych",
+        "Ilość dzierżawionych użytków rolnych w hektarach fizycznych i przyliczeniowych",
+        "Okres posiadania gospodarstwa rolnego",
+        "Nieposiadanie użytków rolnych / gospodarstwa rolnego na terenie Gminy Młynary",
+        "Inne"
+      ],
+      "used_by": [
+        "Zakres zaświadczenia"
+      ]
+    }
+  ]
+}

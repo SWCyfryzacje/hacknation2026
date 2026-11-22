@@ -1,0 +1,37 @@
+{
+  "file": {
+    "name": "B2_kochanowice_azbest_skan.png",
+    "mime": "image/png",
+    "sizeBytes": 1194259
+  },
+  "extraction": {
+    "format": "png",
+    "lines": 33,
+    "ocr": true,
+    "ocrEngine": "edenai"
+  },
+  "analysis": {
+    "analyzer": "llm",
+    "model": "databricks/databricks-gpt-oss-120b@eu",
+    "authority": "Gmina Kochanowice",
+    "applicant": {
+      "person": false,
+      "company": true
+    },
+    "llmUsage": {
+      "calls": 1,
+      "prompt_tokens": 2964,
+      "completion_tokens": 1999
+    }
+  },
+  "stats": {
+    "pages": 4,
+    "sections": 16,
+    "fields": 49,
+    "conditional": 21
+  },
+  "proposedDictionaries": [],
+  "warnings": [],
+  "issues": [],
+  "durationMs": 13027
+}

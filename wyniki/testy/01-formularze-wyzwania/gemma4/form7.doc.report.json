@@ -1,0 +1,53 @@
+{
+  "file": {
+    "name": "form7.doc",
+    "mime": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    "sizeBytes": 13522
+  },
+  "extraction": {
+    "format": "docx",
+    "lines": 68,
+    "ocr": false,
+    "ocrEngine": null
+  },
+  "analysis": {
+    "analyzer": "llm",
+    "model": "google/gemma-4-31b-it",
+    "authority": "Prezydent Wrocławia",
+    "applicant": {
+      "person": true,
+      "company": false
+    },
+    "llmUsage": {
+      "calls": 1,
+      "prompt_tokens": 3887,
+      "completion_tokens": 3102
+    }
+  },
+  "stats": {
+    "pages": 4,
+    "sections": 13,
+    "fields": 46,
+    "conditional": 19
+  },
+  "proposedDictionaries": [
+    {
+      "name": "Rasy psów uznawanych za agresywne",
+      "description": "Lista ras psów i ich mieszańców wymagających zezwolenia",
+      "values": [
+        "Chart afgański",
+        "Chart angielski",
+        "Chart irlandzki",
+        "Chart rosyjski borzoi",
+        "Chart szkocki",
+        "Mieszaniec charta"
+      ],
+      "used_by": [
+        "Rasa psa"
+      ]
+    }
+  ],
+  "warnings": [],
+  "issues": [],
+  "durationMs": 86316
+}

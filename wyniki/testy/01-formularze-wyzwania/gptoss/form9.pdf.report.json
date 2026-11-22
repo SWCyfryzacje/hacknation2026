@@ -1,0 +1,67 @@
+{
+  "file": {
+    "name": "form9.pdf",
+    "mime": "application/pdf",
+    "sizeBytes": 419346
+  },
+  "extraction": {
+    "format": "pdf",
+    "lines": 402,
+    "ocr": false,
+    "ocrEngine": null
+  },
+  "analysis": {
+    "analyzer": "llm",
+    "model": "databricks/databricks-gpt-oss-120b@eu",
+    "authority": "Prezydent Miasta Zgierza",
+    "applicant": {
+      "person": true,
+      "company": true
+    },
+    "llmUsage": {
+      "calls": 1,
+      "prompt_tokens": 7635,
+      "completion_tokens": 4730
+    }
+  },
+  "stats": {
+    "pages": 6,
+    "sections": 26,
+    "fields": 129,
+    "conditional": 33
+  },
+  "proposedDictionaries": [
+    {
+      "name": "Dyscypliny sportowe",
+      "description": "Lista dyscyplin sportowych uprawianych w ramach wniosku sportowego",
+      "values": [
+        "gimnastyka artystyczna",
+        "hokej",
+        "karate",
+        "kolarstwo",
+        "koszykówka",
+        "lekkoatletyka",
+        "łucznictwo",
+        "łyżwiarstwo",
+        "narciarstwo klasyczne",
+        "piłka nożna",
+        "piłka ręczna",
+        "piłka siatkowa",
+        "piłka wodna",
+        "sport motocyklowy",
+        "sporty walki",
+        "sporty wodne",
+        "tenis stołowy",
+        "tenis ziemny",
+        "unihokej",
+        "zapasy"
+      ],
+      "used_by": [
+        "Dyscypliny sportowe"
+      ]
+    }
+  ],
+  "warnings": [],
+  "issues": [],
+  "durationMs": 22126
+}

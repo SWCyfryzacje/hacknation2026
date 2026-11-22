@@ -1,0 +1,47 @@
+{
+  "id": "T6",
+  "title": "Wniosek o wydanie identyfikatora mieszkańca strefy płatnego parkowania",
+  "authority": "Zarząd Dróg Miejskich w Bydgoszczy",
+  "applicant": {
+    "person": true,
+    "company": false
+  },
+  "fields": [
+    {
+      "label": "Numer rejestracyjny pojazdu",
+      "kind": "TEXT_FIELD",
+      "options": []
+    },
+    {
+      "label": "Marka i model pojazdu",
+      "kind": "TEXT_FIELD",
+      "options": []
+    },
+    {
+      "label": "Tytuł do pojazdu",
+      "kind": "RADIO",
+      "options": [
+        "Właściciel",
+        "Współwłaściciel",
+        "Leasing"
+      ]
+    },
+    {
+      "label": "Okres ważności identyfikatora",
+      "kind": "RADIO",
+      "options": [
+        "Miesiąc",
+        "Kwartał",
+        "Rok"
+      ]
+    },
+    {
+      "label": "Kopia dowodu rejestracyjnego",
+      "kind": "FILE_UPLOADER",
+      "options": []
+    }
+  ],
+  "dependencies": [],
+  "statements": 1,
+  "fee": false
+}

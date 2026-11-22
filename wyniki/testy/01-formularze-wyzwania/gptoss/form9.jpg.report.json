@@ -1,0 +1,39 @@
+{
+  "file": {
+    "name": "form9.jpg",
+    "mime": "image/jpeg",
+    "sizeBytes": 4661696
+  },
+  "extraction": {
+    "format": "jpeg",
+    "lines": 67,
+    "ocr": true,
+    "ocrEngine": "edenai"
+  },
+  "analysis": {
+    "analyzer": "llm",
+    "model": "databricks/databricks-gpt-oss-120b@eu",
+    "authority": null,
+    "applicant": {
+      "person": true,
+      "company": false
+    },
+    "llmUsage": {
+      "calls": 1,
+      "prompt_tokens": 2849,
+      "completion_tokens": 409
+    }
+  },
+  "stats": {
+    "pages": 3,
+    "sections": 11,
+    "fields": 34,
+    "conditional": 18
+  },
+  "proposedDictionaries": [],
+  "warnings": [
+    "Model nie rozpoznał pól przedmiotu wniosku."
+  ],
+  "issues": [],
+  "durationMs": 9561
+}

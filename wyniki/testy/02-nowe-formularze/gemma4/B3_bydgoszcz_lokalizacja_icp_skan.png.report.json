@@ -1,0 +1,37 @@
+{
+  "file": {
+    "name": "B3_bydgoszcz_lokalizacja_icp_skan.png",
+    "mime": "image/png",
+    "sizeBytes": 1135141
+  },
+  "extraction": {
+    "format": "png",
+    "lines": 36,
+    "ocr": true,
+    "ocrEngine": "edenai"
+  },
+  "analysis": {
+    "analyzer": "llm",
+    "model": "google/gemma-4-31b-it",
+    "authority": "Prezydent Miasta Bydgoszcz",
+    "applicant": {
+      "person": true,
+      "company": true
+    },
+    "llmUsage": {
+      "calls": 1,
+      "prompt_tokens": 2848,
+      "completion_tokens": 616
+    }
+  },
+  "stats": {
+    "pages": 6,
+    "sections": 20,
+    "fields": 62,
+    "conditional": 30
+  },
+  "proposedDictionaries": [],
+  "warnings": [],
+  "issues": [],
+  "durationMs": 12308
+}

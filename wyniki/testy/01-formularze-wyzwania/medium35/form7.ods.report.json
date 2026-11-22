@@ -1,0 +1,54 @@
+{
+  "file": {
+    "name": "form7.ods",
+    "mime": "application/vnd.oasis.opendocument.spreadsheet",
+    "sizeBytes": 40556
+  },
+  "extraction": {
+    "format": "ods",
+    "lines": 70,
+    "ocr": false,
+    "ocrEngine": null
+  },
+  "analysis": {
+    "analyzer": "llm",
+    "model": "mistral/mistral-medium-3.5@eu",
+    "authority": "Urząd Miejski Wrocławia, Wydział Środowiska",
+    "applicant": {
+      "person": true,
+      "company": false
+    },
+    "llmUsage": {
+      "calls": 1,
+      "prompt_tokens": 4249,
+      "completion_tokens": 834
+    }
+  },
+  "stats": {
+    "pages": 5,
+    "sections": 15,
+    "fields": 47,
+    "conditional": 20
+  },
+  "proposedDictionaries": [
+    {
+      "name": "Rasy psów uznawanych za agresywne",
+      "description": "Lista ras psów uznawanych za agresywne zgodnie z przepisami prawa",
+      "values": [
+        "Chart afgański",
+        "Chart angielski",
+        "Chart hiszpański",
+        "Chart polski",
+        "Chart rosyjski",
+        "Chart szkocki",
+        "Mieszańce chartów"
+      ],
+      "used_by": [
+        "Rasa psa"
+      ]
+    }
+  ],
+  "warnings": [],
+  "issues": [],
+  "durationMs": 5473
+}

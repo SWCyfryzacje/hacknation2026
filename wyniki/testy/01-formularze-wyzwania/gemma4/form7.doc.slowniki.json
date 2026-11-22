@@ -1,0 +1,19 @@
+{
+  "dictionaries": [
+    {
+      "name": "Rasy psów uznawanych za agresywne",
+      "description": "Lista ras psów i ich mieszańców wymagających zezwolenia",
+      "values": [
+        "Chart afgański",
+        "Chart angielski",
+        "Chart irlandzki",
+        "Chart rosyjski borzoi",
+        "Chart szkocki",
+        "Mieszaniec charta"
+      ],
+      "used_by": [
+        "Rasa psa"
+      ]
+    }
+  ]
+}

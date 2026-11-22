@@ -1,0 +1,67 @@
+{
+  "file": {
+    "name": "form9.xlsx",
+    "mime": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "sizeBytes": 34628
+  },
+  "extraction": {
+    "format": "xlsx",
+    "lines": 249,
+    "ocr": false,
+    "ocrEngine": null
+  },
+  "analysis": {
+    "analyzer": "llm",
+    "model": "databricks/databricks-gpt-oss-120b@eu",
+    "authority": "Prezydent Miasta Zgierza",
+    "applicant": {
+      "person": false,
+      "company": true
+    },
+    "llmUsage": {
+      "calls": 1,
+      "prompt_tokens": 7212,
+      "completion_tokens": 4140
+    }
+  },
+  "stats": {
+    "pages": 4,
+    "sections": 22,
+    "fields": 67,
+    "conditional": 22
+  },
+  "proposedDictionaries": [
+    {
+      "name": "SportDisciplines",
+      "description": "Lista dyscyplin sportowych akceptowanych w ramach wniosków sportowych",
+      "values": [
+        "gimnastyka artystyczna",
+        "hokej",
+        "karate",
+        "kolarstwo",
+        "koszykówka",
+        "lekkoatletyka",
+        "łucznictwo",
+        "łyżwiarstwo",
+        "narciarstwo klasyczne",
+        "piłka nożna",
+        "piłka ręczna",
+        "piłka siatkowa",
+        "piłka wodna",
+        "sport motocyklowy",
+        "sporty walki",
+        "sporty wodne",
+        "tenis stołowy",
+        "tenis ziemny",
+        "unihokej",
+        "zapasy"
+      ],
+      "used_by": [
+        "Dyscyplina sportowa"
+      ]
+    }
+  ],
+  "warnings": [],
+  "issues": [],
+  "durationMs": 18743
+}

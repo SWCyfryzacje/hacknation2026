@@ -1,0 +1,27 @@
+{
+  "dictionaries": [
+    {
+      "name": "Rasy psów uznawanych za agresywne",
+      "description": "Lista ras psów uznawanych za agresywne, objętych obowiązkiem zezwolenia na hodowlę lub utrzymywanie",
+      "values": [
+        "American Pit Bull Terrier",
+        "American Staffordshire Terrier",
+        "Staffordshire Bull Terrier",
+        "Bull Terrier",
+        "Dogo Argentyński",
+        "Fila Braziliero",
+        "Tosa Inu",
+        "Akbash",
+        "Anatolian Shepherd Dog",
+        "Cane Corso",
+        "Dogue de Bordeaux",
+        "Presa Canario",
+        "Rottweiler",
+        "Inne (wymagane podanie nazwy rasy)"
+      ],
+      "used_by": [
+        "Rasa psa"
+      ]
+    }
+  ]
+}

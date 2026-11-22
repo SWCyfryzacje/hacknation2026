@@ -1,0 +1,17 @@
+{
+  "dictionaries": [
+    {
+      "name": "Rasy psów uznawanych za agresywne",
+      "description": "Rasy psów, które ze względu na przepisy są uznawane za agresywne i wymagają zezwolenia.",
+      "values": [
+        "Chart",
+        "Owczarek niemiecki",
+        "Pit bull",
+        "Rottweiler"
+      ],
+      "used_by": [
+        "Rasa psa"
+      ]
+    }
+  ]
+}

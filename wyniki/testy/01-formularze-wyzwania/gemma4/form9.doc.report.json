@@ -1,0 +1,37 @@
+{
+  "file": {
+    "name": "form9.doc",
+    "mime": "application/msword",
+    "sizeBytes": 82432
+  },
+  "extraction": {
+    "format": "doc",
+    "lines": 273,
+    "ocr": false,
+    "ocrEngine": null
+  },
+  "analysis": {
+    "analyzer": "llm",
+    "model": "google/gemma-4-31b-it",
+    "authority": "Prezydent Miasta Zgierza",
+    "applicant": {
+      "person": true,
+      "company": true
+    },
+    "llmUsage": {
+      "calls": 1,
+      "prompt_tokens": 7137,
+      "completion_tokens": 1197
+    }
+  },
+  "stats": {
+    "pages": 8,
+    "sections": 21,
+    "fields": 80,
+    "conditional": 36
+  },
+  "proposedDictionaries": [],
+  "warnings": [],
+  "issues": [],
+  "durationMs": 24489
+}

@@ -1,0 +1,17 @@
+{
+  "dictionaries": [
+    {
+      "name": "Znaczenie decyzji",
+      "description": "Poziom znaczenia decyzji w kontekście jednostki administracyjnej",
+      "values": [
+        "gminnym",
+        "powiatowym",
+        "wojewódzkim",
+        "krajowym"
+      ],
+      "used_by": [
+        "Znaczenie decyzji"
+      ]
+    }
+  ]
+}

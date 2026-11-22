@@ -1,0 +1,37 @@
+{
+  "file": {
+    "name": "T7.pdf",
+    "mime": "application/pdf",
+    "sizeBytes": 51595
+  },
+  "extraction": {
+    "format": "pdf",
+    "lines": 29,
+    "ocr": false,
+    "ocrEngine": null
+  },
+  "analysis": {
+    "analyzer": "llm",
+    "model": "mistral/mistral-medium-3.5@eu",
+    "authority": "Burmistrz Miasta Chełmża",
+    "applicant": {
+      "person": true,
+      "company": true
+    },
+    "llmUsage": {
+      "calls": 1,
+      "prompt_tokens": 2811,
+      "completion_tokens": 374
+    }
+  },
+  "stats": {
+    "pages": 4,
+    "sections": 18,
+    "fields": 59,
+    "conditional": 30
+  },
+  "proposedDictionaries": [],
+  "warnings": [],
+  "issues": [],
+  "durationMs": 3387
+}

@@ -1,0 +1,20 @@
+{
+  "dictionaries": [
+    {
+      "name": "Rasy psów uznawanych za agresywne",
+      "description": "Lista ras psów uznawanych za agresywne zgodnie z przepisami prawa",
+      "values": [
+        "Chart afgański",
+        "Chart angielski",
+        "Chart hiszpański",
+        "Chart polski",
+        "Chart rosyjski",
+        "Chart szkocki",
+        "Mieszańce chartów"
+      ],
+      "used_by": [
+        "Rasa psa"
+      ]
+    }
+  ]
+}

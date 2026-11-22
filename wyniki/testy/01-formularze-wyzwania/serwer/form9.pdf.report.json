@@ -1,0 +1,68 @@
+{
+  "file": {
+    "name": "form9.pdf",
+    "mime": "application/pdf",
+    "sizeBytes": 419346
+  },
+  "extraction": {
+    "format": "pdf",
+    "lines": 402,
+    "ocr": false,
+    "ocrEngine": null
+  },
+  "analysis": {
+    "analyzer": "llm",
+    "model": "mistral/mistral-large-4-0@eu",
+    "authority": "Prezydent Miasta Zgierza",
+    "applicant": {
+      "person": true,
+      "company": true
+    },
+    "llmUsage": {
+      "calls": 1,
+      "prompt_tokens": 9337,
+      "completion_tokens": 13361
+    }
+  },
+  "stats": {
+    "pages": 7,
+    "sections": 27,
+    "fields": 107,
+    "conditional": 42
+  },
+  "proposedDictionaries": [
+    {
+      "name": "Dyscypliny sportowe",
+      "description": "Lista dyscyplin sportowych uznawanych w ramach świadczeń Rady Miasta Zgierza",
+      "values": [
+        "Gimnastyka artystyczna",
+        "Hokej",
+        "Karate",
+        "Kolarstwo",
+        "Koszykówka",
+        "Lekkoatletyka",
+        "Łucznictwo",
+        "Łyżwiarstwo",
+        "Narciarstwo klasyczne",
+        "Piłka nożna",
+        "Piłka ręczna",
+        "Piłka siatkowa",
+        "Piłka wodna",
+        "Sport motocyklowy",
+        "Sporty walki",
+        "Sporty wodne",
+        "Tenis stołowy",
+        "Tenis ziemny",
+        "Unihokej",
+        "Zapasy",
+        "Inna"
+      ],
+      "used_by": [
+        "Dyscypliny sportowe"
+      ]
+    }
+  ],
+  "warnings": [],
+  "issues": [],
+  "durationMs": 152699
+}

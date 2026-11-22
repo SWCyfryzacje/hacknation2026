@@ -1,0 +1,57 @@
+{
+  "file": {
+    "name": "form8.png",
+    "mime": "image/png",
+    "sizeBytes": 2815351
+  },
+  "extraction": {
+    "format": "png",
+    "lines": 72,
+    "ocr": true,
+    "ocrEngine": "edenai"
+  },
+  "analysis": {
+    "analyzer": "llm",
+    "model": "google/gemma-4-31b-it",
+    "authority": null,
+    "applicant": {
+      "person": true,
+      "company": false
+    },
+    "llmUsage": {
+      "calls": 1,
+      "prompt_tokens": 19366,
+      "completion_tokens": 1844
+    }
+  },
+  "stats": {
+    "pages": 4,
+    "sections": 12,
+    "fields": 35,
+    "conditional": 18
+  },
+  "proposedDictionaries": [
+    {
+      "name": "Słownik stuleci",
+      "description": "Lista numerów stuleci od 1 do 1000",
+      "values": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10"
+      ],
+      "used_by": [
+        "Numer stulecia"
+      ]
+    }
+  ],
+  "warnings": [],
+  "issues": [],
+  "durationMs": 68462
+}

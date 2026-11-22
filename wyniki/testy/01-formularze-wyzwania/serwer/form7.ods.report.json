@@ -1,0 +1,37 @@
+{
+  "file": {
+    "name": "form7.ods",
+    "mime": "application/vnd.oasis.opendocument.spreadsheet",
+    "sizeBytes": 40556
+  },
+  "extraction": {
+    "format": "ods",
+    "lines": 70,
+    "ocr": false,
+    "ocrEngine": null
+  },
+  "analysis": {
+    "analyzer": "llm",
+    "model": "mistral/mistral-large-4-0@eu",
+    "authority": "Wydział Środowiska Urzędu Miejskiego Wrocławia",
+    "applicant": {
+      "person": true,
+      "company": false
+    },
+    "llmUsage": {
+      "calls": 1,
+      "prompt_tokens": 4348,
+      "completion_tokens": 12390
+    }
+  },
+  "stats": {
+    "pages": 4,
+    "sections": 17,
+    "fields": 53,
+    "conditional": 20
+  },
+  "proposedDictionaries": [],
+  "warnings": [],
+  "issues": [],
+  "durationMs": 135422
+}

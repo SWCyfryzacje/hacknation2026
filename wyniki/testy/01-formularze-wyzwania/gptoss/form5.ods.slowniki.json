@@ -1,0 +1,17 @@
+{
+  "dictionaries": [
+    {
+      "name": "TaxTypes",
+      "description": "Rodzaje podatków, które mogą podlegać nadpłacie",
+      "values": [
+        "Podatek dochodowy od osób fizycznych",
+        "Podatek dochodowy od osób prawnych",
+        "Podatek od towarów i usług",
+        "Podatek rolno‑gospodarczy"
+      ],
+      "used_by": [
+        "Rodzaj podatku"
+      ]
+    }
+  ]
+}

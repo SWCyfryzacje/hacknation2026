@@ -1,0 +1,37 @@
+{
+  "file": {
+    "name": "form6.png",
+    "mime": "image/png",
+    "sizeBytes": 666381
+  },
+  "extraction": {
+    "format": "png",
+    "lines": 50,
+    "ocr": true,
+    "ocrEngine": "edenai"
+  },
+  "analysis": {
+    "analyzer": "llm",
+    "model": "google/gemma-4-31b-it",
+    "authority": "Urząd Miasta i Gminy w Daleszycach",
+    "applicant": {
+      "person": true,
+      "company": true
+    },
+    "llmUsage": {
+      "calls": 1,
+      "prompt_tokens": 3442,
+      "completion_tokens": 3312
+    }
+  },
+  "stats": {
+    "pages": 4,
+    "sections": 19,
+    "fields": 80,
+    "conditional": 29
+  },
+  "proposedDictionaries": [],
+  "warnings": [],
+  "issues": [],
+  "durationMs": 98559
+}

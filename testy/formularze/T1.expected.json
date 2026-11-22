@@ -1,0 +1,57 @@
+{
+  "id": "T1",
+  "title": "Wniosek o udostępnienie informacji publicznej",
+  "authority": "Burmistrz Miasta Kruszwica",
+  "applicant": {
+    "person": true,
+    "company": false
+  },
+  "fields": [
+    {
+      "label": "Zakres wnioskowanej informacji",
+      "kind": "TEXTAREA",
+      "options": []
+    },
+    {
+      "label": "Sposób udostępnienia informacji",
+      "kind": "RADIO",
+      "options": [
+        "Przesłanie pocztą elektroniczną",
+        "Przesłanie pocztą tradycyjną",
+        "Wgląd w urzędzie"
+      ]
+    },
+    {
+      "label": "Adres e-mail do przesłania informacji",
+      "kind": "TEXT_FIELD",
+      "options": []
+    },
+    {
+      "label": "Adres do korespondencji",
+      "kind": "TEXT_FIELD",
+      "options": []
+    },
+    {
+      "label": "Forma przekazania informacji",
+      "kind": "RADIO",
+      "options": [
+        "Kopia papierowa",
+        "Plik elektroniczny"
+      ]
+    }
+  ],
+  "dependencies": [
+    {
+      "field": "Sposób udostępnienia informacji",
+      "value": "Przesłanie pocztą elektroniczną",
+      "shows": "Adres e-mail do przesłania informacji"
+    },
+    {
+      "field": "Sposób udostępnienia informacji",
+      "value": "Przesłanie pocztą tradycyjną",
+      "shows": "Adres do korespondencji"
+    }
+  ],
+  "statements": 0,
+  "fee": false
+}

@@ -1,0 +1,37 @@
+{
+  "file": {
+    "name": "B1_ladek_azbest_skan.png",
+    "mime": "image/png",
+    "sizeBytes": 1093046
+  },
+  "extraction": {
+    "format": "png",
+    "lines": 12,
+    "ocr": true,
+    "ocrEngine": "edenai"
+  },
+  "analysis": {
+    "analyzer": "llm",
+    "model": "databricks/databricks-gpt-oss-120b@eu",
+    "authority": "Burmistrz Lądka Zdroju",
+    "applicant": {
+      "person": true,
+      "company": false
+    },
+    "llmUsage": {
+      "calls": 1,
+      "prompt_tokens": 2599,
+      "completion_tokens": 1178
+    }
+  },
+  "stats": {
+    "pages": 4,
+    "sections": 13,
+    "fields": 40,
+    "conditional": 18
+  },
+  "proposedDictionaries": [],
+  "warnings": [],
+  "issues": [],
+  "durationMs": 8074
+}

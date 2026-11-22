@@ -1,0 +1,43 @@
+{
+  "dictionaries": [
+    {
+      "name": "Typy podmiotu deklaracji",
+      "description": "Rodzaj podmiotu składającego deklarację o opłacie za gospodarowanie odpadami",
+      "values": [
+        "Właściciel / współwłaściciel",
+        "Współwłaściciel (wspólność majątkowa)",
+        "Najemca / dzierżawca",
+        "Wspólnota mieszkaniowa",
+        "Spółdzielnia mieszkaniowa",
+        "Inny podmiot posiadający nieruchomość w zarządzie lub użytkowaniu"
+      ],
+      "used_by": [
+        "Typ podmiotu"
+      ]
+    },
+    {
+      "name": "Typy deklaracji",
+      "description": "Okoliczności złożenia deklaracji",
+      "values": [
+        "Pierwsza deklaracja",
+        "Nowa deklaracja (zmiana danych)",
+        "Korekta",
+        "Ustanie obowiązku opłaty"
+      ],
+      "used_by": [
+        "Typ deklaracji"
+      ]
+    },
+    {
+      "name": "Rodzaje nieruchomości",
+      "description": "Rodzaj zabudowy nieruchomości w kontekście opłaty za odpady",
+      "values": [
+        "Nieruchomość zabudowana budynkiem mieszkalnym jednorodzinnym",
+        "Nieruchomość zabudowana budynkiem mieszkalnym wielolokalowym"
+      ],
+      "used_by": [
+        "Rodzaj nieruchomości"
+      ]
+    }
+  ]
+}

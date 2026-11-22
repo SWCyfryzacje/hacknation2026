@@ -1,0 +1,37 @@
+{
+  "file": {
+    "name": "T1.ods",
+    "mime": "application/vnd.oasis.opendocument.spreadsheet",
+    "sizeBytes": 1292
+  },
+  "extraction": {
+    "format": "ods",
+    "lines": 26,
+    "ocr": false,
+    "ocrEngine": null
+  },
+  "analysis": {
+    "analyzer": "llm",
+    "model": "google/gemma-4-31b-it",
+    "authority": "Burmistrz Miasta Kruszwica",
+    "applicant": {
+      "person": true,
+      "company": true
+    },
+    "llmUsage": {
+      "calls": 1,
+      "prompt_tokens": 2628,
+      "completion_tokens": 1152
+    }
+  },
+  "stats": {
+    "pages": 4,
+    "sections": 16,
+    "fields": 56,
+    "conditional": 31
+  },
+  "proposedDictionaries": [],
+  "warnings": [],
+  "issues": [],
+  "durationMs": 35863
+}

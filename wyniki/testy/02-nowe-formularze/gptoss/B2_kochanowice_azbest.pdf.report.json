@@ -1,0 +1,68 @@
+{
+  "file": {
+    "name": "B2_kochanowice_azbest.pdf",
+    "mime": "application/pdf",
+    "sizeBytes": 247842
+  },
+  "extraction": {
+    "format": "pdf",
+    "lines": 125,
+    "ocr": false,
+    "ocrEngine": null
+  },
+  "analysis": {
+    "analyzer": "llm",
+    "model": "databricks/databricks-gpt-oss-120b@eu",
+    "authority": "Wójt Gminy Kochanowice",
+    "applicant": {
+      "person": true,
+      "company": false
+    },
+    "llmUsage": {
+      "calls": 1,
+      "prompt_tokens": 4860,
+      "completion_tokens": 3791
+    }
+  },
+  "stats": {
+    "pages": 4,
+    "sections": 18,
+    "fields": 54,
+    "conditional": 20
+  },
+  "proposedDictionaries": [
+    {
+      "name": "RodzajObiektu",
+      "description": "Rodzaje obiektów, z których będą usuwane wyroby zawierające azbest",
+      "values": [
+        "Budynek mieszkalny",
+        "Budynek gospodarczy – garaż",
+        "Budynek gospodarczy – stodoła",
+        "Budynek gospodarczy – obora",
+        "Budynek gospodarczy – wiata",
+        "Budynek mieszkalno‑gospodarczy",
+        "Altana",
+        "Wyroby zdeponowane na terenie nieruchomości",
+        "Inny"
+      ],
+      "used_by": [
+        "Rodzaj obiektu"
+      ]
+    },
+    {
+      "name": "RodzajWyrobowAzbestowych",
+      "description": "Rodzaje wyrobów zawierających azbest",
+      "values": [
+        "Płyty faliste azbestowo‑cementowe",
+        "Płyty płaskie azbestowo‑cementowe",
+        "Inne"
+      ],
+      "used_by": [
+        "Rodzaj wyrobów zawierających azbest"
+      ]
+    }
+  ],
+  "warnings": [],
+  "issues": [],
+  "durationMs": 15617
+}

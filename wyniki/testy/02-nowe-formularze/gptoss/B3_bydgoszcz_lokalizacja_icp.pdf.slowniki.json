@@ -1,0 +1,17 @@
+{
+  "dictionaries": [
+    {
+      "name": "Rodzaje inwestycji budowlanych",
+      "description": "Rodzaje inwestycji, które mogą być przedmiotem wniosku o warunki zabudowy lub lokalizację inwestycji.",
+      "values": [
+        "Budowa obiektu budowlanego",
+        "Rozbudowa",
+        "Nadbudowa",
+        "Zmiana sposobu użytkowania"
+      ],
+      "used_by": [
+        "Rodzaj inwestycji"
+      ]
+    }
+  ]
+}

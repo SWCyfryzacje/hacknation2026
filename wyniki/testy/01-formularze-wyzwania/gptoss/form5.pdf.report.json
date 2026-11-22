@@ -1,0 +1,37 @@
+{
+  "file": {
+    "name": "form5.pdf",
+    "mime": "application/pdf",
+    "sizeBytes": 133029
+  },
+  "extraction": {
+    "format": "pdf",
+    "lines": 35,
+    "ocr": false,
+    "ocrEngine": null
+  },
+  "analysis": {
+    "analyzer": "llm",
+    "model": "databricks/databricks-gpt-oss-120b@eu",
+    "authority": "Urząd Gminy Ulan-Majorat",
+    "applicant": {
+      "person": true,
+      "company": true
+    },
+    "llmUsage": {
+      "calls": 1,
+      "prompt_tokens": 2806,
+      "completion_tokens": 2227
+    }
+  },
+  "stats": {
+    "pages": 4,
+    "sections": 19,
+    "fields": 64,
+    "conditional": 31
+  },
+  "proposedDictionaries": [],
+  "warnings": [],
+  "issues": [],
+  "durationMs": 11548
+}

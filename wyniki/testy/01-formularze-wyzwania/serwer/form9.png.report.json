@@ -1,0 +1,41 @@
+{
+  "file": {
+    "name": "form9.png",
+    "mime": "image/png",
+    "sizeBytes": 3127987
+  },
+  "extraction": {
+    "format": "png",
+    "lines": 100,
+    "ocr": true,
+    "ocrEngine": "edenai"
+  },
+  "analysis": {
+    "analyzer": "llm",
+    "model": "mistral/mistral-large-4-0@eu",
+    "authority": null,
+    "applicant": {
+      "person": true,
+      "company": false
+    },
+    "llmUsage": {
+      "calls": 1,
+      "prompt_tokens": 4009,
+      "completion_tokens": 964
+    }
+  },
+  "stats": {
+    "pages": 3,
+    "sections": 11,
+    "fields": 34,
+    "conditional": 18
+  },
+  "proposedDictionaries": [],
+  "warnings": [
+    "Model nie rozpoznał pól przedmiotu wniosku."
+  ],
+  "issues": [
+    "Brak tytułu formularza."
+  ],
+  "durationMs": 32527
+}

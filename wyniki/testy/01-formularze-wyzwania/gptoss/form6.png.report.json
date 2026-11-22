@@ -1,0 +1,37 @@
+{
+  "file": {
+    "name": "form6.png",
+    "mime": "image/png",
+    "sizeBytes": 666381
+  },
+  "extraction": {
+    "format": "png",
+    "lines": 50,
+    "ocr": true,
+    "ocrEngine": "edenai"
+  },
+  "analysis": {
+    "analyzer": "llm",
+    "model": "databricks/databricks-gpt-oss-120b@eu",
+    "authority": "Urząd Miasta i Gminy Daleszyce",
+    "applicant": {
+      "person": true,
+      "company": true
+    },
+    "llmUsage": {
+      "calls": 1,
+      "prompt_tokens": 3579,
+      "completion_tokens": 2376
+    }
+  },
+  "stats": {
+    "pages": 4,
+    "sections": 20,
+    "fields": 69,
+    "conditional": 29
+  },
+  "proposedDictionaries": [],
+  "warnings": [],
+  "issues": [],
+  "durationMs": 16155
+}

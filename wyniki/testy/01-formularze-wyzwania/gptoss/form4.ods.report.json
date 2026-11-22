@@ -1,0 +1,37 @@
+{
+  "file": {
+    "name": "form4.ods",
+    "mime": "application/vnd.oasis.opendocument.spreadsheet",
+    "sizeBytes": 23629
+  },
+  "extraction": {
+    "format": "ods",
+    "lines": 25,
+    "ocr": false,
+    "ocrEngine": null
+  },
+  "analysis": {
+    "analyzer": "llm",
+    "model": "databricks/databricks-gpt-oss-120b@eu",
+    "authority": "Wójt Gminy Płoskinia",
+    "applicant": {
+      "person": true,
+      "company": false
+    },
+    "llmUsage": {
+      "calls": 1,
+      "prompt_tokens": 2899,
+      "completion_tokens": 1933
+    }
+  },
+  "stats": {
+    "pages": 4,
+    "sections": 12,
+    "fields": 41,
+    "conditional": 18
+  },
+  "proposedDictionaries": [],
+  "warnings": [],
+  "issues": [],
+  "durationMs": 9928
+}

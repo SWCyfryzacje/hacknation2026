@@ -108,3 +108,60 @@ def test_client_accumulates_token_usage(monkeypatch):
     client.chat("m", [])
     client.chat("m", [])
     assert client.usage == {"calls": 2, "prompt_tokens": 200, "completion_tokens": 80}
+
+
+def test_client_retries_rate_limit_and_drops_unsupported_json_mode(monkeypatch):
+    from app.ai.edenai import AIError, EdenAIClient
+
+    client = EdenAIClient(api_key="k", retry_base_s=0)
+    calls = []
+
+    def fake_post(self, path, **kw):
+        calls.append(kw["json"])
+        if len(calls) == 1:
+            raise AIError("HTTP 429: rate limit", status=429)
+        if len(calls) == 2:
+            raise AIError('HTTP 400: must contain "json" to use "response_format"', status=400)
+        return {"choices": [{"message": {"content": "{}"}}], "usage": {}}
+
+    monkeypatch.setattr(EdenAIClient, "_post", fake_post)
+    assert client.chat("m", []) == "{}"
+    assert len(calls) == 3 and "response_format" in calls[1] and "response_format" not in calls[2]
+
+
+def test_client_lowers_max_tokens_to_model_limit(monkeypatch):
+    from app.ai.edenai import AIError, EdenAIClient
+
+    client = EdenAIClient(api_key="k", retry_base_s=0)
+    seen = []
+
+    def fake_post(self, path, **kw):
+        seen.append(kw["json"]["max_tokens"])
+        if len(seen) == 1:
+            raise AIError("HTTP 400: max_new_tokens 32000 cannot be greater than max_output_tokens 25000.", status=400)
+        return {"choices": [{"message": {"content": "{}"}}], "usage": {}}
+
+    monkeypatch.setattr(EdenAIClient, "_post", fake_post)
+    client.chat("m", [], max_tokens=32000)
+    assert seen == [32000, 25000]
+
+
+def test_client_gives_up_after_retries(monkeypatch):
+    import pytest as _pytest
+
+    from app.ai.edenai import AIError, EdenAIClient
+
+    client = EdenAIClient(api_key="k", retry_base_s=0, max_retries=2)
+
+    def always_limited(self, path, **kw):
+        raise AIError("HTTP 429", status=429)
+
+    monkeypatch.setattr(EdenAIClient, "_post", always_limited)
+    with _pytest.raises(AIError):
+        client.chat("m", [])
+
+
+def test_null_lists_from_model_are_accepted():
+    a = analyze_with_llm(DOC, client=FakeClient(_answer(fee_info=None, proposed_dictionaries=None)), model="m",
+                         max_chars=10_000, filename="f.docx")
+    assert a.fee_info == [] and a.proposed_dictionaries == []

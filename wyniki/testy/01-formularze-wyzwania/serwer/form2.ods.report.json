@@ -1,0 +1,37 @@
+{
+  "file": {
+    "name": "form2.ods",
+    "mime": "application/vnd.oasis.opendocument.spreadsheet",
+    "sizeBytes": 24953
+  },
+  "extraction": {
+    "format": "ods",
+    "lines": 44,
+    "ocr": false,
+    "ocrEngine": null
+  },
+  "analysis": {
+    "analyzer": "llm",
+    "model": "mistral/mistral-large-4-0@eu",
+    "authority": "Urząd Gminy Stawiguda",
+    "applicant": {
+      "person": true,
+      "company": true
+    },
+    "llmUsage": {
+      "calls": 1,
+      "prompt_tokens": 3186,
+      "completion_tokens": 5533
+    }
+  },
+  "stats": {
+    "pages": 4,
+    "sections": 18,
+    "fields": 58,
+    "conditional": 31
+  },
+  "proposedDictionaries": [],
+  "warnings": [],
+  "issues": [],
+  "durationMs": 69004
+}

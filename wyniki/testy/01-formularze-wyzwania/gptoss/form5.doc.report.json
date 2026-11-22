@@ -1,0 +1,37 @@
+{
+  "file": {
+    "name": "form5.doc",
+    "mime": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    "sizeBytes": 21826
+  },
+  "extraction": {
+    "format": "docx",
+    "lines": 31,
+    "ocr": false,
+    "ocrEngine": null
+  },
+  "analysis": {
+    "analyzer": "llm",
+    "model": "databricks/databricks-gpt-oss-120b@eu",
+    "authority": "Urząd Gminy Ulan Majorat",
+    "applicant": {
+      "person": true,
+      "company": true
+    },
+    "llmUsage": {
+      "calls": 1,
+      "prompt_tokens": 2748,
+      "completion_tokens": 1968
+    }
+  },
+  "stats": {
+    "pages": 4,
+    "sections": 19,
+    "fields": 63,
+    "conditional": 30
+  },
+  "proposedDictionaries": [],
+  "warnings": [],
+  "issues": [],
+  "durationMs": 15331
+}

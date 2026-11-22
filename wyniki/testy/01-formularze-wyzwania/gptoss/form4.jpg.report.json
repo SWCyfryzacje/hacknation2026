@@ -1,0 +1,37 @@
+{
+  "file": {
+    "name": "form4.jpg",
+    "mime": "image/jpeg",
+    "sizeBytes": 312570
+  },
+  "extraction": {
+    "format": "jpeg",
+    "lines": 25,
+    "ocr": true,
+    "ocrEngine": "edenai"
+  },
+  "analysis": {
+    "analyzer": "llm",
+    "model": "databricks/databricks-gpt-oss-120b@eu",
+    "authority": "Wójt Gminy Płoskini",
+    "applicant": {
+      "person": true,
+      "company": false
+    },
+    "llmUsage": {
+      "calls": 1,
+      "prompt_tokens": 2889,
+      "completion_tokens": 2002
+    }
+  },
+  "stats": {
+    "pages": 4,
+    "sections": 12,
+    "fields": 41,
+    "conditional": 18
+  },
+  "proposedDictionaries": [],
+  "warnings": [],
+  "issues": [],
+  "durationMs": 11161
+}

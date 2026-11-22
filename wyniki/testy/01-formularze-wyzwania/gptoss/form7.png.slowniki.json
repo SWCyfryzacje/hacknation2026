@@ -1,0 +1,18 @@
+{
+  "dictionaries": [
+    {
+      "name": "AggressiveDogBreeds",
+      "description": "Rasy psów uznawane za agresywne według rozporządzenia Ministra Rolnictwa i Rozwoju Wsi z dnia 5 lipca 2010 r.",
+      "values": [
+        "American Pit Bull Terrier",
+        "Fila Brasileiro",
+        "Dogo Argentino",
+        "Tosa Inu",
+        "Presa Canario"
+      ],
+      "used_by": [
+        "Rasa psa"
+      ]
+    }
+  ]
+}

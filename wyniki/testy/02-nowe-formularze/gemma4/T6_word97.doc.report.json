@@ -1,0 +1,37 @@
+{
+  "file": {
+    "name": "T6_word97.doc",
+    "mime": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    "sizeBytes": 35825
+  },
+  "extraction": {
+    "format": "docx",
+    "lines": 27,
+    "ocr": false,
+    "ocrEngine": null
+  },
+  "analysis": {
+    "analyzer": "llm",
+    "model": "google/gemma-4-31b-it",
+    "authority": "Zarząd Dróg Miejskich w Bydgoszczy",
+    "applicant": {
+      "person": true,
+      "company": false
+    },
+    "llmUsage": {
+      "calls": 2,
+      "prompt_tokens": 5426,
+      "completion_tokens": 2877
+    }
+  },
+  "stats": {
+    "pages": 4,
+    "sections": 12,
+    "fields": 39,
+    "conditional": 18
+  },
+  "proposedDictionaries": [],
+  "warnings": [],
+  "issues": [],
+  "durationMs": 83876
+}

@@ -1,0 +1,75 @@
+{
+  "id": "T2",
+  "title": "Wniosek o wydanie zezwolenia na usunięcie drzewa lub krzewu",
+  "authority": "Wójt Gminy Lubicz",
+  "applicant": {
+    "person": true,
+    "company": true
+  },
+  "fields": [
+    {
+      "label": "Adres nieruchomości",
+      "kind": "TEXT_FIELD",
+      "options": []
+    },
+    {
+      "label": "Numer ewidencyjny działki",
+      "kind": "TEXT_FIELD",
+      "options": []
+    },
+    {
+      "label": "Tytuł prawny do nieruchomości",
+      "kind": "RADIO",
+      "options": [
+        "Własność",
+        "Współwłasność",
+        "Użytkowanie wieczyste",
+        "Inny"
+      ]
+    },
+    {
+      "label": "Inny tytuł prawny – opis",
+      "kind": "TEXT_FIELD",
+      "options": []
+    },
+    {
+      "label": "Gatunek drzewa lub krzewu",
+      "kind": "TEXT_FIELD",
+      "options": []
+    },
+    {
+      "label": "Obwód pnia na wysokości 130 cm (cm)",
+      "kind": "NUMBER",
+      "options": []
+    },
+    {
+      "label": "Przyczyna usunięcia",
+      "kind": "TEXTAREA",
+      "options": []
+    },
+    {
+      "label": "Planowany termin usunięcia",
+      "kind": "DATEPICKER",
+      "options": []
+    },
+    {
+      "label": "Rysunek lub mapa określająca usytuowanie drzewa",
+      "kind": "FILE_UPLOADER",
+      "options": []
+    },
+    {
+      "label": "Zgoda współwłaściciela nieruchomości (jeżeli dotyczy)",
+      "kind": "FILE_UPLOADER",
+      "options": []
+    }
+  ],
+  "dependencies": [
+    {
+      "field": "Tytuł prawny do nieruchomości",
+      "value": "Inny",
+      "shows": "Inny tytuł prawny – opis"
+    }
+  ],
+  "statements": 1,
+  "fee": false
+}

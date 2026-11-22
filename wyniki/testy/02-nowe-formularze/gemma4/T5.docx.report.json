@@ -1,0 +1,37 @@
+{
+  "file": {
+    "name": "T5.docx",
+    "mime": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    "sizeBytes": 35720
+  },
+  "extraction": {
+    "format": "docx",
+    "lines": 23,
+    "ocr": false,
+    "ocrEngine": null
+  },
+  "analysis": {
+    "analyzer": "llm",
+    "model": "google/gemma-4-31b-it",
+    "authority": "Urząd Gminy Obrowo",
+    "applicant": {
+      "person": true,
+      "company": false
+    },
+    "llmUsage": {
+      "calls": 1,
+      "prompt_tokens": 2560,
+      "completion_tokens": 1193
+    }
+  },
+  "stats": {
+    "pages": 4,
+    "sections": 14,
+    "fields": 41,
+    "conditional": 18
+  },
+  "proposedDictionaries": [],
+  "warnings": [],
+  "issues": [],
+  "durationMs": 34064
+}

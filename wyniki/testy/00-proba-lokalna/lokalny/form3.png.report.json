@@ -1,0 +1,36 @@
+{
+  "file": {
+    "name": "form3.png",
+    "mime": "image/png",
+    "sizeBytes": 222470
+  },
+  "extraction": {
+    "format": "png",
+    "lines": 18,
+    "ocr": true,
+    "ocrEngine": "tesseract"
+  },
+  "analysis": {
+    "analyzer": "rules",
+    "model": null,
+    "authority": null,
+    "applicant": {
+      "person": true,
+      "company": false
+    },
+    "llmUsage": null
+  },
+  "stats": {
+    "pages": 3,
+    "sections": 12,
+    "fields": 36,
+    "conditional": 18
+  },
+  "proposedDictionaries": [],
+  "warnings": [
+    "Nie rozpoznano urzędu — uzupełnij nazwę urzędu w konfiguracji.",
+    "Nie rozpoznano pól przedmiotu wniosku — sprawdź jakość dokumentu."
+  ],
+  "issues": [],
+  "durationMs": 4724
+}

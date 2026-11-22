@@ -1,0 +1,61 @@
+{
+  "file": {
+    "name": "B1_ladek_azbest.pdf",
+    "mime": "application/pdf",
+    "sizeBytes": 30562
+  },
+  "extraction": {
+    "format": "pdf",
+    "lines": 68,
+    "ocr": false,
+    "ocrEngine": null
+  },
+  "analysis": {
+    "analyzer": "llm",
+    "model": "databricks/databricks-gpt-oss-120b@eu",
+    "authority": "Burmistrz Lądka Zdroju",
+    "applicant": {
+      "person": true,
+      "company": false
+    },
+    "llmUsage": {
+      "calls": 1,
+      "prompt_tokens": 3429,
+      "completion_tokens": 2909
+    }
+  },
+  "stats": {
+    "pages": 4,
+    "sections": 13,
+    "fields": 48,
+    "conditional": 19
+  },
+  "proposedDictionaries": [
+    {
+      "name": "Rodzaje wyrobów zawierających azbest",
+      "description": "Rodzaje wyrobów zawierających azbest wymienione w formularzu.",
+      "values": [
+        "Płyty azbestowo‑cementowe płaskie stosowane w budownictwie",
+        "Płyty faliste azbestowo‑cementowe stosowane w budownictwie",
+        "Rury i złącza azbestowo‑cementowe",
+        "Rury i złącza azbestowo‑cementowe pozostawione w ziemi",
+        "Izolacje natryskowe środkami zawierającymi w swoim składzie azbest",
+        "Wyroby cierne azbestowo‑kauczukowe",
+        "Przędza specjalna, w tym włókna azbestowe obrobione",
+        "Szczeliwa azbestowe",
+        "Taśmy tkane i plecione, sznury i sznurki",
+        "Wyroby azbestowo‑kauczukowe, z wyjątkiem wyrobów ciernych",
+        "Papier, tektura",
+        "Drogi zabezpieczone (drogi utwardzone odpadami zawierającymi azbest przed trwałym zabezpieczeniem przed emisją włókien azbestu)",
+        "Drogi utwardzone odpadami zawierającymi azbest przed wejściem w życie ustawy o zakazie stosowania wyrobów zawierających azbest, ale niezabezpieczone trwale przed emisją włókien azbestu",
+        "Inne"
+      ],
+      "used_by": [
+        "Nazwa, rodzaj wyrobu"
+      ]
+    }
+  ],
+  "warnings": [],
+  "issues": [],
+  "durationMs": 12683
+}

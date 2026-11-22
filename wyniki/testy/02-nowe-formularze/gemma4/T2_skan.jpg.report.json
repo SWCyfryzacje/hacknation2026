@@ -1,0 +1,37 @@
+{
+  "file": {
+    "name": "T2_skan.jpg",
+    "mime": "image/jpeg",
+    "sizeBytes": 83547
+  },
+  "extraction": {
+    "format": "jpeg",
+    "lines": 22,
+    "ocr": true,
+    "ocrEngine": "edenai"
+  },
+  "analysis": {
+    "analyzer": "llm",
+    "model": "google/gemma-4-31b-it",
+    "authority": "Wójt Gminy Lubicz",
+    "applicant": {
+      "person": true,
+      "company": true
+    },
+    "llmUsage": {
+      "calls": 1,
+      "prompt_tokens": 2586,
+      "completion_tokens": 1885
+    }
+  },
+  "stats": {
+    "pages": 4,
+    "sections": 17,
+    "fields": 59,
+    "conditional": 31
+  },
+  "proposedDictionaries": [],
+  "warnings": [],
+  "issues": [],
+  "durationMs": 54704
+}

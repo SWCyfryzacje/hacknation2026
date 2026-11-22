@@ -1,0 +1,37 @@
+{
+  "file": {
+    "name": "T6.pdf",
+    "mime": "application/pdf",
+    "sizeBytes": 51969
+  },
+  "extraction": {
+    "format": "pdf",
+    "lines": 29,
+    "ocr": false,
+    "ocrEngine": null
+  },
+  "analysis": {
+    "analyzer": "llm",
+    "model": "google/gemma-4-31b-it",
+    "authority": "Zarząd Dróg Miejskich w Bydgoszczy",
+    "applicant": {
+      "person": true,
+      "company": false
+    },
+    "llmUsage": {
+      "calls": 1,
+      "prompt_tokens": 2640,
+      "completion_tokens": 272
+    }
+  },
+  "stats": {
+    "pages": 4,
+    "sections": 12,
+    "fields": 39,
+    "conditional": 18
+  },
+  "proposedDictionaries": [],
+  "warnings": [],
+  "issues": [],
+  "durationMs": 3487
+}

@@ -1,0 +1,37 @@
+{
+  "file": {
+    "name": "form7.ods",
+    "mime": "application/vnd.oasis.opendocument.spreadsheet",
+    "sizeBytes": 40556
+  },
+  "extraction": {
+    "format": "ods",
+    "lines": 70,
+    "ocr": false,
+    "ocrEngine": null
+  },
+  "analysis": {
+    "analyzer": "llm",
+    "model": "google/gemma-4-31b-it",
+    "authority": "Prezydent Wrocławia",
+    "applicant": {
+      "person": true,
+      "company": false
+    },
+    "llmUsage": {
+      "calls": 1,
+      "prompt_tokens": 4010,
+      "completion_tokens": 3996
+    }
+  },
+  "stats": {
+    "pages": 5,
+    "sections": 14,
+    "fields": 48,
+    "conditional": 20
+  },
+  "proposedDictionaries": [],
+  "warnings": [],
+  "issues": [],
+  "durationMs": 112530
+}

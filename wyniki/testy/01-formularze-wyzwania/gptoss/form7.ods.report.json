@@ -1,0 +1,51 @@
+{
+  "file": {
+    "name": "form7.ods",
+    "mime": "application/vnd.oasis.opendocument.spreadsheet",
+    "sizeBytes": 40556
+  },
+  "extraction": {
+    "format": "ods",
+    "lines": 70,
+    "ocr": false,
+    "ocrEngine": null
+  },
+  "analysis": {
+    "analyzer": "llm",
+    "model": "databricks/databricks-gpt-oss-120b@eu",
+    "authority": "Urząd Miejski Wrocławia",
+    "applicant": {
+      "person": true,
+      "company": false
+    },
+    "llmUsage": {
+      "calls": 1,
+      "prompt_tokens": 4162,
+      "completion_tokens": 2655
+    }
+  },
+  "stats": {
+    "pages": 5,
+    "sections": 14,
+    "fields": 52,
+    "conditional": 18
+  },
+  "proposedDictionaries": [
+    {
+      "name": "Rasy psów uznawanych za agresywne",
+      "description": "Rasy psów, które ze względu na przepisy są uznawane za agresywne i wymagają zezwolenia.",
+      "values": [
+        "Chart",
+        "Owczarek niemiecki",
+        "Pit bull",
+        "Rottweiler"
+      ],
+      "used_by": [
+        "Rasa psa"
+      ]
+    }
+  ],
+  "warnings": [],
+  "issues": [],
+  "durationMs": 65733
+}

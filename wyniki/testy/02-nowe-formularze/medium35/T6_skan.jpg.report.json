@@ -1,0 +1,37 @@
+{
+  "file": {
+    "name": "T6_skan.jpg",
+    "mime": "image/jpeg",
+    "sizeBytes": 79317
+  },
+  "extraction": {
+    "format": "jpeg",
+    "lines": 21,
+    "ocr": true,
+    "ocrEngine": "edenai"
+  },
+  "analysis": {
+    "analyzer": "llm",
+    "model": "mistral/mistral-medium-3.5@eu",
+    "authority": "Zarząd Dróg Miejskich w Bydgoszczy",
+    "applicant": {
+      "person": true,
+      "company": false
+    },
+    "llmUsage": {
+      "calls": 1,
+      "prompt_tokens": 2729,
+      "completion_tokens": 308
+    }
+  },
+  "stats": {
+    "pages": 4,
+    "sections": 14,
+    "fields": 38,
+    "conditional": 18
+  },
+  "proposedDictionaries": [],
+  "warnings": [],
+  "issues": [],
+  "durationMs": 4320
+}

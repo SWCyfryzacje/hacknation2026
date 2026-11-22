@@ -1,0 +1,37 @@
+{
+  "file": {
+    "name": "form1.docx",
+    "mime": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    "sizeBytes": 21883
+  },
+  "extraction": {
+    "format": "docx",
+    "lines": 35,
+    "ocr": false,
+    "ocrEngine": null
+  },
+  "analysis": {
+    "analyzer": "llm",
+    "model": "databricks/databricks-gpt-oss-120b@eu",
+    "authority": "Wójt Gminy Elbląg",
+    "applicant": {
+      "person": true,
+      "company": true
+    },
+    "llmUsage": {
+      "calls": 1,
+      "prompt_tokens": 3497,
+      "completion_tokens": 1009
+    }
+  },
+  "stats": {
+    "pages": 4,
+    "sections": 16,
+    "fields": 55,
+    "conditional": 29
+  },
+  "proposedDictionaries": [],
+  "warnings": [],
+  "issues": [],
+  "durationMs": 10497
+}

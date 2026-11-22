@@ -1,0 +1,52 @@
+{
+  "file": {
+    "name": "form5.docx",
+    "mime": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    "sizeBytes": 21929
+  },
+  "extraction": {
+    "format": "docx",
+    "lines": 31,
+    "ocr": false,
+    "ocrEngine": null
+  },
+  "analysis": {
+    "analyzer": "llm",
+    "model": "databricks/databricks-gpt-oss-120b@eu",
+    "authority": "Urząd Gminy Ulan☐Majorat",
+    "applicant": {
+      "person": true,
+      "company": true
+    },
+    "llmUsage": {
+      "calls": 1,
+      "prompt_tokens": 2749,
+      "completion_tokens": 1911
+    }
+  },
+  "stats": {
+    "pages": 4,
+    "sections": 18,
+    "fields": 60,
+    "conditional": 31
+  },
+  "proposedDictionaries": [
+    {
+      "name": "TaxTypes",
+      "description": "Rodzaje podatków, których może dotyczyć wniosek o stwierdzenie nadpłaty.",
+      "values": [
+        "Podatek dochodowy od osób fizycznych",
+        "Podatek dochodowy od osób prawnych",
+        "Podatek od nieruchomości",
+        "Podatek od środków transportowych",
+        "Podatek rolno‑leśny"
+      ],
+      "used_by": [
+        "Rodzaj podatku"
+      ]
+    }
+  ],
+  "warnings": [],
+  "issues": [],
+  "durationMs": 14205
+}

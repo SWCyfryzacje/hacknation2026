@@ -1,0 +1,68 @@
+{
+  "file": {
+    "name": "form9.pdf",
+    "mime": "application/pdf",
+    "sizeBytes": 419346
+  },
+  "extraction": {
+    "format": "pdf",
+    "lines": 402,
+    "ocr": false,
+    "ocrEngine": null
+  },
+  "analysis": {
+    "analyzer": "llm",
+    "model": "google/gemma-4-31b-it",
+    "authority": "Prezydent Miasta Zgierza",
+    "applicant": {
+      "person": true,
+      "company": true
+    },
+    "llmUsage": {
+      "calls": 1,
+      "prompt_tokens": 7395,
+      "completion_tokens": 1160
+    }
+  },
+  "stats": {
+    "pages": 6,
+    "sections": 20,
+    "fields": 72,
+    "conditional": 35
+  },
+  "proposedDictionaries": [
+    {
+      "name": "DyscyplinySportowe",
+      "description": "Lista dyscyplin sportowych",
+      "values": [
+        "Gimnastyka artystyczna",
+        "Hokej",
+        "Karate",
+        "Kolarstwo",
+        "Koszykówka",
+        "Lekkoatletyka",
+        "Łucznictwo",
+        "Łyżwiarstwo",
+        "Narciarstwo klasyczne",
+        "Piłka nożna",
+        "Piłka ręczna",
+        "Piłka siatkowa",
+        "Piłka wodna",
+        "Sport motocyklowy",
+        "Sporty walki",
+        "Sporty wodne",
+        "Tenis stołowy",
+        "Tenis ziemny",
+        "Unihokej",
+        "Zapasy",
+        "Inna"
+      ],
+      "used_by": [
+        "Konkretna dyscyplina"
+      ]
+    }
+  ],
+  "warnings": [],
+  "issues": [],
+  "durationMs": 14740
+}

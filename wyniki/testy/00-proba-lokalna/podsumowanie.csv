@@ -1,0 +1,3 @@
+file,target,model,status,analyzer,clientSeconds,serverSeconds,pages,sections,fields,conditional,issues,warnings,llmCalls,promptTokens,completionTokens,ocr,error
+form4.docx,lokalny,reguly,ok,rules,1.98,1.45,4,12,41,18,0,0,0,0,0,,
+form3.png,lokalny,reguly,ok,rules,5.26,4.72,3,12,36,18,0,2,0,0,0,tesseract,

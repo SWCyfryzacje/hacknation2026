@@ -1,0 +1,52 @@
+{
+  "file": {
+    "name": "T2_word97.doc",
+    "mime": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    "sizeBytes": 35978
+  },
+  "extraction": {
+    "format": "docx",
+    "lines": 31,
+    "ocr": false,
+    "ocrEngine": null
+  },
+  "analysis": {
+    "analyzer": "llm",
+    "model": "databricks/databricks-gpt-oss-120b@eu",
+    "authority": "Wójt Gminy Lubicz",
+    "applicant": {
+      "person": true,
+      "company": true
+    },
+    "llmUsage": {
+      "calls": 1,
+      "prompt_tokens": 2840,
+      "completion_tokens": 1852
+    }
+  },
+  "stats": {
+    "pages": 4,
+    "sections": 18,
+    "fields": 61,
+    "conditional": 30
+  },
+  "proposedDictionaries": [
+    {
+      "name": "Gatunki drzew i krzewów",
+      "description": "Gatunki drzew i krzewów dopuszczonych do usunięcia w ramach zezwolenia",
+      "values": [
+        "Dąb",
+        "Sosna",
+        "Brzoza",
+        "Klon",
+        "Czereśnia"
+      ],
+      "used_by": [
+        "Gatunek drzewa lub krzewu"
+      ]
+    }
+  ],
+  "warnings": [],
+  "issues": [],
+  "durationMs": 8548
+}

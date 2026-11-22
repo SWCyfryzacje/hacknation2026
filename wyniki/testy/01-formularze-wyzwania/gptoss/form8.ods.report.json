@@ -1,0 +1,64 @@
+{
+  "file": {
+    "name": "form8.ods",
+    "mime": "application/vnd.oasis.opendocument.spreadsheet",
+    "sizeBytes": 70083
+  },
+  "extraction": {
+    "format": "ods",
+    "lines": 179,
+    "ocr": false,
+    "ocrEngine": null
+  },
+  "analysis": {
+    "analyzer": "llm",
+    "model": "databricks/databricks-gpt-oss-120b@eu",
+    "authority": "Prezydent Miasta Gdyni",
+    "applicant": {
+      "person": true,
+      "company": true
+    },
+    "llmUsage": {
+      "calls": 1,
+      "prompt_tokens": 9637,
+      "completion_tokens": 5759
+    }
+  },
+  "stats": {
+    "pages": 9,
+    "sections": 33,
+    "fields": 110,
+    "conditional": 31
+  },
+  "proposedDictionaries": [
+    {
+      "name": "Typy podmiotów deklarujących",
+      "description": "Rodzaje podmiotów, które mogą składać deklarację o opłacie za gospodarowanie odpadami komunalnymi.",
+      "values": [
+        "Właściciel / współwłaściciel",
+        "Współmałżonek (wspólność majątkowa)",
+        "Najemca / dzierżawca",
+        "Wspólnota mieszkaniowa",
+        "Spółdzielnia mieszkaniowa",
+        "Inny podmiot posiadający nieruchomość w zarządzie lub użytkowaniu"
+      ],
+      "used_by": [
+        "Typ podmiotu"
+      ]
+    },
+    {
+      "name": "Rodzaje nieruchomości",
+      "description": "Typy nieruchomości zabudowane budynkami mieszkalnymi.",
+      "values": [
+        "Nieruchomość zabudowana budynkiem mieszkalnym jednorodzinnym",
+        "Nieruchomość zabudowana budynkiem mieszkalnym wielolokalowym"
+      ],
+      "used_by": [
+        "Rodzaj nieruchomości"
+      ]
+    }
+  ],
+  "warnings": [],
+  "issues": [],
+  "durationMs": 25690
+}

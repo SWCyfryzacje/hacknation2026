@@ -1,0 +1,52 @@
+{
+  "file": {
+    "name": "form7.png",
+    "mime": "image/png",
+    "sizeBytes": 819995
+  },
+  "extraction": {
+    "format": "png",
+    "lines": 68,
+    "ocr": true,
+    "ocrEngine": "edenai"
+  },
+  "analysis": {
+    "analyzer": "llm",
+    "model": "databricks/databricks-gpt-oss-120b@eu",
+    "authority": "Prezydent Wrocławia",
+    "applicant": {
+      "person": true,
+      "company": false
+    },
+    "llmUsage": {
+      "calls": 1,
+      "prompt_tokens": 4097,
+      "completion_tokens": 2561
+    }
+  },
+  "stats": {
+    "pages": 4,
+    "sections": 15,
+    "fields": 52,
+    "conditional": 18
+  },
+  "proposedDictionaries": [
+    {
+      "name": "AggressiveDogBreeds",
+      "description": "Rasy psów uznawane za agresywne według rozporządzenia Ministra Rolnictwa i Rozwoju Wsi z dnia 5 lipca 2010 r.",
+      "values": [
+        "American Pit Bull Terrier",
+        "Fila Brasileiro",
+        "Dogo Argentino",
+        "Tosa Inu",
+        "Presa Canario"
+      ],
+      "used_by": [
+        "Rasa psa"
+      ]
+    }
+  ],
+  "warnings": [],
+  "issues": [],
+  "durationMs": 35209
+}

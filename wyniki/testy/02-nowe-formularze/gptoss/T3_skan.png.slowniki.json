@@ -1,0 +1,18 @@
+{
+  "dictionaries": [
+    {
+      "name": "Rodzaje odpadów komunalnych",
+      "description": "Rodzaje odpadów komunalnych, które mogą być odbierane w ramach działalności regulowanej.",
+      "values": [
+        "Zmieszane",
+        "Papier",
+        "Szkło",
+        "Tworzywa sztuczne i metale",
+        "Bioodpady"
+      ],
+      "used_by": [
+        "Rodzaje odbieranych odpadów komunalnych"
+      ]
+    }
+  ]
+}

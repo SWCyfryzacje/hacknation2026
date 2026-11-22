@@ -1,0 +1,37 @@
+{
+  "file": {
+    "name": "T3.xlsx",
+    "mime": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "sizeBytes": 5720
+  },
+  "extraction": {
+    "format": "xlsx",
+    "lines": 31,
+    "ocr": false,
+    "ocrEngine": null
+  },
+  "analysis": {
+    "analyzer": "llm",
+    "model": "databricks/databricks-gpt-oss-120b@eu",
+    "authority": "Urząd Miasta Grudziądz",
+    "applicant": {
+      "person": false,
+      "company": true
+    },
+    "llmUsage": {
+      "calls": 1,
+      "prompt_tokens": 2786,
+      "completion_tokens": 1963
+    }
+  },
+  "stats": {
+    "pages": 4,
+    "sections": 17,
+    "fields": 47,
+    "conditional": 18
+  },
+  "proposedDictionaries": [],
+  "warnings": [],
+  "issues": [],
+  "durationMs": 10200
+}

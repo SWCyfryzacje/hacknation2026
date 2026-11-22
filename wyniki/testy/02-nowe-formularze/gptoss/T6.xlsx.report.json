@@ -1,0 +1,37 @@
+{
+  "file": {
+    "name": "T6.xlsx",
+    "mime": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "sizeBytes": 5599
+  },
+  "extraction": {
+    "format": "xlsx",
+    "lines": 27,
+    "ocr": false,
+    "ocrEngine": null
+  },
+  "analysis": {
+    "analyzer": "llm",
+    "model": "databricks/databricks-gpt-oss-120b@eu",
+    "authority": "Zarząd Dróg Miejskich w Bydgoszczy",
+    "applicant": {
+      "person": true,
+      "company": false
+    },
+    "llmUsage": {
+      "calls": 1,
+      "prompt_tokens": 2748,
+      "completion_tokens": 1198
+    }
+  },
+  "stats": {
+    "pages": 4,
+    "sections": 14,
+    "fields": 39,
+    "conditional": 18
+  },
+  "proposedDictionaries": [],
+  "warnings": [],
+  "issues": [],
+  "durationMs": 8154
+}

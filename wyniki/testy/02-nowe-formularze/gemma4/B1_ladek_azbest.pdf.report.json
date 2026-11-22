@@ -1,0 +1,75 @@
+{
+  "file": {
+    "name": "B1_ladek_azbest.pdf",
+    "mime": "application/pdf",
+    "sizeBytes": 30562
+  },
+  "extraction": {
+    "format": "pdf",
+    "lines": 68,
+    "ocr": false,
+    "ocrEngine": null
+  },
+  "analysis": {
+    "analyzer": "llm",
+    "model": "google/gemma-4-31b-it",
+    "authority": "Burmistrz Lądka-Zdroju",
+    "applicant": {
+      "person": true,
+      "company": true
+    },
+    "llmUsage": {
+      "calls": 1,
+      "prompt_tokens": 3390,
+      "completion_tokens": 844
+    }
+  },
+  "stats": {
+    "pages": 5,
+    "sections": 17,
+    "fields": 60,
+    "conditional": 29
+  },
+  "proposedDictionaries": [
+    {
+      "name": "Rodzaje zabudowy azbestowej",
+      "description": "Typ obiektu budowlanego zawierającego azbest",
+      "values": [
+        "Budynek mieszkalny",
+        "Budynek gospodarczy",
+        "Budynek przemysłowy",
+        "Budynek mieszkalno-gospodarczy",
+        "Inny"
+      ],
+      "used_by": [
+        "Rodzaj zabudowy"
+      ]
+    },
+    {
+      "name": "Klasyfikacja wyrobów azbestowych",
+      "description": "Rodzaje materiałów zawierających azbest",
+      "values": [
+        "Płyty azbestowo-cementowe płaskie stosowane w budownictwie",
+        "Płyty faliste azbestowo-cementowe stosowane w budownictwie",
+        "Rury i złącza azbestowo-cementowe",
+        "Rury i złącza azbestowo-cementowe pozostawione w ziemi",
+        "Izolacje natryskowe środkami zawierającymi w swoim składzie azbest",
+        "Wyroby cierne azbestowo-kauczukowe",
+        "Przędza specjalna, w tym włókna azbestowe obrobione",
+        "Szczeliwa azbestowe",
+        "Taśmy tkane i plecione, sznury i sznurki",
+        "Wyroby azbestowo-kauczukowe, z wyjątkiem wyrobów ciernych",
+        "Papier, tektura",
+        "Drogi zabezpieczone (utwardzone odpadami zawierającymi azbest)",
+        "Drogi utwardzone odpadami zawierającymi azbest, niezabezpieczone trwale",
+        "Inne wyroby zawierające azbest"
+      ],
+      "used_by": [
+        "Nazwa i rodzaj wyrobu"
+      ]
+    }
+  ],
+  "warnings": [],
+  "issues": [],
+  "durationMs": 8473
+}

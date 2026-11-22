@@ -1,0 +1,52 @@
+{
+  "file": {
+    "name": "form3.png",
+    "mime": "image/png",
+    "sizeBytes": 222470
+  },
+  "extraction": {
+    "format": "png",
+    "lines": 26,
+    "ocr": true,
+    "ocrEngine": "edenai"
+  },
+  "analysis": {
+    "analyzer": "llm",
+    "model": "databricks/databricks-gpt-oss-120b@eu",
+    "authority": "Urząd Miasta i Gminy Młynary",
+    "applicant": {
+      "person": true,
+      "company": false
+    },
+    "llmUsage": {
+      "calls": 1,
+      "prompt_tokens": 2867,
+      "completion_tokens": 1735
+    }
+  },
+  "stats": {
+    "pages": 4,
+    "sections": 15,
+    "fields": 42,
+    "conditional": 18
+  },
+  "proposedDictionaries": [
+    {
+      "name": "Rodzaje zaświadczenia o użytkach rolnych",
+      "description": "Rodzaje zaświadczeń, o które można wnioskować w zakresie użytk rolnych.",
+      "values": [
+        "Ilość posiadanych użytków rolnych w hektarach fizycznych i przybliżeniowych",
+        "Ilość dzierżawionych użytków rolnych w hektarach fizycznych i przybliżeniowych",
+        "Okres posiadania gospodarstwa rolnego",
+        "Brak posiadania użytków rolnych / gospodarstwa rolnego na terenie Gminy Młynary",
+        "Inne"
+      ],
+      "used_by": [
+        "Rodzaj zaświadczenia"
+      ]
+    }
+  ],
+  "warnings": [],
+  "issues": [],
+  "durationMs": 10933
+}

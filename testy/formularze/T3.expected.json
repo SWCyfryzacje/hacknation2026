@@ -1,0 +1,40 @@
+{
+  "id": "T3",
+  "title": "Wniosek o wpis do rejestru działalności regulowanej w zakresie odbierania odpadów komunalnych",
+  "authority": "Urząd Miasta Grudziądz",
+  "applicant": {
+    "person": false,
+    "company": true
+  },
+  "fields": [
+    {
+      "label": "Rodzaje odbieranych odpadów komunalnych",
+      "kind": "CHECKBOX",
+      "options": [
+        "Zmieszane",
+        "Papier",
+        "Szkło",
+        "Tworzywa sztuczne i metale",
+        "Bioodpady"
+      ]
+    },
+    {
+      "label": "Numer rejestrowy w BDO",
+      "kind": "TEXT_FIELD",
+      "options": []
+    },
+    {
+      "label": "Data rozpoczęcia działalności",
+      "kind": "DATEPICKER",
+      "options": []
+    },
+    {
+      "label": "Dowód uiszczenia opłaty skarbowej",
+      "kind": "FILE_UPLOADER",
+      "options": []
+    }
+  ],
+  "dependencies": [],
+  "statements": 2,
+  "fee": true
+}

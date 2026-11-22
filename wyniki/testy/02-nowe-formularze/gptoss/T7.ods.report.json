@@ -1,0 +1,37 @@
+{
+  "file": {
+    "name": "T7.ods",
+    "mime": "application/vnd.oasis.opendocument.spreadsheet",
+    "sizeBytes": 1338
+  },
+  "extraction": {
+    "format": "ods",
+    "lines": 27,
+    "ocr": false,
+    "ocrEngine": null
+  },
+  "analysis": {
+    "analyzer": "llm",
+    "model": "databricks/databricks-gpt-oss-120b@eu",
+    "authority": "Burmistrz Miasta Chełmża",
+    "applicant": {
+      "person": true,
+      "company": true
+    },
+    "llmUsage": {
+      "calls": 1,
+      "prompt_tokens": 2742,
+      "completion_tokens": 2345
+    }
+  },
+  "stats": {
+    "pages": 5,
+    "sections": 18,
+    "fields": 62,
+    "conditional": 30
+  },
+  "proposedDictionaries": [],
+  "warnings": [],
+  "issues": [],
+  "durationMs": 10728
+}

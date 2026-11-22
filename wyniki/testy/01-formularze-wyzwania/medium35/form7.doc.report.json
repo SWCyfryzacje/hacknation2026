@@ -1,0 +1,61 @@
+{
+  "file": {
+    "name": "form7.doc",
+    "mime": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    "sizeBytes": 13522
+  },
+  "extraction": {
+    "format": "docx",
+    "lines": 68,
+    "ocr": false,
+    "ocrEngine": null
+  },
+  "analysis": {
+    "analyzer": "llm",
+    "model": "mistral/mistral-medium-3.5@eu",
+    "authority": "Urząd Miejski Wrocławia, Wydział Środowiska",
+    "applicant": {
+      "person": true,
+      "company": false
+    },
+    "llmUsage": {
+      "calls": 1,
+      "prompt_tokens": 4120,
+      "completion_tokens": 803
+    }
+  },
+  "stats": {
+    "pages": 4,
+    "sections": 13,
+    "fields": 44,
+    "conditional": 20
+  },
+  "proposedDictionaries": [
+    {
+      "name": "Rasy psów uznawanych za agresywne",
+      "description": "Lista ras psów uznawanych za agresywne, objętych obowiązkiem zezwolenia na hodowlę lub utrzymywanie",
+      "values": [
+        "American Pit Bull Terrier",
+        "American Staffordshire Terrier",
+        "Staffordshire Bull Terrier",
+        "Bull Terrier",
+        "Dogo Argentyński",
+        "Fila Braziliero",
+        "Tosa Inu",
+        "Akbash",
+        "Anatolian Shepherd Dog",
+        "Cane Corso",
+        "Dogue de Bordeaux",
+        "Presa Canario",
+        "Rottweiler",
+        "Inne (wymagane podanie nazwy rasy)"
+      ],
+      "used_by": [
+        "Rasa psa"
+      ]
+    }
+  ],
+  "warnings": [],
+  "issues": [],
+  "durationMs": 5806
+}

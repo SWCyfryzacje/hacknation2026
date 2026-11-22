@@ -1,0 +1,37 @@
+{
+  "dictionaries": [
+    {
+      "name": "Dyscypliny sportowe",
+      "description": "Lista dyscyplin sportowych, w których może brać udział wnioskodawca.",
+      "values": [
+        "Zespołowa",
+        "Indywidualna – inna",
+        "Indywidualna – lekkoatletyka",
+        "gimnastyka artystyczna",
+        "hokej",
+        "karate",
+        "kolarstwo",
+        "koszykówka",
+        "lekkoatletyka",
+        "łucznictwo",
+        "łyżwiarstwo",
+        "narciarstwo klasyczne",
+        "piłka nożna",
+        "piłka ręczna",
+        "piłka siatkowa",
+        "piłka wodna",
+        "sport motocyklowy",
+        "sporty walki",
+        "sporty wodne",
+        "tenis stołowy",
+        "tenis ziemny",
+        "unihokej",
+        "zapasy",
+        "Inna"
+      ],
+      "used_by": [
+        "Dyscyplina sportowa"
+      ]
+    }
+  ]
+}

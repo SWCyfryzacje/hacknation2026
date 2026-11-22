@@ -1,0 +1,63 @@
+{
+  "id": "T7",
+  "title": "Zgłoszenie imprezy plenerowej",
+  "authority": "Burmistrz Miasta Chełmża",
+  "applicant": {
+    "person": true,
+    "company": true
+  },
+  "fields": [
+    {
+      "label": "Nazwa imprezy",
+      "kind": "TEXT_FIELD",
+      "options": []
+    },
+    {
+      "label": "Miejsce imprezy",
+      "kind": "TEXT_FIELD",
+      "options": []
+    },
+    {
+      "label": "Data rozpoczęcia imprezy",
+      "kind": "DATEPICKER",
+      "options": []
+    },
+    {
+      "label": "Data zakończenia imprezy",
+      "kind": "DATEPICKER",
+      "options": []
+    },
+    {
+      "label": "Przewidywana liczba uczestników",
+      "kind": "NUMBER",
+      "options": []
+    },
+    {
+      "label": "Czy impreza obejmuje sprzedaż alkoholu",
+      "kind": "RADIO",
+      "options": [
+        "Tak",
+        "Nie"
+      ]
+    },
+    {
+      "label": "Numer zezwolenia na sprzedaż alkoholu",
+      "kind": "TEXT_FIELD",
+      "options": []
+    },
+    {
+      "label": "Plan sytuacyjny terenu imprezy",
+      "kind": "FILE_UPLOADER",
+      "options": []
+    }
+  ],
+  "dependencies": [
+    {
+      "field": "Czy impreza obejmuje sprzedaż alkoholu",
+      "value": "Tak",
+      "shows": "Numer zezwolenia na sprzedaż alkoholu"
+    }
+  ],
+  "statements": 2,
+  "fee": false
+}

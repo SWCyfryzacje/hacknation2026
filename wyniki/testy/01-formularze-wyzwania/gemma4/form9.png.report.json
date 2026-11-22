@@ -1,0 +1,39 @@
+{
+  "file": {
+    "name": "form9.png",
+    "mime": "image/png",
+    "sizeBytes": 3127987
+  },
+  "extraction": {
+    "format": "png",
+    "lines": 99,
+    "ocr": true,
+    "ocrEngine": "edenai"
+  },
+  "analysis": {
+    "analyzer": "llm",
+    "model": "google/gemma-4-31b-it",
+    "authority": null,
+    "applicant": {
+      "person": true,
+      "company": false
+    },
+    "llmUsage": {
+      "calls": 1,
+      "prompt_tokens": 13342,
+      "completion_tokens": 988
+    }
+  },
+  "stats": {
+    "pages": 3,
+    "sections": 11,
+    "fields": 34,
+    "conditional": 18
+  },
+  "proposedDictionaries": [],
+  "warnings": [
+    "Model nie rozpoznał pól przedmiotu wniosku."
+  ],
+  "issues": [],
+  "durationMs": 50044
+}

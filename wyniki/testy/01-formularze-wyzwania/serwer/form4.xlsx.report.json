@@ -1,0 +1,37 @@
+{
+  "file": {
+    "name": "form4.xlsx",
+    "mime": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "sizeBytes": 13006
+  },
+  "extraction": {
+    "format": "xlsx",
+    "lines": 25,
+    "ocr": false,
+    "ocrEngine": null
+  },
+  "analysis": {
+    "analyzer": "llm",
+    "model": "mistral/mistral-large-4-0@eu",
+    "authority": "Wójt Gminy Płoskinia",
+    "applicant": {
+      "person": true,
+      "company": false
+    },
+    "llmUsage": {
+      "calls": 1,
+      "prompt_tokens": 3150,
+      "completion_tokens": 8067
+    }
+  },
+  "stats": {
+    "pages": 4,
+    "sections": 14,
+    "fields": 45,
+    "conditional": 21
+  },
+  "proposedDictionaries": [],
+  "warnings": [],
+  "issues": [],
+  "durationMs": 89710
+}

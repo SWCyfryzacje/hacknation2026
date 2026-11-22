@@ -1,0 +1,27 @@
+{
+  "dictionaries": [
+    {
+      "name": "Rodzaje wyrobów zawierających azbest",
+      "description": "Klasyfikacja wyrobów zawierających azbest zgodnie z ustawą z dnia 19 czerwca 1997 r. o zakazie stosowania wyrobów zawierających azbest",
+      "values": [
+        "Płyty azbestowo-cementowe płaskie stosowane w budownictwie",
+        "Płyty faliste azbestowo-cementowe stosowane w budownictwie",
+        "Rury i złącza azbestowo-cementowe",
+        "Rury i złącza azbestowo-cementowe pozostawione w ziemi",
+        "Izolacje natryskowe środkami zawierającymi azbest",
+        "Wyroby cierne azbestowo-kauczukowe",
+        "Przędza specjalna, w tym włókna azbestowe obrobione",
+        "Szczeliwa azbestowe",
+        "Taśmy tkane i plecione, sznury i sznurki",
+        "Wyroby azbestowo-kauczukowe, z wyjątkiem wyrobów ciernych",
+        "Papier, tektura",
+        "Drogi zabezpieczone (utwardzone odpadami zawierającymi azbest przed 1997 r., trwale zabezpieczone)",
+        "Drogi utwardzone odpadami zawierającymi azbest przed 1997 r., niezabezpieczone trwale",
+        "Inne wyroby zawierające azbest"
+      ],
+      "used_by": [
+        "Nazwa i rodzaj wyrobu zawierającego azbest"
+      ]
+    }
+  ]
+}

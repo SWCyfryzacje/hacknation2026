@@ -1,0 +1,17 @@
+{
+  "dictionaries": [
+    {
+      "name": "Rasy psów agresywnych",
+      "description": "Lista ras psów uznawanych za agresywne zgodnie z przepisami",
+      "values": [
+        "Chart angielski",
+        "Chart rosyjski borzoi",
+        "Chart afgański",
+        "Inna rasa"
+      ],
+      "used_by": [
+        "Rasa psa"
+      ]
+    }
+  ]
+}

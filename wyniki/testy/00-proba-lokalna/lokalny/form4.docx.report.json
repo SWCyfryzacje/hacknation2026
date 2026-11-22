@@ -1,0 +1,33 @@
+{
+  "file": {
+    "name": "form4.docx",
+    "mime": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    "sizeBytes": 19310
+  },
+  "extraction": {
+    "format": "docx",
+    "lines": 29,
+    "ocr": false,
+    "ocrEngine": null
+  },
+  "analysis": {
+    "analyzer": "rules",
+    "model": null,
+    "authority": "Wójt Gminy Płoskinia",
+    "applicant": {
+      "person": true,
+      "company": false
+    },
+    "llmUsage": null
+  },
+  "stats": {
+    "pages": 4,
+    "sections": 12,
+    "fields": 41,
+    "conditional": 18
+  },
+  "proposedDictionaries": [],
+  "warnings": [],
+  "issues": [],
+  "durationMs": 1447
+}

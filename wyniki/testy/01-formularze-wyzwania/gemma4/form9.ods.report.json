@@ -1,0 +1,40 @@
+{
+  "file": {
+    "name": "form9.ods",
+    "mime": "application/vnd.oasis.opendocument.spreadsheet",
+    "sizeBytes": 26347
+  },
+  "extraction": {
+    "format": "ods",
+    "lines": 249,
+    "ocr": false,
+    "ocrEngine": null
+  },
+  "analysis": {
+    "analyzer": "llm",
+    "model": "google/gemma-4-31b-it",
+    "authority": "Prezydent Miasta Zgierza",
+    "applicant": {
+      "person": true,
+      "company": true
+    },
+    "llmUsage": {
+      "calls": 1,
+      "prompt_tokens": 6421,
+      "completion_tokens": 1163
+    }
+  },
+  "stats": {
+    "pages": 8,
+    "sections": 22,
+    "fields": 77,
+    "conditional": 34
+  },
+  "proposedDictionaries": [],
+  "warnings": [
+    "Pominięto zależność od nieznanego pola „Podmiot wniosku”.",
+    "Pominięto zależność od nieznanego pola „Podmiot wniosku”."
+  ],
+  "issues": [],
+  "durationMs": 14295
+}

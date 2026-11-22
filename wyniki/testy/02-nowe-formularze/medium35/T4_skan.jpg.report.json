@@ -1,0 +1,37 @@
+{
+  "file": {
+    "name": "T4_skan.jpg",
+    "mime": "image/jpeg",
+    "sizeBytes": 90274
+  },
+  "extraction": {
+    "format": "jpeg",
+    "lines": 24,
+    "ocr": true,
+    "ocrEngine": "edenai"
+  },
+  "analysis": {
+    "analyzer": "llm",
+    "model": "mistral/mistral-medium-3.5@eu",
+    "authority": "Prezydent Miasta Włocławek",
+    "applicant": {
+      "person": true,
+      "company": true
+    },
+    "llmUsage": {
+      "calls": 1,
+      "prompt_tokens": 2765,
+      "completion_tokens": 387
+    }
+  },
+  "stats": {
+    "pages": 5,
+    "sections": 18,
+    "fields": 57,
+    "conditional": 30
+  },
+  "proposedDictionaries": [],
+  "warnings": [],
+  "issues": [],
+  "durationMs": 4835
+}

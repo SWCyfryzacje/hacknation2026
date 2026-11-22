@@ -1,0 +1,37 @@
+{
+  "file": {
+    "name": "form7.pdf",
+    "mime": "application/pdf",
+    "sizeBytes": 127981
+  },
+  "extraction": {
+    "format": "pdf",
+    "lines": 99,
+    "ocr": false,
+    "ocrEngine": null
+  },
+  "analysis": {
+    "analyzer": "llm",
+    "model": "google/gemma-4-31b-it",
+    "authority": "Prezydent Wrocławia",
+    "applicant": {
+      "person": true,
+      "company": false
+    },
+    "llmUsage": {
+      "calls": 1,
+      "prompt_tokens": 3997,
+      "completion_tokens": 3223
+    }
+  },
+  "stats": {
+    "pages": 4,
+    "sections": 14,
+    "fields": 49,
+    "conditional": 20
+  },
+  "proposedDictionaries": [],
+  "warnings": [],
+  "issues": [],
+  "durationMs": 90943
+}

@@ -1,0 +1,37 @@
+{
+  "file": {
+    "name": "T8.docx",
+    "mime": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    "sizeBytes": 35910
+  },
+  "extraction": {
+    "format": "docx",
+    "lines": 23,
+    "ocr": false,
+    "ocrEngine": null
+  },
+  "analysis": {
+    "analyzer": "llm",
+    "model": "databricks/databricks-gpt-oss-120b@eu",
+    "authority": "Wójt Gminy Łysomice",
+    "applicant": {
+      "person": true,
+      "company": false
+    },
+    "llmUsage": {
+      "calls": 1,
+      "prompt_tokens": 2763,
+      "completion_tokens": 1429
+    }
+  },
+  "stats": {
+    "pages": 4,
+    "sections": 13,
+    "fields": 39,
+    "conditional": 19
+  },
+  "proposedDictionaries": [],
+  "warnings": [],
+  "issues": [],
+  "durationMs": 12156
+}

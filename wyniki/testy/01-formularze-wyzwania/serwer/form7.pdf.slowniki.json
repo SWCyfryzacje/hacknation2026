@@ -1,0 +1,25 @@
+{
+  "dictionaries": [
+    {
+      "name": "Rasy psów uznawanych za agresywne",
+      "description": "Wykaz ras psów uznawanych za agresywne zgodnie z rozporządzeniem Ministra Rolnictwa i Rozwoju Wsi z dnia 5 lipca 2010 r. oraz ich mieszańce",
+      "values": [
+        "American Staffordshire Terrier",
+        "Ca de Bou",
+        "Dogo Argentino",
+        "Fila Brasileiro",
+        "Mastif hiszpański",
+        "Mastino neapolitański",
+        "Pies kanaryjski",
+        "Pies rasowy kaukaski",
+        "Pies tosa",
+        "Rottweiler",
+        "Staffordshire Bull Terrier",
+        "Mieszaniec ww. ras"
+      ],
+      "used_by": [
+        "Rasa psa"
+      ]
+    }
+  ]
+}

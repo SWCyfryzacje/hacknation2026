@@ -1,0 +1,37 @@
+{
+  "file": {
+    "name": "form3.xlsx",
+    "mime": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "sizeBytes": 13344
+  },
+  "extraction": {
+    "format": "xlsx",
+    "lines": 25,
+    "ocr": false,
+    "ocrEngine": null
+  },
+  "analysis": {
+    "analyzer": "llm",
+    "model": "google/gemma-4-31b-it",
+    "authority": "Urząd Miasta i Gminy Młynary",
+    "applicant": {
+      "person": true,
+      "company": true
+    },
+    "llmUsage": {
+      "calls": 1,
+      "prompt_tokens": 2716,
+      "completion_tokens": 2132
+    }
+  },
+  "stats": {
+    "pages": 4,
+    "sections": 17,
+    "fields": 56,
+    "conditional": 30
+  },
+  "proposedDictionaries": [],
+  "warnings": [],
+  "issues": [],
+  "durationMs": 79653
+}

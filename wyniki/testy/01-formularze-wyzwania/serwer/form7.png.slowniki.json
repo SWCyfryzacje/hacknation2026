@@ -1,0 +1,22 @@
+{
+  "dictionaries": [
+    {
+      "name": "Rasy psów uznawanych za agresywne",
+      "description": "Wykaz ras psów uznawanych za agresywne zgodnie z rozporządzeniem MSWiA",
+      "values": [
+        "American Staffordshire Terrier",
+        "Ca de Bou",
+        "Dogo Argentino",
+        "Fila Brasileiro",
+        "Perro de Presa Canario",
+        "Pit Bull Terrier",
+        "Rottweiler",
+        "Tosa Inu",
+        "Mieszaniec rasy uznawanej za agresywną"
+      ],
+      "used_by": [
+        "Rasa psa"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "file": {
+    "name": "form8.ods",
+    "mime": "application/vnd.oasis.opendocument.spreadsheet",
+    "sizeBytes": 70083
+  },
+  "extraction": {
+    "format": "ods",
+    "lines": 179,
+    "ocr": false,
+    "ocrEngine": null
+  },
+  "analysis": {
+    "analyzer": "rules",
+    "model": null,
+    "authority": "Prezydent Miasta Gdyni",
+    "applicant": {
+      "person": true,
+      "company": false
+    },
+    "llmUsage": {
+      "calls": 1,
+      "prompt_tokens": 9358,
+      "completion_tokens": 5788
+    }
+  },
+  "stats": {
+    "pages": 7,
+    "sections": 18,
+    "fields": 80,
+    "conditional": 18
+  },
+  "proposedDictionaries": [],
+  "warnings": [
+    "Model językowy niedostępny — użyto analizy regułowej. (Eden AI (/chat/completions): HTTP 504: {\"error\":{\"message\":\"No response from the provider within the 400-second limit on non-streaming requests. Long generations must be streamed: set \\\"stream\\\": true.\",\"type\":\"server_error\",\"param\":null,\"code\":\"timeout\"}})"
+  ],
+  "issues": [],
+  "durationMs": 554900
+}

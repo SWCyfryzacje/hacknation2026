@@ -1,0 +1,18 @@
+{
+  "dictionaries": [
+    {
+      "name": "Rasy psów uznawanych za agresywne",
+      "description": "Lista ras psów, które ze względu na charakter i zachowanie są uznawane za agresywne i wymagają specjalnego zezwolenia.",
+      "values": [
+        "Chart",
+        "Pit Bull Terrier",
+        "American Staffordshire Terrier",
+        "Rottweiler",
+        "Doberman"
+      ],
+      "used_by": [
+        "Rasa psa"
+      ]
+    }
+  ]
+}

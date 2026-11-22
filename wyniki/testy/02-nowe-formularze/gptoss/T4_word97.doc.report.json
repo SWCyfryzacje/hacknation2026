@@ -1,0 +1,37 @@
+{
+  "file": {
+    "name": "T4_word97.doc",
+    "mime": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    "sizeBytes": 35831
+  },
+  "extraction": {
+    "format": "docx",
+    "lines": 23,
+    "ocr": false,
+    "ocrEngine": null
+  },
+  "analysis": {
+    "analyzer": "llm",
+    "model": "databricks/databricks-gpt-oss-120b@eu",
+    "authority": "Prezydent Miasta Włocławek",
+    "applicant": {
+      "person": true,
+      "company": false
+    },
+    "llmUsage": {
+      "calls": 1,
+      "prompt_tokens": 2726,
+      "completion_tokens": 1381
+    }
+  },
+  "stats": {
+    "pages": 4,
+    "sections": 13,
+    "fields": 40,
+    "conditional": 19
+  },
+  "proposedDictionaries": [],
+  "warnings": [],
+  "issues": [],
+  "durationMs": 6895
+}

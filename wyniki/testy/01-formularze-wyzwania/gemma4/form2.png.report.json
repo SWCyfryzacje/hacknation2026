@@ -1,0 +1,37 @@
+{
+  "file": {
+    "name": "form2.png",
+    "mime": "image/png",
+    "sizeBytes": 311795
+  },
+  "extraction": {
+    "format": "png",
+    "lines": 50,
+    "ocr": true,
+    "ocrEngine": "edenai"
+  },
+  "analysis": {
+    "analyzer": "llm",
+    "model": "google/gemma-4-31b-it",
+    "authority": "Urząd Gminy Sławiguda",
+    "applicant": {
+      "person": true,
+      "company": true
+    },
+    "llmUsage": {
+      "calls": 1,
+      "prompt_tokens": 2882,
+      "completion_tokens": 2305
+    }
+  },
+  "stats": {
+    "pages": 5,
+    "sections": 18,
+    "fields": 58,
+    "conditional": 31
+  },
+  "proposedDictionaries": [],
+  "warnings": [],
+  "issues": [],
+  "durationMs": 69880
+}

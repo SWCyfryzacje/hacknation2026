@@ -1,0 +1,37 @@
+{
+  "file": {
+    "name": "form8.xlsx",
+    "mime": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "sizeBytes": 77046
+  },
+  "extraction": {
+    "format": "xlsx",
+    "lines": 179,
+    "ocr": false,
+    "ocrEngine": null
+  },
+  "analysis": {
+    "analyzer": "llm",
+    "model": "mistral/mistral-medium-3.5@eu",
+    "authority": "Prezydent Miasta Gdyni",
+    "applicant": {
+      "person": true,
+      "company": true
+    },
+    "llmUsage": {
+      "calls": 2,
+      "prompt_tokens": 36268,
+      "completion_tokens": 7009
+    }
+  },
+  "stats": {
+    "pages": 9,
+    "sections": 28,
+    "fields": 114,
+    "conditional": 42
+  },
+  "proposedDictionaries": [],
+  "warnings": [],
+  "issues": [],
+  "durationMs": 41075
+}

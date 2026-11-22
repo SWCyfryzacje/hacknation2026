@@ -1,0 +1,37 @@
+{
+  "file": {
+    "name": "form6.doc",
+    "mime": "application/msword",
+    "sizeBytes": 45056
+  },
+  "extraction": {
+    "format": "doc",
+    "lines": 51,
+    "ocr": false,
+    "ocrEngine": null
+  },
+  "analysis": {
+    "analyzer": "llm",
+    "model": "databricks/databricks-gpt-oss-120b@eu",
+    "authority": "Urząd Miasta i Gminy Miasteczko",
+    "applicant": {
+      "person": true,
+      "company": true
+    },
+    "llmUsage": {
+      "calls": 1,
+      "prompt_tokens": 3560,
+      "completion_tokens": 2938
+    }
+  },
+  "stats": {
+    "pages": 4,
+    "sections": 21,
+    "fields": 80,
+    "conditional": 29
+  },
+  "proposedDictionaries": [],
+  "warnings": [],
+  "issues": [],
+  "durationMs": 17883
+}

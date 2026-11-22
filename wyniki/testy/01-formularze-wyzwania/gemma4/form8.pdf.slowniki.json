@@ -1,0 +1,17 @@
+{
+  "dictionaries": [
+    {
+      "name": "Powody złożenia deklaracji o odpadach",
+      "description": "Powody składania deklaracji o wysokości opłaty za gospodarowanie odpadami komunalnymi",
+      "values": [
+        "Pierwsza deklaracja",
+        "Nowa deklaracja ze względu na zmianę danych",
+        "Ustanie obowiązku uiszczania opłaty",
+        "Korekta złożonej, obowiązującej deklaracji"
+      ],
+      "used_by": [
+        "Powód złożenia deklaracji"
+      ]
+    }
+  ]
+}

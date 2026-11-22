@@ -1,0 +1,37 @@
+{
+  "file": {
+    "name": "form3.pdf",
+    "mime": "application/pdf",
+    "sizeBytes": 71891
+  },
+  "extraction": {
+    "format": "pdf",
+    "lines": 31,
+    "ocr": false,
+    "ocrEngine": null
+  },
+  "analysis": {
+    "analyzer": "llm",
+    "model": "databricks/databricks-gpt-oss-120b@eu",
+    "authority": "Urząd Miasta i Gminy Młynary",
+    "applicant": {
+      "person": true,
+      "company": false
+    },
+    "llmUsage": {
+      "calls": 1,
+      "prompt_tokens": 2864,
+      "completion_tokens": 2016
+    }
+  },
+  "stats": {
+    "pages": 4,
+    "sections": 15,
+    "fields": 43,
+    "conditional": 19
+  },
+  "proposedDictionaries": [],
+  "warnings": [],
+  "issues": [],
+  "durationMs": 9024
+}

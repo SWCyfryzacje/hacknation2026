@@ -1,0 +1,37 @@
+{
+  "file": {
+    "name": "form4.xlsx",
+    "mime": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "sizeBytes": 13006
+  },
+  "extraction": {
+    "format": "xlsx",
+    "lines": 25,
+    "ocr": false,
+    "ocrEngine": null
+  },
+  "analysis": {
+    "analyzer": "llm",
+    "model": "databricks/databricks-gpt-oss-120b@eu",
+    "authority": "Wójt Gminy Płoskinia",
+    "applicant": {
+      "person": true,
+      "company": false
+    },
+    "llmUsage": {
+      "calls": 1,
+      "prompt_tokens": 3040,
+      "completion_tokens": 1508
+    }
+  },
+  "stats": {
+    "pages": 4,
+    "sections": 12,
+    "fields": 41,
+    "conditional": 18
+  },
+  "proposedDictionaries": [],
+  "warnings": [],
+  "issues": [],
+  "durationMs": 7699
+}

@@ -1,0 +1,37 @@
+{
+  "file": {
+    "name": "B2_kochanowice_azbest.pdf",
+    "mime": "application/pdf",
+    "sizeBytes": 247842
+  },
+  "extraction": {
+    "format": "pdf",
+    "lines": 125,
+    "ocr": false,
+    "ocrEngine": null
+  },
+  "analysis": {
+    "analyzer": "llm",
+    "model": "google/gemma-4-31b-it",
+    "authority": "Gmina Kochanowice",
+    "applicant": {
+      "person": true,
+      "company": false
+    },
+    "llmUsage": {
+      "calls": 1,
+      "prompt_tokens": 4674,
+      "completion_tokens": 1377
+    }
+  },
+  "stats": {
+    "pages": 6,
+    "sections": 18,
+    "fields": 62,
+    "conditional": 20
+  },
+  "proposedDictionaries": [],
+  "warnings": [],
+  "issues": [],
+  "durationMs": 15782
+}

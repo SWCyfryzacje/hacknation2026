@@ -1,0 +1,53 @@
+{
+  "file": {
+    "name": "form8.docx",
+    "mime": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    "sizeBytes": 194571
+  },
+  "extraction": {
+    "format": "docx",
+    "lines": 633,
+    "ocr": false,
+    "ocrEngine": null
+  },
+  "analysis": {
+    "analyzer": "llm",
+    "model": "databricks/databricks-gpt-oss-120b@eu",
+    "authority": "Prezydent Miasta Gdyni",
+    "applicant": {
+      "person": true,
+      "company": true
+    },
+    "llmUsage": {
+      "calls": 1,
+      "prompt_tokens": 8413,
+      "completion_tokens": 6028
+    }
+  },
+  "stats": {
+    "pages": 4,
+    "sections": 26,
+    "fields": 114,
+    "conditional": 41
+  },
+  "proposedDictionaries": [
+    {
+      "name": "TypPodmiotuDeklaracja",
+      "description": "Rodzaj podmiotu składającego deklarację o opłacie za gospodarowanie odpadami komunalnymi",
+      "values": [
+        "właściciel/współwłaściciel",
+        "współwłaściciel (wspólność majątkowa)",
+        "najemca/dzierżawca",
+        "wspólnota mieszkaniowa",
+        "spółdzielnia mieszkaniowa",
+        "inny podmiot posiadający nieruchomość w zarządzie lub użytkowaniu"
+      ],
+      "used_by": [
+        "Typ podmiotu"
+      ]
+    }
+  ],
+  "warnings": [],
+  "issues": [],
+  "durationMs": 34632
+}

@@ -1,0 +1,51 @@
+{
+  "file": {
+    "name": "form5.ods",
+    "mime": "application/vnd.oasis.opendocument.spreadsheet",
+    "sizeBytes": 18545
+  },
+  "extraction": {
+    "format": "ods",
+    "lines": 27,
+    "ocr": false,
+    "ocrEngine": null
+  },
+  "analysis": {
+    "analyzer": "llm",
+    "model": "databricks/databricks-gpt-oss-120b@eu",
+    "authority": "Urząd Gminy",
+    "applicant": {
+      "person": true,
+      "company": true
+    },
+    "llmUsage": {
+      "calls": 1,
+      "prompt_tokens": 2754,
+      "completion_tokens": 2182
+    }
+  },
+  "stats": {
+    "pages": 4,
+    "sections": 20,
+    "fields": 61,
+    "conditional": 30
+  },
+  "proposedDictionaries": [
+    {
+      "name": "TaxTypes",
+      "description": "Rodzaje podatków, które mogą podlegać nadpłacie",
+      "values": [
+        "Podatek dochodowy od osób fizycznych",
+        "Podatek dochodowy od osób prawnych",
+        "Podatek od towarów i usług",
+        "Podatek rolno‑gospodarczy"
+      ],
+      "used_by": [
+        "Rodzaj podatku"
+      ]
+    }
+  ],
+  "warnings": [],
+  "issues": [],
+  "durationMs": 9975
+}

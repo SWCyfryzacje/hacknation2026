@@ -1,0 +1,37 @@
+{
+  "file": {
+    "name": "T1_skan.png",
+    "mime": "image/png",
+    "sizeBytes": 1117201
+  },
+  "extraction": {
+    "format": "png",
+    "lines": 18,
+    "ocr": true,
+    "ocrEngine": "edenai"
+  },
+  "analysis": {
+    "analyzer": "llm",
+    "model": "databricks/databricks-gpt-oss-120b@eu",
+    "authority": "Burmistrz Miasta Kruszwica",
+    "applicant": {
+      "person": true,
+      "company": false
+    },
+    "llmUsage": {
+      "calls": 1,
+      "prompt_tokens": 2676,
+      "completion_tokens": 1633
+    }
+  },
+  "stats": {
+    "pages": 4,
+    "sections": 15,
+    "fields": 42,
+    "conditional": 20
+  },
+  "proposedDictionaries": [],
+  "warnings": [],
+  "issues": [],
+  "durationMs": 12779
+}

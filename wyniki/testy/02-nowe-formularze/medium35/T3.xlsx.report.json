@@ -1,0 +1,37 @@
+{
+  "file": {
+    "name": "T3.xlsx",
+    "mime": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "sizeBytes": 5720
+  },
+  "extraction": {
+    "format": "xlsx",
+    "lines": 31,
+    "ocr": false,
+    "ocrEngine": null
+  },
+  "analysis": {
+    "analyzer": "llm",
+    "model": "mistral/mistral-medium-3.5@eu",
+    "authority": "Urząd Miasta Grudziądz",
+    "applicant": {
+      "person": false,
+      "company": true
+    },
+    "llmUsage": {
+      "calls": 1,
+      "prompt_tokens": 2862,
+      "completion_tokens": 347
+    }
+  },
+  "stats": {
+    "pages": 4,
+    "sections": 16,
+    "fields": 42,
+    "conditional": 18
+  },
+  "proposedDictionaries": [],
+  "warnings": [],
+  "issues": [],
+  "durationMs": 3058
+}

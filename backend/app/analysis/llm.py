@@ -92,6 +92,11 @@ class _Dictionary(BaseModel):
 
 
 class _Answer(BaseModel):
+    @field_validator("pages", "statements", "fee_info", "proposed_dictionaries", mode="before")
+    @classmethod
+    def _null_as_empty(cls, v: object) -> object:
+        return [] if v is None else v  # część modeli zwraca null zamiast pustej listy
+
     title: str
     authority: str | None = None
     authority_is_organ: bool = False
@@ -157,7 +162,7 @@ ZASADY PÓL:
 ZWIĘZŁOŚĆ: pomijaj klucze o wartościach domyślnych — "options": [], "validators": [], "required": true,
 "dictionary" / "initial_data" / "description" / "show_if": null. Duże formularze muszą zmieścić się w odpowiedzi.
 
-Odpowiedz WYŁĄCZNIE obiektem JSON o strukturze:
+Odpowiedz WYŁĄCZNIE obiektem json (JSON, bez komentarzy i bez bloku kodu) o strukturze:
 {{"title": str, "authority": str|null, "authority_is_organ": bool, "applicant_person": bool, "applicant_company": bool,
  "pages": [{{"title": str, "sections": [{{"title": str, "description": str|null, "show_if": null|{{"field": str, "value": str}},
    "fields": [{{"label": str, "kind": str, "options": [str], "required": bool, "validators": [str], "dictionary": str|null,

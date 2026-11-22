@@ -1,0 +1,34 @@
+{
+  "dictionaries": [
+    {
+      "name": "RodzajObiektu",
+      "description": "Rodzaje obiektów, z których będą usuwane wyroby zawierające azbest",
+      "values": [
+        "Budynek mieszkalny",
+        "Budynek gospodarczy – garaż",
+        "Budynek gospodarczy – stodoła",
+        "Budynek gospodarczy – obora",
+        "Budynek gospodarczy – wiata",
+        "Budynek mieszkalno‑gospodarczy",
+        "Altana",
+        "Wyroby zdeponowane na terenie nieruchomości",
+        "Inny"
+      ],
+      "used_by": [
+        "Rodzaj obiektu"
+      ]
+    },
+    {
+      "name": "RodzajWyrobowAzbestowych",
+      "description": "Rodzaje wyrobów zawierających azbest",
+      "values": [
+        "Płyty faliste azbestowo‑cementowe",
+        "Płyty płaskie azbestowo‑cementowe",
+        "Inne"
+      ],
+      "used_by": [
+        "Rodzaj wyrobów zawierających azbest"
+      ]
+    }
+  ]
+}

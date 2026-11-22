@@ -1,0 +1,19 @@
+{
+  "dictionaries": [
+    {
+      "name": "Rodzaje podmiotów składających deklarację o odpadach",
+      "description": "Rodzaj podmiotu zobowiązanego do złożenia deklaracji o wysokości opłaty za gospodarowanie odpadami komunalnymi",
+      "values": [
+        "Właściciel/współwłaściciel",
+        "Współwłaściciel (wspólność majątkowa)",
+        "Najemca/dzierżawca",
+        "Wspólnota mieszkaniowa",
+        "Spółdzielnia mieszkaniowa",
+        "Inny podmiot władający nieruchomością"
+      ],
+      "used_by": [
+        "Składający deklarację"
+      ]
+    }
+  ]
+}

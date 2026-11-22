@@ -1,0 +1,37 @@
+{
+  "file": {
+    "name": "form6.jpeg",
+    "mime": "image/jpeg",
+    "sizeBytes": 1112264
+  },
+  "extraction": {
+    "format": "jpeg",
+    "lines": 50,
+    "ocr": true,
+    "ocrEngine": "edenai"
+  },
+  "analysis": {
+    "analyzer": "llm",
+    "model": "mistral/mistral-medium-3.5@eu",
+    "authority": "Urząd Miasta i Gminy Miasteczko",
+    "applicant": {
+      "person": true,
+      "company": true
+    },
+    "llmUsage": {
+      "calls": 1,
+      "prompt_tokens": 3644,
+      "completion_tokens": 1154
+    }
+  },
+  "stats": {
+    "pages": 5,
+    "sections": 20,
+    "fields": 80,
+    "conditional": 29
+  },
+  "proposedDictionaries": [],
+  "warnings": [],
+  "issues": [],
+  "durationMs": 13316
+}

@@ -1,0 +1,37 @@
+{
+  "file": {
+    "name": "T8_skan.jpg",
+    "mime": "image/jpeg",
+    "sizeBytes": 97006
+  },
+  "extraction": {
+    "format": "jpeg",
+    "lines": 23,
+    "ocr": true,
+    "ocrEngine": "edenai"
+  },
+  "analysis": {
+    "analyzer": "llm",
+    "model": "mistral/mistral-medium-3.5@eu",
+    "authority": "Wójt Gminy Łysomice",
+    "applicant": {
+      "person": true,
+      "company": false
+    },
+    "llmUsage": {
+      "calls": 1,
+      "prompt_tokens": 2805,
+      "completion_tokens": 401
+    }
+  },
+  "stats": {
+    "pages": 5,
+    "sections": 14,
+    "fields": 39,
+    "conditional": 19
+  },
+  "proposedDictionaries": [],
+  "warnings": [],
+  "issues": [],
+  "durationMs": 4564
+}

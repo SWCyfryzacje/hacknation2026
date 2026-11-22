@@ -1,0 +1,37 @@
+{
+  "file": {
+    "name": "form4.doc",
+    "mime": "application/msword",
+    "sizeBytes": 30720
+  },
+  "extraction": {
+    "format": "doc",
+    "lines": 29,
+    "ocr": false,
+    "ocrEngine": null
+  },
+  "analysis": {
+    "analyzer": "llm",
+    "model": "google/gemma-4-31b-it",
+    "authority": "Wójt Gminy Płoskinia",
+    "applicant": {
+      "person": true,
+      "company": true
+    },
+    "llmUsage": {
+      "calls": 1,
+      "prompt_tokens": 2763,
+      "completion_tokens": 2177
+    }
+  },
+  "stats": {
+    "pages": 4,
+    "sections": 18,
+    "fields": 60,
+    "conditional": 31
+  },
+  "proposedDictionaries": [],
+  "warnings": [],
+  "issues": [],
+  "durationMs": 67704
+}

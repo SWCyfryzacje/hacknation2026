@@ -1,0 +1,37 @@
+{
+  "file": {
+    "name": "form9.ods",
+    "mime": "application/vnd.oasis.opendocument.spreadsheet",
+    "sizeBytes": 26347
+  },
+  "extraction": {
+    "format": "ods",
+    "lines": 249,
+    "ocr": false,
+    "ocrEngine": null
+  },
+  "analysis": {
+    "analyzer": "llm",
+    "model": "mistral/mistral-large-4-0@eu",
+    "authority": "Prezydent Miasta Zgierza",
+    "applicant": {
+      "person": false,
+      "company": true
+    },
+    "llmUsage": {
+      "calls": 1,
+      "prompt_tokens": 7178,
+      "completion_tokens": 16567
+    }
+  },
+  "stats": {
+    "pages": 7,
+    "sections": 24,
+    "fields": 82,
+    "conditional": 31
+  },
+  "proposedDictionaries": [],
+  "warnings": [],
+  "issues": [],
+  "durationMs": 153611
+}

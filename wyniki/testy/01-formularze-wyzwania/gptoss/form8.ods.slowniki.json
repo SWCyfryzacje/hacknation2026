@@ -1,0 +1,30 @@
+{
+  "dictionaries": [
+    {
+      "name": "Typy podmiotów deklarujących",
+      "description": "Rodzaje podmiotów, które mogą składać deklarację o opłacie za gospodarowanie odpadami komunalnymi.",
+      "values": [
+        "Właściciel / współwłaściciel",
+        "Współmałżonek (wspólność majątkowa)",
+        "Najemca / dzierżawca",
+        "Wspólnota mieszkaniowa",
+        "Spółdzielnia mieszkaniowa",
+        "Inny podmiot posiadający nieruchomość w zarządzie lub użytkowaniu"
+      ],
+      "used_by": [
+        "Typ podmiotu"
+      ]
+    },
+    {
+      "name": "Rodzaje nieruchomości",
+      "description": "Typy nieruchomości zabudowane budynkami mieszkalnymi.",
+      "values": [
+        "Nieruchomość zabudowana budynkiem mieszkalnym jednorodzinnym",
+        "Nieruchomość zabudowana budynkiem mieszkalnym wielolokalowym"
+      ],
+      "used_by": [
+        "Rodzaj nieruchomości"
+      ]
+    }
+  ]
+}
