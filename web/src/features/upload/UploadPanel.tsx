@@ -143,7 +143,11 @@ export function UploadPanel({
         }}
         onDrop={handleDrop}
       >
-        {!selectedFile && (
+        {selectedFile ? (
+          <>
+            <span className='font-semibold'>Wybrano plik</span>
+          </>
+          ) : (
           <>
             <span aria-hidden='true' className='text-3xl text-blue-700'>
               ↑
