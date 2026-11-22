@@ -39,14 +39,7 @@ function FieldMeta({ field }: { field: FormField }) {
     <>
       {field.readOnly && (
         <span className='ml-2 inline-flex rounded-full bg-slate-100 px-2 py-0.5 text-xs font-medium text-slate-600'>
-          {field.defaultValueType === 'EXTERNAL_SYSTEM'
-            ? `z rejestru: ${String(field.defaultValue ?? '')}`
-            : 'tylko do odczytu'}
-        </span>
-      )}
-      {field.dictionaryName && (
-        <span className='ml-2 inline-flex rounded-full bg-blue-50 px-2 py-0.5 text-xs font-medium text-blue-800'>
-          słownik: {field.dictionaryName}
+          tylko do odczytu
         </span>
       )}
     </>

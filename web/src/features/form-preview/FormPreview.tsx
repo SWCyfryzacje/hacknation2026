@@ -202,15 +202,15 @@ export function FormPreview({
         </p>
       ) : (
         <>
-          <label className='mt-6 inline-flex items-center gap-2 text-sm text-slate-600'>
-            <input
-              checked={showTechNames}
-              className='accent-blue-700'
-              onChange={(event) => onShowTechNamesChange(event.target.checked)}
-              type='checkbox'
-            />
-            Pokaż nazwy techniczne
-          </label>
+          {/*<label className='mt-6 inline-flex items-center gap-2 text-sm text-slate-600'>*/}
+          {/*  <input*/}
+          {/*    checked={showTechNames}*/}
+          {/*    className='accent-blue-700'*/}
+          {/*    onChange={(event) => onShowTechNamesChange(event.target.checked)}*/}
+          {/*    type='checkbox'*/}
+          {/*  />*/}
+          {/*  Pokaż nazwy techniczne*/}
+          {/*</label>*/}
 
           <nav aria-label='Strony formularza' className='mt-6 overflow-x-auto'>
             <ol className='flex min-w-max gap-2 pb-2'>
