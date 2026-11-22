@@ -1,117 +1,75 @@
-# Deploy landing page na Vercel + domena oazai.pl
+# Wdrożenie na serwerze i sprawdzenie działania
 
-Kolejność: najpierw repo na GitHubie, potem Vercel, na końcu DNS. Rób punkt po punkcie.
+Instrukcja dla serwera Linux z Dockerem (np. Debian, serwer demonstracyjny `77.45.76.243`). Polecenia wykonuje się
+na serwerze przez SSH, w katalogu repozytorium.
 
-Repo git jest już zainicjalizowane lokalnie (branch `main`), pliki są w stage — brak commita.
-
----
-
-## Krok 1 — pierwszy commit
+## 1. Pobranie kodu
 
 ```bash
-cd c:/Users/jonso/hacknation2026
-git commit -m "MCPolska: landing page + kontekst projektu"
+cd ~/hacknation2026                 # katalog z repozytorium
+git fetch origin
+git checkout task-backend           # albo main / mcp — gałąź, którą wdrażamy
+git pull
 ```
 
-## Krok 2 — repo na GitHubie
-
-Jeśli masz `gh`:
+## 2. Konfiguracja (jednorazowo)
 
 ```bash
-gh repo create mcpolska --private --source . --remote origin --push
+cp backend/.env.example backend/.env   # tylko jeśli pliku jeszcze nie ma
+nano backend/.env
 ```
 
-Bez `gh`: utwórz puste repo na github.com (bez README), potem:
+Ustaw: `JWT_SECRET` (losowy klucz), `AUTH_USERNAME`, `AUTH_PASSWORD` (silne hasło — serwer jest publiczny),
+`EDENAI_API_KEY`, `AUTH_ENABLED=true`. Model językowy wybiera się w `docker-compose.yml` (`LLM_MODEL`).
+
+## 3. Budowa i uruchomienie
 
 ```bash
-git remote add origin https://github.com/<twoj-login>/mcpolska.git
-git push -u origin main
+docker compose up -d --build
 ```
 
-## Krok 3 — projekt na Vercel
+Pierwsza budowa trwa kilka minut (LibreOffice i Tesseract w obrazie backendu, budowanie frontendu).
 
-1. [vercel.com/new](https://vercel.com/new) → **Import Git Repository** → wybierz `mcpolska`.
-2. **Root Directory**: ustaw na `web` ← kluczowe, aplikacja nie leży w korzeniu repo.
-3. Framework Preset: `Next.js` (wykryje sam). Build command i output zostaw domyślne.
-4. Environment Variables: żadnych na razie.
-5. **Deploy**.
-
-Po 1–2 min dostaniesz adres `*.vercel.app`. Sprawdź, czy strona wygląda poprawnie —
-dopiero potem domena.
-
-## Krok 4 — dodaj domenę w Vercel
-
-W projekcie: **Settings → Domains → Add Existing**.
-
-1. Wpisz `oazai.pl`. Vercel zaproponuje dorzucenie `www.oazai.pl` — przyjmij
-   (`www` będzie przekierowywać na apex).
-2. Vercel pokaże **konkretne wartości DNS dla tego projektu**. Nie przepisuj wartości
-   z tutoriali z internetu — rekord CNAME jest dziś unikalny per projekt
-   (coś w stylu `d1d4fc829fe7bc7c.vercel-dns-017.com`), a IP dla rekordu A też odczytaj
-   z tego ekranu.
-
-Zostaw tę kartę otwartą, potrzebujesz z niej wartości w kroku 5.
-
-## Krok 5 — DNS u operatora domeny
-
-Dwie drogi. **Opcja A** jest prostsza, **opcja B** bezpieczniejsza jeśli na `oazai.pl`
-działa poczta albo coś jeszcze.
-
-### Opcja A — nameservery Vercela (przejmujesz całą strefę DNS)
-
-W panelu rejestratora `oazai.pl` ustaw nameservery na te pokazane przez Vercel
-(zwykle `ns1.vercel-dns.com` i `ns2.vercel-dns.com`).
-
-⚠️ Przed zmianą: **przepisz istniejące rekordy MX, SPF/DKIM i TXT weryfikacyjne** do
-Vercel DNS. Po zmianie nameserwerów stara strefa przestaje obowiązywać i poczta
-na tej domenie padnie.
-
-### Opcja B — tylko rekordy, strefa zostaje u obecnego operatora
-
-W panelu DNS dodaj / podmień:
-
-| Typ | Nazwa | Wartość | Uwagi |
-| --- | --- | --- | --- |
-| `A` | `@` (apex) | IP pokazane przez Vercel | usuń inne rekordy `A`/`AAAA`/`CNAME` dla `@` |
-| `CNAME` | `www` | wartość CNAME pokazana przez Vercel | nie `oazai.pl`, nie `vercel.app` |
-
-Rekordy MX i reszta strefy zostają nietknięte. To zalecana droga, jeśli domena
-„zbiera kurz” ale ma podpiętą pocztę.
-
-### Jeśli DNS trzymasz na Cloudflare
-
-- Dodaj te same rekordy co w opcji B, ale ustaw proxy na **DNS only** (szara chmurka).
-  Pomarańczowa chmurka + Vercel = podwójne proxy i problemy z certyfikatem.
-- SSL/TLS mode: **Full (strict)**.
-
-## Krok 6 — weryfikacja
-
-1. W **Settings → Domains** odczekaj, aż `oazai.pl` dostanie status `Valid Configuration`
-   (certyfikat wystawia się automatycznie; propagacja DNS: minuty do kilku godzin).
-2. Z terminala:
+## 4. Sprawdzenie na serwerze
 
 ```bash
-nslookup oazai.pl
-nslookup www.oazai.pl
-curl -I https://oazai.pl
+docker compose ps                         # wszystkie usługi: Up (healthy)
+curl -s http://localhost:8000/health      # {"status":"ok", ..., "llm":true, "llmModel":"..."}
+curl -sI http://localhost | head -1       # HTTP/1.1 200 OK  — frontend (nginx)
+curl -s http://localhost/api/v1/formats   # backend przez proxy frontendu
+docker compose exec formularze id         # uid=100(app) — backend bez uprawnień roota
+docker compose exec frontend id           # uid=101(nginx) — frontend bez uprawnień roota
 ```
 
-3. Wejdź na `https://oazai.pl` — powinno być HTTPS bez ostrzeżeń, a `www` przekierowywać
-   na apex.
+Logi: `docker compose logs -f formularze` (backend), `docker compose logs -f frontend`.
 
-Jeśli Vercel pokazuje `Invalid Configuration`: zwykle został stary, konfliktowy rekord
-`A`/`CNAME` na `@` albo parkingowa strona rejestratora. Usuń konflikt i odśwież.
+## 5. Sprawdzenie z zewnątrz (z własnego komputera)
 
----
+- **http://77.45.76.243** — strona WWW: logowanie (`AUTH_USERNAME` / `AUTH_PASSWORD`) → wgranie formularza →
+  podgląd, JSON, raport.
+- **http://77.45.76.243:8000/docs** — dokumentacja REST API (Swagger).
+- Test API z komputera (pyta o hasło, wynik zapisuje w repozytorium):
+  ```bash
+  cd backend
+  python scripts/api_batch.py --target serwer=http://77.45.76.243:8000 \
+      --input ../form-examples/3 --out ../wyniki/testy/serwer-sprawdzenie --workers 2
+  ```
 
-## Dalsze kroki (osobno, nie teraz)
+Jeśli strona nie odpowiada z zewnątrz, sprawdź zaporę serwera (porty `80` i `8000`, np. `sudo ufw allow 80,8000/tcp`).
 
-Każde do zrobienia jako oddzielne zadanie, w tej kolejności:
+## 6. Aktualizacja po zmianach w repozytorium
 
-1. `mcp.oazai.pl` → subdomena wskazująca na VPS z gatewayem MCP (rekord `A` na IP VPS-a,
-   **nie** przez Vercel).
-2. Projekt Supabase + `.env.local` w `web/`.
-3. Autoryzacja użytkownika (Supabase Auth, `@supabase/ssr`) — logowanie i strona chroniona.
-4. Szkielet gatewaya MCP (FastAPI + MCP Python SDK) na VPS-ie.
+```bash
+git pull
+docker compose up -d --build              # przebudowuje i podmienia tylko zmienione usługi
+```
 
-Kontekst i cele projektu: [project-context.md](project-context.md).
+## Serwer MCP (branch `mcp`)
+
+Na gałęzi `mcp` ten sam `docker compose up -d --build` uruchamia dodatkowo serwer MCP na porcie `8100`
+(`http://77.45.76.243:8100/mcp`, token jak w REST API). W `docker-compose.yml` ustaw `MCP_SAFE_APP_URL` na adres
+strony (np. `http://77.45.76.243`) i otwórz port `8100` w zaporze. Sprawdzenie:
+
+```bash
+cd backend && python scripts/mcp_demo.py --url http://77.45.76.243:8100/mcp
+```
