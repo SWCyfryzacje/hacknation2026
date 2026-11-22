@@ -50,7 +50,6 @@ działa w całości na jednej maszynie: analiza regułowa + lokalny OCR Tesserac
 | `generator/fields.py`, `jsonata.py` | węzły JSON w kolejności kluczy z eksportów, deterministyczne UUID, warunki |
 | `generator/checks.py` | kontrola reguł formularza (strony, sekcje, unikalność, odwołania w warunkach, dane inicjalne) |
 | `service.py` | potok przetwarzania i raport |
-| `mcp_server.py` | opcjonalny serwer MCP: narzędzia `pobierz_standardy`, `zbuduj_formularz`, `sprawdz_formularz`, strażnik danych osobowych, uwierzytelnianie JWT |
 
 ## Przepływ żądania
 
@@ -93,21 +92,6 @@ Interfejs dla urzędnika (React, nginx bez uprawnień roota, port 80) działa w 
 z backendem wyłącznie przez publiczne REST API (`/api/` przekazywane przez nginx do `formularze:8000`). Backend nie
 serwuje strony — udostępnia tylko REST API i dokumentację OpenAPI.
 
-## Serwer MCP — analiza po stronie asystenta użytkownika
-
-```mermaid
-flowchart LR
-    A[Asystent AI użytkownika<br/>Claude / ChatGPT] -- "pobierz_standardy" --> M[Kontener mcp :8100]
-    A -- "analiza blankietu<br/>(model i koszt po stronie użytkownika)" --> A
-    A -- "zbuduj_formularz(opis)" --> M
-    M --> G{Strażnik danych<br/>osobowych}
-    G -- "dane osobowe" --> R[Odmowa + link do<br/>rządowej aplikacji]
-    G -- "blankiet" --> B[Generator + kontrola reguł<br/>wspólne z REST API]
-    B -- "JSON eUsługi" --> A
-```
-
-Ten sam generator i te same zasady co w REST API, więc konfiguracja jest zgodna ze standardem niezależnie od modelu
-asystenta. Urząd utrzymuje tylko generator (bez kosztów modelu). Kontener jest opcjonalny — usługa nie zależy od MCP.
 
 ## Bezpieczeństwo i dane
 

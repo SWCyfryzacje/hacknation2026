@@ -20,7 +20,6 @@ dependencies = [
     "olefile==0.47",               # BSD-2-Clause
     "defusedxml==0.7.1",           # PSF-2.0
     "httpx==0.28.1",               # BSD-3-Clause
-    "mcp==2.3.0",                  # MIT — opcjonalny serwer MCP (python -m app.mcp_server)
 ]
 
 [project.optional-dependencies]

@@ -48,11 +48,6 @@ class Settings(BaseSettings):
     jwt_leeway_s: int = Field(30, ge=0)
     jwt_ttl_minutes: int = Field(480, gt=0, description="Ważność tokenów wystawianych przy logowaniu.")
 
-    # --- Serwer MCP (opcjonalny interfejs dla asystentów AI) ---------------------
-    mcp_port: int = Field(8100, gt=0, description="Port serwera MCP (python -m app.mcp_server).")
-    mcp_safe_app_url: str = Field("http://localhost", description="Rządowa aplikacja, do której MCP odsyła przy "
-                                                                    "wykryciu danych osobowych.")
-
     # --- Logowanie użytkownika frontendu (wydawanie tokenów JWT) --------------------
     auth_username: str | None = Field(None, description="Login urzędnika do frontendu.")
     auth_password: SecretStr | None = Field(None, description="Hasło urzędnika (sekret — tylko w środowisku).")

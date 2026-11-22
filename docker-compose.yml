@@ -49,35 +49,6 @@ services:
     ports:
       - "80:8080"  # nginx bez roota słucha na 8080 w kontenerze
 
-  # Opcjonalny serwer MCP dla asystentów AI (ten sam obraz co backend, inna komenda startowa).
-  # Analizę formularza wykonuje model asystenta (koszt po stronie użytkownika), generator buduje zgodny JSON.
-  mcp:
-    image: formularze-ai
-    command: ["python", "-m", "app.mcp_server"]
-    depends_on:
-      - formularze
-    networks:
-      form-net:
-        ipv4_address: 172.19.0.30
-    env_file: ./backend/.env
-    environment:
-      # Adres rządowej aplikacji, do której MCP odsyła przy wykryciu danych osobowych.
-      MCP_SAFE_APP_URL: "http://localhost"
-    ports:
-      - "8100:8100"
-    healthcheck:  # obraz domyślnie sprawdza port 8000 (REST API) — MCP słucha na 8100
-      test: ["CMD", "python", "-c", "import socket; socket.create_connection(('127.0.0.1', 8100), 3)"]
-      interval: 30s
-      timeout: 5s
-      start_period: 10s
-    read_only: true
-    tmpfs:
-      - /tmp
-      - /home/app
-    cap_drop: [ALL]
-    security_opt:
-      - no-new-privileges:true
-    restart: unless-stopped
 
 networks:
   form-net:
