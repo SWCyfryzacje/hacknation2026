@@ -60,6 +60,7 @@ export function UploadPanel({
 
   function handleDrop(event: React.DragEvent<HTMLLabelElement>) {
     event.preventDefault();
+    if (isUploading) return;
     setIsDragging(false);
 
     if (event.dataTransfer.files.length > 1) {
@@ -130,14 +131,18 @@ export function UploadPanel({
       </p>
 
       <label
-        className={`mt-6 flex min-h-48 cursor-pointer flex-col items-center justify-center rounded-xl border-2 border-dashed px-5 py-8 text-center transition-colors focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-blue-700 ${
-          isDragging
-            ? 'border-blue-700 bg-blue-50'
-            : 'border-slate-300 bg-slate-50 hover:border-blue-500 hover:bg-blue-50/50'
+        aria-disabled={isUploading}
+        className={`mt-6 flex min-h-48 flex-col items-center justify-center rounded-xl border-2 border-dashed px-5 py-8 text-center transition-colors focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-blue-700 ${
+          isUploading
+            ? 'pointer-events-none cursor-not-allowed border-slate-200 bg-slate-100 opacity-60'
+            : isDragging
+              ? 'border-blue-700 bg-blue-50'
+              : 'cursor-pointer border-slate-300 bg-slate-50 hover:border-blue-500 hover:bg-blue-50/50'
         }`}
-        htmlFor='document-file'
+        htmlFor={isUploading ? undefined : 'document-file'}
         onDragLeave={() => setIsDragging(false)}
         onDragOver={(event) => {
+          if (isUploading) return;
           event.preventDefault();
           setIsDragging(true);
         }}
@@ -147,7 +152,7 @@ export function UploadPanel({
           <>
             <span className='font-semibold'>Wybrano plik</span>
           </>
-          ) : (
+        ) : (
           <>
             <span aria-hidden='true' className='text-3xl text-blue-700'>
               ↑
@@ -162,10 +167,13 @@ export function UploadPanel({
             {selectedFile.name}
           </span>
         )}
-        <span className='mt-1 text-sm text-slate-500'>Jeden plik na raz</span>
+        {!selectedFile && (
+          <span className='mt-1 text-sm text-slate-500'>Jeden plik na raz</span>
+        )}
         <input
           accept={allowedDocumentExtensions.join(',')}
           className='sr-only'
+          disabled={isUploading}
           id='document-file'
           onChange={(event) => {
             chooseFile(event.currentTarget.files?.[0] ?? null);
