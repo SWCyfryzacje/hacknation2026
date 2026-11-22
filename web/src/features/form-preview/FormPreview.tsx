@@ -33,7 +33,7 @@ export function FormPreview({
   showTechNames,
   onAnswersChange,
   onPageIndexChange,
-  onShowTechNamesChange,
+  // onShowTechNamesChange,
 }: FormPreviewProps) {
   const pages = useMemo(() => orderTabs(form), [form]);
   const dictionaries = useMemo(
