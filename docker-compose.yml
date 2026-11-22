@@ -47,7 +47,7 @@ services:
       form-net:
         ipv4_address: 172.19.0.20
     ports:
-      - "80:80"
+      - "80:8080"  # nginx bez roota słucha na 8080 w kontenerze
 
   # Opcjonalny serwer MCP dla asystentów AI (ten sam obraz co backend, inna komenda startowa).
   # Analizę formularza wykonuje model asystenta (koszt po stronie użytkownika), generator buduje zgodny JSON.
